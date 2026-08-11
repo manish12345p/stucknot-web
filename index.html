@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StuckNot is a community of builders. Businesses hire from it. Developers grow inside it.">
+  <title>StuckNot — A Community of Builders</title>
+  
+  <!-- Performance: Preconnect to font domains -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="stucknot-design-system.css">
+  <style>
+    /* Inline styles to ensure content looks good while loading or for elements not in CSS */
+    .hero-btn-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .hero-btn-row .base-button {
+      flex: 1 1 auto;
+      text-align: center;
+      padding: 14px 28px;
+    }
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .json-loading {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .json-loaded {
+      opacity: 1;
+    }
+    /* Force navbar on one line for desktop and override mobile sidebar styles */
+    @media (min-width: 900px) {
+      .header-nav-wrapper {
+        position: static !important;
+        flex-direction: row !important;
+        width: 100% !important;
+        height: auto !important;
+        padding: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+        gap: 16px;
+      }
+      .nav-links {
+        flex-wrap: nowrap;
+        gap: 16px;
+        align-items: center;
+      }
+      .nav-links a {
+        padding: 8px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" role="banner">
+    <div class="container">
+      <a href="/" aria-label="StuckNot Home"><span class="logo-img" role="img" aria-label="StuckNot logo"></span></a>
+      <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+      </button>
+      <div class="header-nav-wrapper" id="mobile-nav">
+        <nav class="nav-links" aria-label="Main navigation" id="nav-main-links">
+          <a href="/">Home</a>
+          <!-- Populated by JSON -->
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="json-loading">
+    <!-- ===== HERO ===== -->
+    <section class="hero-bg" style="min-height:auto; padding-bottom:120px;" aria-labelledby="hero-heading">
+      <div class="hero-header">
+        <div class="hero-content-wrapper">
+          
+          <div class="hero-text-col">
+            <p class="hero-eyebrow" id="hero-eyebrow"></p>
+            <h1 class="hero-heading-text" id="hero-heading"></h1>
+            <p class="hero-subheading-text" id="hero-subheading"></p>
+            
+            <!-- Entry Paths -->
+            <div class="hero-btn-row reveal reveal-stagger-3" id="hero-buttons">
+              <!-- Populated by JSON -->
+            </div>
+          </div>
+
+          <div class="hero-illustration-col" style="padding-top: 0; align-items: center; justify-content: center;">
+            <!-- Stunning native hero animation -->
+            <div class="hero-anim reveal reveal-stagger-4">
+              <div class="hero-anim-glow"></div>
+              
+              <div class="hero-anim-orbit">
+                <div class="orbit-dot orbit-dot-1"></div>
+                <div class="orbit-dot orbit-dot-2"></div>
+                <div class="orbit-dot orbit-dot-3"></div>
+              </div>
+              
+              <div class="hero-anim-center">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:#fff;"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              </div>
+              
+              <div class="hero-float-card card-1" style="backdrop-filter: blur(20px); width: 220px; padding: 16px;">
+                <div style="font-size: 11px; color: var(--silver); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">
+                   <div style="width:6px; height:6px; background:#27c93f; border-radius:50%; box-shadow: 0 0 8px #27c93f;"></div> Deployed to Prod
+                </div>
+                <div style="font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 2px;">Inventory API v2.0</div>
+                <div style="font-size: 12px; color: var(--rose);">+ 342 lines, - 12 lines</div>
+              </div>
+              
+              <div class="hero-float-card card-2" style="backdrop-filter: blur(20px); width: 200px; padding: 16px;">
+                <div style="font-size: 11px; color: var(--silver); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">
+                   <div style="width:6px; height:6px; background:#ffbd2e; border-radius:50%; box-shadow: 0 0 8px #ffbd2e;"></div> Mentor Feedback
+                </div>
+                <div style="font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.9); font-style: italic;">"Great architecture choice on the database indexing."</div>
+              </div>
+              
+              <div class="hero-badge badge-1" style="padding: 10px 16px;">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Real Projects
+              </div>
+              <div class="hero-badge badge-2" style="padding: 10px 16px;">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> 1:1 Mentorship
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LIVE ACTIVITY STRIP ===== -->
+    <!-- Upgraded to look like a command center / glass terminal overlay -->
+    <section class="section" style="padding-top:40px; padding-bottom: 60px; margin-top: -60px; position: relative; z-index: 10;" aria-labelledby="activity-heading">
+      <div class="container">
+        <h2 id="activity-heading" class="visually-hidden">Recent Community Activity</h2>
+        <div class="bento-card" style="padding: 30px; background: rgba(20, 15, 20, 0.6); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 20px 50px rgba(0,0,0,0.4);">
+           <p class="section-eyebrow" style="margin-bottom: 10px; color: var(--rose);"><span class="cc-cursor" style="margin-right: 8px;"></span> Live Activity Log</p>
+           <div class="oss-blog-inner" id="activity-strip" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 10px;">
+             <!-- Populated by JSON -->
+           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HOW IT WORKS (FLYWHEEL BENTO) ===== -->
+    <section class="section our-story" style="padding: 80px 0;" aria-labelledby="how-it-works-heading">
+      <div class="container">
+        <h2 id="how-it-works-heading" class="section-heading reveal">A flywheel of continuous growth.</h2>
+        <p class="accent-text reveal reveal-stagger-1" style="margin-bottom: 40px;">We learn by shipping real software. Real stakes, real users.</p>
+        
+        <div class="our-story-bento reveal reveal-stagger-2">
+          
+          <div class="bento-card" style="grid-column: 1 / 2; grid-row: 1 / 2; display: flex; flex-direction: column; justify-content: center;">
+            <h3 class="summary-card-heading" style="font-size: 24px; margin-bottom: 16px;">Mentorship meets Production</h3>
+            <p class="summary-card-text" style="font-size: 15px;">Every new builder is paired with a senior engineer. You never code alone. Code reviews are public. We believe in ruthless radical candor with the code, but empathy for the coder.</p>
+          </div>
+
+          <div class="bento-card" style="grid-column: 1 / 2; grid-row: 2 / 3; display: flex; flex-direction: column; justify-content: center;">
+            <h3 class="summary-card-heading" style="font-size: 24px; margin-bottom: 16px;">Real Client Projects</h3>
+            <p class="summary-card-text" style="font-size: 15px;">Builders are assigned to real client projects based on skill level. No toy apps. When businesses hire us, they get vetted teams building production software.</p>
+          </div>
+
+          <div class="bento-card" style="grid-column: 2 / 3; grid-row: 1 / 3; display: flex; align-items: center; justify-content: center; min-height: 400px; overflow: hidden; position: relative;">
+            <div class="bento-flywheel" style="position: absolute; width: 100%; height: 100%;">
+              <div class="flywheel-wrap">
+                <div class="flywheel">
+                  <svg class="flywheel-ring" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 4"/></svg>
+                  
+                  <div class="flywheel-center">
+                    <span class="flywheel-center-label">The<br>Community</span>
+                  </div>
+                  
+                  <div class="flywheel-node node-top">
+                    <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--rose);"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                    <div class="node-label">Build</div>
+                  </div>
+                  <div class="flywheel-node node-right">
+                    <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--rose);"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></div>
+                    <div class="node-label">Ship</div>
+                  </div>
+                  <div class="flywheel-node node-bottom">
+                    <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--rose);"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+                    <div class="node-label">Learn</div>
+                  </div>
+                  <div class="flywheel-node node-left">
+                    <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--rose);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                    <div class="node-label">Grow</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CAREER PROGRESSION (STEPPER) ===== -->
+    <section class="section" style="padding: 80px 0;" aria-labelledby="journey-heading">
+      <div class="container">
+        <h2 id="journey-heading" class="section-heading reveal">Your trajectory.</h2>
+        <p class="accent-text reveal reveal-stagger-1">From joining the community to leading production teams.</p>
+        
+        <div class="progress-stepper reveal reveal-stagger-2" id="journey-stepper">
+          <div class="stepper-cards">
+            <div class="stepper-card active" onclick="updateJourney(0)" style="cursor: pointer;">
+              <div class="stepper-year">Step 1</div>
+              <h3 class="stepper-title">Join & Learn</h3>
+              <p class="stepper-desc">Enter a cohort, get paired with a senior mentor, and start pushing code to real open-source projects.</p>
+            </div>
+            <div class="stepper-card" onclick="updateJourney(1)" style="cursor: pointer;">
+              <div class="stepper-year">Step 2</div>
+              <h3 class="stepper-title">Build in Public</h3>
+              <p class="stepper-desc">Present at weekly demos. Take ruthless radical candor on your code. Learn to ship under pressure.</p>
+            </div>
+            <div class="stepper-card" onclick="updateJourney(2)" style="cursor: pointer;">
+              <div class="stepper-year">Step 3</div>
+              <h3 class="stepper-title">Client Projects</h3>
+              <p class="stepper-desc">Join a vetted team to build production software for paying clients. Get paid to grow.</p>
+            </div>
+            <div class="stepper-card" onclick="updateJourney(3)" style="cursor: pointer;">
+              <div class="stepper-year">Step 4</div>
+              <h3 class="stepper-title">Lead & Mentor</h3>
+              <p class="stepper-desc">Become a senior member. Mentor the next cohort. Businesses hire you directly from the community.</p>
+            </div>
+          </div>
+          <div class="stepper-track-wrap" style="position: relative;">
+            <div class="stepper-track"></div>
+            <div class="stepper-progress" id="journey-progress" style="width: 25%; transition: width 0.4s ease;"></div>
+            <div class="stepper-markers">
+              <div class="stepper-marker active" onclick="updateJourney(0)" style="flex: 0 0 25%; position: relative; cursor: pointer;">
+                <div class="stepper-marker-dot"></div>
+                <div style="position: absolute; top: 20px; font-size: 12px; color: var(--rose); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap;">Month 1-2</div>
+              </div>
+              <div class="stepper-marker" onclick="updateJourney(1)" style="flex: 0 0 25%; position: relative; cursor: pointer;">
+                <div class="stepper-marker-dot"></div>
+                <div style="position: absolute; top: 20px; font-size: 12px; color: var(--silver); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap;">Month 3-5</div>
+              </div>
+              <div class="stepper-marker" onclick="updateJourney(2)" style="flex: 0 0 25%; position: relative; cursor: pointer;">
+                <div class="stepper-marker-dot"></div>
+                <div style="position: absolute; top: 20px; font-size: 12px; color: var(--silver); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap;">Month 6-12</div>
+              </div>
+              <div class="stepper-marker" onclick="updateJourney(3)" style="flex: 0 0 25%; position: relative; cursor: pointer;">
+                <div class="stepper-marker-dot"></div>
+                <div style="position: absolute; top: 20px; font-size: 12px; color: var(--silver); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap;">Year 1+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          function updateJourney(index) {
+            const stepper = document.getElementById('journey-stepper');
+            const cards = stepper.querySelectorAll('.stepper-card');
+            const markers = stepper.querySelectorAll('.stepper-marker');
+            const progress = document.getElementById('journey-progress');
+            
+            cards.forEach(c => c.classList.remove('active'));
+            markers.forEach(m => m.classList.remove('active'));
+            
+            cards[index].classList.add('active');
+            markers[index].classList.add('active');
+            progress.style.width = ((index + 1) * 25) + '%';
+          }
+        </script>
+      </div>
+    </section>
+
+    <!-- ===== WHAT YOU'LL BUILD (PROGRAMS VISUALS) ===== -->
+    <section class="section" style="padding: 80px 0;" aria-labelledby="build-heading">
+      <div class="container">
+        <h2 id="build-heading" class="section-heading reveal">What you will build.</h2>
+        <p class="accent-text reveal reveal-stagger-1">Stop watching tutorials. Start contributing to production environments.</p>
+        
+        <div class="programs-tabs-container reveal reveal-stagger-2">
+          <!-- Instead of actual tabs, we just show one impressive pane as a highlight -->
+          <div class="programs-tabs-content" style="width: 100%;">
+            <div class="program-tab-pane active" style="position: relative; opacity: 1; pointer-events: auto; transform: none;">
+              <div class="pane-content-left">
+                <div class="pane-meta">Real-world architecture</div>
+                <h3 class="pane-title">Full-Stack Production</h3>
+                <p class="pane-desc">You'll build APIs that handle thousands of requests, React dashboards with complex state, and deploy them on AWS/Vercel. This is what companies actually hire for.</p>
+                <a href="/work/case-studies.html" class="pane-btn base-button btn-white">View Case Studies</a>
+              </div>
+              <div class="pane-content-right">
+                <!-- Mock IDE Visual -->
+                <div class="mock-ide">
+                  <div class="mock-ide-header">
+                    <div class="mac-dot"></div><div class="mac-dot"></div><div class="mac-dot"></div>
+                  </div>
+                  <div class="mock-ide-body">
+                    <div class="code-line"><span class="keyword">export async function</span> <span class="func">deployToProduction</span>(req) {</div>
+                    <div class="code-line indent"><span class="keyword">const</span> data = <span class="keyword">await</span> req.<span class="func">json</span>();</div>
+                    <div class="code-line indent"><span class="keyword">try</span> {</div>
+                    <div class="code-line indent-2"><span class="keyword">await</span> Infrastructure.<span class="func">scale</span>({</div>
+                    <div class="code-line indent-3">tier: <span class="string">'enterprise'</span>,</div>
+                    <div class="code-line indent-3">region: data.region</div>
+                    <div class="code-line indent-2">});</div>
+                    <div class="code-line indent-2"><span class="keyword">return</span> <span class="func">success</span>();</div>
+                    <div class="code-line indent">} <span class="keyword">catch</span> (err) {</div>
+                    <div class="code-line indent-2"><span class="keyword">return</span> <span class="func">fail</span>(err);</div>
+                    <div class="code-line indent">}</div>
+                    <div class="code-line">}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SOCIAL PROOF BAND ===== -->
+    <section class="section" style="padding-top: 80px; padding-bottom: 120px;" aria-labelledby="proof-heading">
+      <div class="container">
+        <h2 id="proof-heading" class="visually-hidden">Community Impact and Partners</h2>
+        
+        <div class="testimonial-grid">
+          
+          <div class="testimonial-card" style="grid-column: 1 / 3; display: flex; flex-direction: row; flex-wrap: wrap; gap: 40px; align-items: center; padding: 40px;">
+            <div style="flex: 1; min-width: 250px;">
+              <p class="section-eyebrow" style="color: var(--rose);">Impact</p>
+              <h3 class="section-heading" style="font-size: 32px; margin-bottom: 30px;">The proof is in the production.</h3>
+              <div class="trust-line" id="stats-band" style="justify-content:flex-start; flex-wrap:wrap; margin-bottom: 0;">
+                 <!-- Populated by JSON -->
+              </div>
+            </div>
+            <div style="flex: 1.2; min-width: 250px;">
+              <div class="testimonial-quote-mark">"</div>
+              <div class="testimonial-type">Client Feedback</div>
+              <div class="testimonial-quote" id="testimonial-quote" style="font-size:16px;"></div>
+              <div class="testimonial-author" style="margin-top:20px;">
+                <div class="testimonial-avatar" style="font-size:14px; background: var(--maroon);">AR</div>
+                <div>
+                  <div class="testimonial-name" id="testimonial-name"></div>
+                  <div class="testimonial-role" id="testimonial-role"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bento-card" style="grid-column: 3 / 4; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px;">
+            <p class="section-eyebrow" style="color: var(--rose);">Trusted By</p>
+            <div id="partners-grid" style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 10px;">
+               <!-- Populated by JSON -->
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-inner" id="footer-inner">
+          <div>
+            <a href="/" class="logo" aria-label="StuckNot Home"><span class="logo-img" role="img" aria-label="StuckNot logo"></span></a>
+            <p class="footer-brand-desc" id="footer-desc"></p>
+          </div>
+          <!-- Populated by JSON -->
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 StuckNot — A community of builders.</span>
+        <div class="footer-bottom-links">
+          <a href="/legal/privacy-policy.html">Privacy Policy</a>
+          <a href="/legal/terms-of-service.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  
+  <script>
+    // Fetch data from local JSON database
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const response = await fetch('data.json');
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        
+        // --- Populate Navigation ---
+        const navLinks = document.getElementById('nav-main-links');
+        const topNavKeys = ['Community', 'Work', 'Programs', 'Learn', 'About'];
+        topNavKeys.forEach(key => {
+          if(key === 'About') {
+             navLinks.innerHTML += `<a href="/community/">${key}</a>`;
+          } else {
+             navLinks.innerHTML += `<a href="/${key.toLowerCase()}/">${key}</a>`;
+          }
+        });
+
+
+        // --- Populate Hero ---
+        document.getElementById('hero-eyebrow').textContent = data.home.hero.eyebrow;
+        document.getElementById('hero-eyebrow').className = 'hero-eyebrow reveal';
+        
+        document.getElementById('hero-heading').innerHTML = `<span class="line-1">${data.home.hero.headline}</span><br><span class="line-2" style="font-size: 0.8em">${data.home.hero.subheadline}</span>`;
+        document.getElementById('hero-heading').className = 'hero-heading-text reveal reveal-stagger-1';
+        
+        document.getElementById('hero-subheading').textContent = data.home.hero.description;
+        document.getElementById('hero-subheading').className = 'hero-subheading-text reveal reveal-stagger-2';
+
+        const btnContainer = document.getElementById('hero-buttons');
+        data.home.paths.forEach((path, index) => {
+          btnContainer.innerHTML += `
+            <button class="base-button ${path.icon === 'code' ? 'secondary-btn' : ''}" onclick="location.href='${path.link}'">${path.cta}</button>
+          `;
+        });
+
+        // --- Populate Activity Strip ---
+        const activityContainer = document.getElementById('activity-strip');
+        data.home.activity.forEach((item, index) => {
+          activityContainer.innerHTML += `
+            <article class="blog-card reveal reveal-stagger-${index + 1}" style="cursor:default;">
+              <div class="blog-card-content">
+                <div class="blog-card-title" style="font-size: 15px;">${item.type}: ${item.title}</div>
+                <div class="blog-card-meta">
+                  <span class="blog-card-date">${item.date}</span>
+                </div>
+                <p style="color:var(--silver); font-size:13px; margin-top:8px;">${item.detail}</p>
+              </div>
+            </article>
+          `;
+        });
+
+        // --- Populate Social Proof ---
+        const statsContainer = document.getElementById('stats-band');
+        statsContainer.className = 'trust-line reveal';
+        data.home.stats.forEach((stat, index) => {
+          if (index > 0) statsContainer.innerHTML += '<div class="divider"></div>';
+          statsContainer.innerHTML += `<span><strong>${stat.value}</strong> ${stat.label}</span>`;
+        });
+
+        const quoteEl = document.getElementById('testimonial-quote').parentElement;
+        quoteEl.className = 'testimonial-card reveal reveal-stagger-1';
+        
+        document.getElementById('testimonial-quote').textContent = `"${data.home.testimonial.quote}"`;
+        document.getElementById('testimonial-name').textContent = data.home.testimonial.name;
+        document.getElementById('testimonial-role').textContent = data.home.testimonial.role;
+
+        const partnersContainer = document.getElementById('partners-grid');
+        partnersContainer.className = 'reveal reveal-stagger-2';
+        data.home.partners.forEach(partner => {
+           partnersContainer.innerHTML += `
+             <div style="background: var(--cream); border-radius: 8px; padding: 12px 20px; display:flex; align-items:center; justify-content:center; height: 60px;">
+               <img src="images/partners/${partner}" alt="${partner.split('.')[0]}" style="max-height: 100%; max-width: 100px; object-fit: contain; opacity: 0.8;">
+             </div>
+           `;
+        });
+
+        // --- Populate Footer ---
+        document.getElementById('footer-desc').textContent = data.footer.brandDescription;
+        const footerInner = document.getElementById('footer-inner');
+        Object.keys(data.footer.links).forEach(section => {
+          let linksHtml = data.footer.links[section].map(link => `<a href="${link.url}">${link.name}</a>`).join('');
+          footerInner.innerHTML += `
+            <div>
+              <h3 class="footer-col-heading">${section}</h3>
+              <div class="footer-links">
+                ${linksHtml}
+              </div>
+            </div>
+          `;
+        });
+
+        // Show content
+        document.getElementById('main-content').classList.replace('json-loading', 'json-loaded');
+        
+        // Trigger existing animations
+        if (typeof initScrollReveal === 'function') {
+          // Give DOM a tick to render before triggering ScrollReveal
+          setTimeout(() => initScrollReveal(), 100);
+        }
+      } catch (error) {
+        console.error('Failed to load JSON database:', error);
+        document.getElementById('main-content').innerHTML = '<div class="container" style="padding:100px 0; text-align:center;"><h2>Error loading content. Please try again.</h2></div>';
+        document.getElementById('main-content').classList.replace('json-loading', 'json-loaded');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+{
+  "siteName": "StuckNot",
+  "home": {
+    "hero": {
+      "eyebrow": "Welcome to StuckNot",
+      "headline": "A community of builders.",
+      "subheadline": "Some of them are building your next product.",
+      "description": "We are a collective of developers, designers, and mentors. Businesses hire from us. Developers grow with us. We learn by shipping real software to production."
+    },
+    "activity": [
+      {
+        "type": "Shipped",
+        "title": "Inventory Management API",
+        "detail": "Built by a team of 4 for a regional retail chain.",
+        "date": "Today"
+      },
+      {
+        "type": "Milestone",
+        "title": "150th Member Joined",
+        "detail": "Our community just crossed a new milestone.",
+        "date": "Yesterday"
+      },
+      {
+        "type": "Blog Post",
+        "title": "Scaling PostgreSQL for E-commerce",
+        "detail": "Read how our latest project handled 10k concurrent users.",
+        "date": "2 days ago"
+      }
+    ],
+    "paths": [
+      {
+        "title": "Looking to build something?",
+        "description": "Hire community-vetted teams to build your production software.",
+        "cta": "Hire Talent",
+        "link": "/work",
+        "icon": "handshake"
+      },
+      {
+        "title": "Looking to become a builder?",
+        "description": "Join our structured mentorship tracks and ship real code.",
+        "cta": "Join the Community",
+        "link": "/community/",
+        "icon": "code"
+      }
+    ],
+    "stats": [
+      { "label": "Active Builders", "value": "150+" },
+      { "label": "Projects Shipped", "value": "45" },
+      { "label": "Hiring Partners", "value": "20+" }
+    ],
+    "testimonial": {
+      "quote": "Stucknot's community shipped our dashboard faster than our internal estimate — and kept improving it after launch.",
+      "name": "Anita Rao",
+      "role": "Operations Head, Regional Retail Chain"
+    },
+    "partners": [
+      "dseu.png", "maples.png", "geetauniversity.webp", "gtbit.png", "igdtu.png"
+    ]
+  },
+  "about": {
+    "hero": {
+      "headline": "How our community works.",
+      "description": "We are not a bootcamp. We are an ecosystem. Here's a look under the hood at how builders grow, how projects get shipped, and what we stand for."
+    },
+    "mechanics": [
+      {
+        "title": "Mentorship Pairing",
+        "text": "Every new builder is paired with a senior engineer. Mentors review code, unblock technical hurdles, and guide career decisions. You never code alone."
+      },
+      {
+        "title": "Real Project Assignment",
+        "text": "Builders are assigned to real client projects or open-source initiatives based on skill level. No toy apps. Real stakes, real deadlines, real users."
+      }
+    ],
+    "rituals": [
+      {
+        "title": "Weekly Demos",
+        "text": "Every Friday, builders present what they shipped. It's a high-energy session focused on celebrating wins and learning from failures."
+      },
+      {
+        "title": "Open Critique",
+        "text": "Code reviews are public. We believe in ruthless radical candor with the code, but empathy for the coder."
+      }
+    ],
+    "values": [
+      {
+        "title": "Ship over theory.",
+        "text": "Reading about a framework is useless if you haven't deployed it. We prioritize production over tutorials."
+      },
+      {
+        "title": "Leave your ego at the door.",
+        "text": "Everyone is here to learn. The best idea wins, regardless of who it came from."
+      },
+      {
+        "title": "Build in public.",
+        "text": "We share our wins, our losses, and our source code. Transparency builds trust."
+      }
+    ]
+  },
+  "footer": {
+    "brandDescription": "A community of builders. We learn by shipping real software to production.",
+    "links": {
+      "Community": [
+        {"name": "About", "url": "/community/about.html"},
+        {"name": "Members", "url": "/community/members.html"},
+        {"name": "Events", "url": "/community/events.html"},
+        {"name": "Join", "url": "/community/join.html"}
+      ],
+      "Work": [
+        {"name": "Case Studies", "url": "/work/case-studies.html"},
+        {"name": "Services", "url": "/work/services.html"},
+        {"name": "Process", "url": "/work/process.html"},
+        {"name": "Hire Talent", "url": "/work/hire.html"}
+      ],
+      "Programs": [
+        {"name": "Overview", "url": "/programs/overview.html"},
+        {"name": "Curriculum", "url": "/programs/curriculum.html"},
+        {"name": "Outcomes", "url": "/programs/outcomes.html"},
+        {"name": "Apply", "url": "/programs/apply.html"}
+      ],
+      "Learn": [
+        {"name": "Blog", "url": "/learn/blog.html"},
+        {"name": "Open Source", "url": "/learn/open-source.html"},
+        {"name": "Resources", "url": "/learn/resources.html"}
+      ]
+    }
+  }
+}

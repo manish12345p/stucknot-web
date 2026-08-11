@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Our Community Works | StuckNot</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../stucknot-design-system.css">
+  <style>
+    /* Inline styles for navigation alignment */
+    .hero-btn-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .hero-btn-row .base-button {
+      flex: 1 1 auto;
+      text-align: center;
+      padding: 14px 28px;
+    }
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .json-loading { opacity: 0; transition: opacity 0.3s ease; }
+    .json-loaded { opacity: 1; }
+    
+    @media (min-width: 900px) {
+      .header-nav-wrapper {
+        position: static !important;
+        flex-direction: row !important;
+        width: 100% !important;
+        height: auto !important;
+        padding: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+        gap: 16px;
+      }
+      .nav-links {
+        flex-wrap: nowrap;
+        gap: 16px;
+        align-items: center;
+      }
+      .nav-links a {
+        padding: 8px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" role="banner">
+    <div class="container">
+      <a href="/" aria-label="StuckNot Home"><span class="logo-img" role="img" aria-label="StuckNot logo"></span></a>
+      <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+      </button>
+      <div class="header-nav-wrapper" id="mobile-nav">
+        <nav class="nav-links" aria-label="Main navigation" id="nav-main-links">
+          <a href="/">Home</a>
+          <!-- Populated by JSON -->
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="json-loading">
+    <!-- ===== HERO ===== -->
+    <section class="hero-bg" style="min-height: auto; padding-bottom: 100px; position: relative;" aria-labelledby="hero-heading">
+      <div class="hero-header" style="max-width: 900px; text-align: center; margin: 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <div class="bento-card" style="padding: 60px 40px; background: rgba(20, 15, 20, 0.5); border-color: rgba(255,255,255,0.08); width: 100%;">
+          <p class="section-eyebrow" style="color: var(--rose); margin-bottom: 20px;">Under the hood</p>
+          <h1 class="hero-heading-text reveal" id="hero-heading" style="font-size: 56px; margin-bottom: 24px;"></h1>
+          <p class="hero-subheading-text reveal reveal-stagger-1" id="hero-subheading" style="font-size: 18px; max-width: 600px; margin: 0 auto; color: rgba(255,255,255,0.85); line-height: 1.7;"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HOW IT WORKS (MECHANICS & RITUALS) ===== -->
+    <section class="section our-story" style="padding: 80px 0; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.02));" aria-labelledby="mechanics-heading">
+      <div class="container">
+        
+        <div class="contact-inner" style="gap: 60px; align-items: flex-start;">
+          
+          <div style="flex: 1;" class="reveal reveal-stagger-1">
+            <h2 id="mechanics-heading" class="section-heading" style="font-size: 32px; margin-bottom: 20px;">The Mechanics</h2>
+            <p class="accent-text" style="margin-bottom: 40px;">How builders grow and projects get shipped.</p>
+            <div id="mechanics-blocks" style="display: flex; flex-direction: column; gap: 24px;">
+              <!-- Populated by JSON -->
+            </div>
+          </div>
+          
+          <div style="flex: 1;" class="reveal reveal-stagger-2">
+            <h2 class="section-heading" style="font-size: 32px; margin-bottom: 20px;">The Rituals</h2>
+            <p class="accent-text" style="margin-bottom: 40px;">Our cadences for learning and accountability.</p>
+            <div id="rituals-blocks" style="display: flex; flex-direction: column; gap: 24px;">
+              <!-- Populated by JSON -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VALUES ===== -->
+    <section class="section" style="padding: 100px 0;" aria-labelledby="values-heading">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 60px;">
+          <p class="section-eyebrow" style="color: var(--rose);">Our DNA</p>
+          <h2 id="values-heading" class="section-heading reveal" style="margin: 0 auto;">What we stand for.</h2>
+        </div>
+        <div class="reveal reveal-stagger-2" id="values-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+           <!-- Populated by JSON -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="contact-us" style="padding: 120px 0; position: relative;">
+      <div class="container reveal" style="max-width: 800px; text-align: center;">
+        <div class="bento-card" style="padding: 60px; background: linear-gradient(135deg, rgba(172, 13, 48, 0.15), rgba(20, 15, 20, 0.8)); border-color: rgba(230, 168, 168, 0.2); box-shadow: 0 30px 60px rgba(0,0,0,0.5);">
+          <h2 class="section-heading" style="margin: 0 auto 20px; font-size: 40px;">Ready to see who's building?</h2>
+          <p class="accent-text" style="margin: 0 auto 40px; font-size: 18px;">Meet the developers shipping our latest projects.</p>
+          <button class="base-button" onclick="location.href='/community/members.html'" style="font-size: 16px; padding: 18px 48px; border-radius: var(--radius-md);">Meet the members</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-inner" id="footer-inner">
+          <div>
+            <a href="/" class="logo" aria-label="StuckNot Home"><span class="logo-img" role="img" aria-label="StuckNot logo"></span></a>
+            <p class="footer-brand-desc" id="footer-desc"></p>
+          </div>
+          <!-- Populated by JSON -->
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 StuckNot — A community of builders.</span>
+        <div class="footer-bottom-links">
+          <a href="/legal/privacy-policy.html">Privacy Policy</a>
+          <a href="/legal/terms-of-service.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const response = await fetch('../data.json');
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        
+        // --- Populate Navigation ---
+        const navLinks = document.getElementById('nav-main-links');
+        const topNavKeys = ['Community', 'Work', 'Programs', 'Learn', 'About'];
+        topNavKeys.forEach(key => {
+          if(key === 'About') {
+             navLinks.innerHTML += `<a href="/community/">${key}</a>`;
+          } else {
+             navLinks.innerHTML += `<a href="/${key.toLowerCase()}/">${key}</a>`;
+          }
+        });
+
+        // --- Populate Hero ---
+        document.getElementById('hero-heading').textContent = data.about.hero.headline;
+        document.getElementById('hero-subheading').textContent = data.about.hero.description;
+
+        // --- Populate Mechanics & Rituals ---
+        const mechanicsContainer = document.getElementById('mechanics-blocks');
+        data.about.mechanics.forEach((item) => {
+          mechanicsContainer.innerHTML += `
+            <div class="summary-card" style="display: flex; flex-direction: column; height: 100%;">
+              <h3 style="font-size: 20px; color: var(--white); margin-bottom: 12px; font-weight: 600;">${item.title}</h3>
+              <p style="color: rgba(255,255,255,0.7); font-size: 15px; line-height: 1.6;">${item.text}</p>
+            </div>
+          `;
+        });
+
+        const ritualsContainer = document.getElementById('rituals-blocks');
+        data.about.rituals.forEach((item) => {
+          ritualsContainer.innerHTML += `
+            <div class="summary-card" style="display: flex; flex-direction: column; height: 100%;">
+              <h3 style="font-size: 20px; color: var(--white); margin-bottom: 12px; font-weight: 600;">${item.title}</h3>
+              <p style="color: rgba(255,255,255,0.7); font-size: 15px; line-height: 1.6;">${item.text}</p>
+            </div>
+          `;
+        });
+
+        // --- Populate Values ---
+        const valuesGrid = document.getElementById('values-grid');
+        data.about.values.forEach((value, index) => {
+          valuesGrid.innerHTML += `
+            <div class="summary-card" style="position: relative; display: flex; flex-direction: column;">
+              <div class="summary-card-number" style="font-size: 24px; color: var(--maroon); font-weight: 700; margin-bottom: 10px;">0${index + 1}</div>
+              <h3 class="summary-card-heading" style="font-size: 22px; margin-bottom: 16px; color: var(--white);">${value.title}</h3>
+              <p class="summary-card-text" style="font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.8);">${value.text}</p>
+            </div>
+          `;
+        });
+
+        // --- Populate Footer ---
+        document.getElementById('footer-desc').textContent = data.footer.brandDescription;
+        const footerInner = document.getElementById('footer-inner');
+        Object.keys(data.footer.links).forEach(section => {
+          let linksHtml = data.footer.links[section].map(link => `<a href="${link.url}">${link.name}</a>`).join('');
+          footerInner.innerHTML += `
+            <div>
+              <h3 class="footer-col-heading">${section}</h3>
+              <div class="footer-links">
+                ${linksHtml}
+              </div>
+            </div>
+          `;
+        });
+
+        // Show content
+        document.getElementById('main-content').classList.replace('json-loading', 'json-loaded');
+        
+        // Trigger existing animations
+        if (typeof initScrollReveal === 'function') {
+           setTimeout(() => { initScrollReveal(); }, 100);
+        }
+
+      } catch (error) {
+        console.error('Failed to load JSON database:', error);
+        document.getElementById('main-content').innerHTML = '<div class="container" style="padding:100px 0; text-align:center;"><h2>Error loading content. Please try again.</h2></div>';
+        document.getElementById('main-content').classList.replace('json-loading', 'json-loaded');
+      }
+    });
+  </script>
+</body>
+</html>
