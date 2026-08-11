@@ -75,13 +75,13 @@
   <!-- ===== HEADER ===== -->
   <header class="header" role="banner">
     <div class="container">
-      <a href="/" aria-label="StuckNot Home"><span class="logo-img" role="img" aria-label="StuckNot logo"></span></a>
+      <a href="index.html" aria-label="StuckNot Home"><span class="logo-img" role="img" aria-label="StuckNot logo"></span></a>
       <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
         <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
       </button>
       <div class="header-nav-wrapper" id="mobile-nav">
         <nav class="nav-links" aria-label="Main navigation" id="nav-main-links">
-          <a href="/">Home</a>
+          <a href="index.html">Home</a>
           <!-- Populated by JSON -->
         </nav>
       </div>
@@ -407,9 +407,9 @@
         const topNavKeys = ['Community', 'Work', 'Programs', 'Learn', 'About'];
         topNavKeys.forEach(key => {
           if(key === 'About') {
-             navLinks.innerHTML += `<a href="/community/">${key}</a>`;
+             navLinks.innerHTML += `<a href="community/index.html">${key}</a>`;
           } else {
-             navLinks.innerHTML += `<a href="/${key.toLowerCase()}/">${key}</a>`;
+             navLinks.innerHTML += `<a href="${key.toLowerCase()}/index.html">${key}</a>`;
           }
         });
 
