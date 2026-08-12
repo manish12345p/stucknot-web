@@ -115,58 +115,52 @@
           </div>
           
           <!-- RIGHT: Visual IDE Scene -->
-          <div class="reveal reveal-stagger-4" style="position: relative; height: 500px; width: 100%; display: flex; align-items: center; justify-content: center; perspective: 1000px;">
+          <div class="reveal reveal-stagger-4" style="position: relative; height: 100%; display: flex; align-items: center; justify-content: flex-end;">
             
-            <!-- Main IDE window: Code Review -->
-            <div class="mock-ide" style="position: absolute; right: 0; width: 95%; max-width: 500px; z-index: 2; box-shadow: -20px 30px 80px rgba(0,0,0,0.8); transform: rotateY(-8deg) rotateX(4deg); border: 1px solid rgba(255,255,255,0.1);">
-              <div class="ide-header" style="background: rgba(10, 5, 10, 0.9);">
-                <div class="ide-dots"><div class="ide-dot" style="background:#ff5f56"></div><div class="ide-dot" style="background:#ffbd2e"></div><div class="ide-dot" style="background:#27c93f"></div></div>
-                <div style="font-size: 12px; color: rgba(255,255,255,0.4); margin: 0 auto; font-family: monospace;">backend/auth.ts</div>
+            <!-- Main IDE window: Code Review (Clean & Flat) -->
+            <div class="mock-ide" style="width: 100%; max-width: 520px; z-index: 2; box-shadow: 0 30px 60px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; background: rgba(15, 10, 15, 0.85); backdrop-filter: blur(20px);">
+              
+              <!-- Header -->
+              <div class="ide-header" style="background: rgba(255, 255, 255, 0.03); padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center;">
+                <div class="ide-dots" style="display: flex; gap: 6px;"><div style="width: 10px; height: 10px; border-radius: 50%; background:#ff5f56"></div><div style="width: 10px; height: 10px; border-radius: 50%; background:#ffbd2e"></div><div style="width: 10px; height: 10px; border-radius: 50%; background:#27c93f"></div></div>
+                <div style="font-size: 12px; color: rgba(255,255,255,0.5); margin: 0 auto; font-family: monospace; letter-spacing: 0.5px;">backend/auth.ts</div>
               </div>
-              <div class="ide-body" style="padding: 24px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; line-height: 1.8; color: #a9b7c6; background: rgba(20, 15, 20, 0.95);">
+              
+              <!-- Body -->
+              <div class="ide-body" style="padding: 24px; font-family: 'SFMono-Regular', Consolas, monospace; font-size: 13px; line-height: 1.7; color: #a9b7c6;">
                 
-                <!-- Mentor Review Comment -->
-                <div style="display: flex; margin-bottom: 20px; align-items: flex-start; gap: 12px; background: rgba(255,255,255,0.03); padding: 16px; border-radius: 8px; border-left: 3px solid var(--rose);">
-                  <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--maroon), var(--rose)); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 12px; font-family: sans-serif;">AR</div>
+                <!-- Code Snippet Top -->
+                <div style="margin-bottom: 16px; opacity: 0.9;">
+                  <span style="color: #cc7832;">export const</span> <span style="color: #ffc66d;">validateSession</span> = <span style="color: #cc7832;">async</span> (token: <span style="color: #a9b7c6;">string</span>) => {<br>
+                  &nbsp;&nbsp;<span style="color: #cc7832;">try</span> {<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #cc7832;">const</span> decoded = <span style="color: #cc7832;">await</span> jwt.<span style="color: #ffc66d;">verify</span>(token, SECRET);
+                </div>
+
+                <!-- Sleek Mentor Review Comment -->
+                <div style="display: flex; margin: 16px 0 16px 16px; align-items: flex-start; gap: 12px; background: rgba(255,255,255,0.03); padding: 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); position: relative;">
+                  <!-- Connector line -->
+                  <div style="position: absolute; left: -16px; top: 20px; width: 16px; height: 1px; background: rgba(255,255,255,0.1);"></div>
+                  
+                  <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--maroon); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 11px; font-family: sans-serif;">AR</div>
                   <div>
-                    <div style="font-size: 12px; margin-bottom: 4px; font-family: sans-serif;"><strong style="color: #fff;">Anita Rao</strong> <span style="color: rgba(255,255,255,0.5);">reviewed 2 hours ago</span></div>
-                    <div style="font-size: 13px; color: rgba(255,255,255,0.9); font-family: sans-serif; line-height: 1.5;">"Great architecture choice here. Just one minor edge case to handle for token expiration."</div>
+                    <div style="font-size: 12px; margin-bottom: 6px; font-family: sans-serif; display: flex; align-items: center; gap: 8px;">
+                      <strong style="color: #fff;">Anita Rao</strong> 
+                      <span style="color: rgba(255,255,255,0.4);">Left a comment</span>
+                      <span style="background: rgba(39, 201, 63, 0.1); color: #27c93f; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 600;">Approved</span>
+                    </div>
+                    <div style="font-size: 13px; color: rgba(255,255,255,0.85); font-family: sans-serif; line-height: 1.5;">"Great architecture choice here. Code looks solid."</div>
                   </div>
                 </div>
                 
-                <!-- Code Snippet -->
-                <div style="opacity: 0.8;">
-                  <span style="color: #cc7832;">export const</span> <span style="color: #ffc66d;">validateSession</span> = <span style="color: #cc7832;">async</span> (token: <span style="color: #a9b7c6;">string</span>) => {<br>
-                  &nbsp;&nbsp;<span style="color: #cc7832;">try</span> {<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #cc7832;">const</span> decoded = <span style="color: #cc7832;">await</span> jwt.<span style="color: #ffc66d;">verify</span>(token, SECRET);<br>
+                <!-- Code Snippet Bottom -->
+                <div style="opacity: 0.9;">
                   &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #cc7832;">return</span> { <span style="color: #9876aa;">valid</span>: <span style="color: #cc7832;">true</span>, <span style="color: #9876aa;">user</span>: decoded };<br>
                   &nbsp;&nbsp;} <span style="color: #cc7832;">catch</span> (err) {<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #808080;">// TODO: Handle expired tokens</span><br>
                   &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #cc7832;">return</span> { <span style="color: #9876aa;">valid</span>: <span style="color: #cc7832;">false</span> };<br>
                   &nbsp;&nbsp;}<br>
                   };
                 </div>
-              </div>
-            </div>
-            
-            <!-- Floating element 1: Notification (Bottom Left) -->
-            <div class="hero-float-card" style="position: absolute; left: -20px; bottom: 80px; z-index: 3; padding: 16px 20px; background: rgba(30, 25, 30, 0.9); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.1); width: 220px; border-radius: 12px; animation: floatCard1 6s ease-in-out infinite; box-shadow: 0 15px 35px rgba(0,0,0,0.5);">
-              <div style="display: flex; align-items: center; gap: 14px;">
-                <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(39, 201, 63, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#27c93f" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                </div>
-                <div>
-                  <div style="color: #fff; font-size: 14px; font-weight: 600; font-family: sans-serif; margin-bottom: 2px;">PR Approved</div>
-                  <div style="color: var(--silver); font-size: 11px; font-family: sans-serif;">Ready to merge to main</div>
-                </div>
-              </div>
-            </div>
 
-            <!-- Floating element 2: Mini Stat (Top Left) -->
-            <div class="hero-float-card" style="position: absolute; left: 20px; top: 60px; z-index: 1; padding: 12px 16px; background: rgba(30, 25, 30, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); border-radius: 10px; animation: floatCard2 7s ease-in-out infinite alternate; box-shadow: 0 10px 25px rgba(0,0,0,0.3);">
-              <div style="display: flex; align-items: center; gap: 10px;">
-                 <div style="width:8px; height:8px; background:var(--rose); border-radius:50%; box-shadow: 0 0 10px var(--rose);"></div>
-                 <span style="color: rgba(255,255,255,0.9); font-size: 12px; font-weight: 500; font-family: sans-serif;">Live Session</span>
               </div>
             </div>
             
