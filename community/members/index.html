@@ -127,9 +127,6 @@
           <a href="../../index.html">Home</a>
           <!-- Populated by JSON -->
         </nav>
-        <div class="header-cta" id="nav-cta-buttons">
-          <!-- Populated by JSON -->
-        </div>
       </div>
     </div>
   </header>
@@ -292,7 +289,6 @@
 
         // --- Populate Navigation ---
         const navMain = document.getElementById('nav-main-links');
-        const navCta = document.getElementById('nav-cta-buttons');
         
         Object.keys(data.footer.links).forEach(section => {
           if (section !== 'Community') {
@@ -301,10 +297,6 @@
              navMain.innerHTML += `<a href="../../community/index.html" class="active">${section}</a>`;
           }
         });
-        navCta.innerHTML = `
-          <a href="../../community/join.html" class="base-button">Join the Community</a>
-          <a href="../../work/hire.html" class="base-button secondary-btn">Hire Talent</a>
-        `;
 
         // --- Populate Hero ---
         if(data.members && data.members.hero) {
