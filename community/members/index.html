@@ -136,17 +136,17 @@
 
   <main id="main-content" class="json-loading">
     <!-- ===== HERO ===== -->
-    <section class="hero-bg" style="min-height: 40vh; padding: 180px 0 60px; position: relative; overflow: hidden; justify-content: center; align-items: center;">
+    <section style="min-height: 40vh; padding: 180px 0 60px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #0f0a0f;">
       <!-- Ambient Glow -->
-      <div style="position: absolute; top: 50%; left: 50%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(172, 13, 48, 0.15) 0%, transparent 70%); transform: translate(-50%, -50%); pointer-events: none; z-index: 0;"></div>
+      <div style="position: absolute; top: 0; left: 50%; width: 100%; height: 500px; background: radial-gradient(ellipse at top, rgba(33, 194, 224, 0.1) 0%, transparent 70%); transform: translateX(-50%); pointer-events: none; z-index: 0;"></div>
       
       <div class="container" style="position: relative; z-index: 1; text-align: center;">
-        <p class="section-eyebrow reveal" style="color: var(--rose); margin-bottom: 16px; display: inline-flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: 1px;">
-          <span style="display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--rose); box-shadow: 0 0 12px var(--rose);"></span>
+        <p class="section-eyebrow reveal" style="color: #21c2e0; margin-bottom: 16px; display: inline-flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: 1px;">
+          <span style="display: block; width: 8px; height: 8px; border-radius: 50%; background: #21c2e0; box-shadow: 0 0 12px #21c2e0;"></span>
           The People
         </p>
-        <h1 class="hero-heading-text reveal reveal-stagger-1" id="hero-heading" style="font-size: 56px; line-height: 1.1; margin-bottom: 24px; max-width: 800px; margin-left: auto; margin-right: auto;"></h1>
-        <p class="hero-subheading-text reveal reveal-stagger-2" id="hero-subheading" style="font-size: 18px; max-width: 600px; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0 auto;"></p>
+        <h1 class="hero-heading-text reveal reveal-stagger-1" id="hero-heading" style="font-size: 64px; line-height: 1.1; margin-bottom: 24px; max-width: 800px; margin-left: auto; margin-right: auto; color: #fff; font-weight: 700; letter-spacing: -1px;"></h1>
+        <p class="hero-subheading-text reveal reveal-stagger-2" id="hero-subheading" style="font-size: 20px; max-width: 600px; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0 auto;"></p>
       </div>
     </section>
 
@@ -209,7 +209,7 @@
       document.getElementById('current-year').textContent = new Date().getFullYear();
 
       try {
-        const response = await fetch('../../data.json');
+        const response = await fetch('../../data.json?v=' + new Date().getTime());
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await (await response).json();
 
