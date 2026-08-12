@@ -133,17 +133,17 @@
                 <!-- Gradients -->
                 <defs>
                   <radialGradient id="glowGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stop-color="var(--rose)" stop-opacity="0.5" />
-                    <stop offset="100%" stop-color="var(--rose)" stop-opacity="0" />
+                    <stop offset="0%" stop-color="#ffbd2e" stop-opacity="0.3" />
+                    <stop offset="100%" stop-color="#ffbd2e" stop-opacity="0" />
                   </radialGradient>
                   <linearGradient id="lineGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="var(--rose)" stop-opacity="0.8" />
-                    <stop offset="100%" stop-color="var(--rose)" stop-opacity="0.1" />
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.5" />
+                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05" />
                   </linearGradient>
                 </defs>
 
                 <!-- Animated Data Lines -->
-                <g stroke="url(#lineGrad1)" stroke-width="2" stroke-dasharray="6 6" style="animation: dashCycle 2s linear infinite;">
+                <g stroke="url(#lineGrad1)" stroke-width="1.5" stroke-dasharray="6 6" style="animation: dashCycle 2s linear infinite;">
                   <!-- Center to Top Left -->
                   <path d="M 250 250 L 100 120" />
                   <!-- Center to Top Right -->
@@ -153,68 +153,68 @@
                   <!-- Center to Bottom Right -->
                   <path d="M 250 250 L 380 400" />
                   <!-- Outer Connections -->
-                  <path d="M 100 120 L 400 100" opacity="0.3" />
-                  <path d="M 400 100 L 380 400" opacity="0.3" />
-                  <path d="M 380 400 L 80 380" opacity="0.3" />
-                  <path d="M 80 380 L 100 120" opacity="0.3" />
+                  <path d="M 100 120 L 400 100" opacity="0.2" />
+                  <path d="M 400 100 L 380 400" opacity="0.2" />
+                  <path d="M 380 400 L 80 380" opacity="0.2" />
+                  <path d="M 80 380 L 100 120" opacity="0.2" />
                 </g>
 
                 <!-- Glowing Aura for Central Node -->
                 <circle cx="250" cy="250" r="90" fill="url(#glowGlow)" style="animation: pulseHub 3s infinite alternate; transform-origin: 250px 250px;" />
                 
                 <!-- Center: Community Hub -->
-                <circle cx="250" cy="250" r="50" fill="rgba(20, 15, 20, 0.95)" stroke="var(--rose)" stroke-width="2" />
+                <circle cx="250" cy="250" r="50" fill="rgba(20, 15, 20, 0.95)" stroke="#ffbd2e" stroke-width="2" />
                 <text x="250" y="244" fill="#fff" font-size="14" font-family="sans-serif" font-weight="600" text-anchor="middle">The</text>
                 <text x="250" y="262" fill="#fff" font-size="14" font-family="sans-serif" font-weight="600" text-anchor="middle">Community</text>
 
                 <!-- Nodes Group -->
                 <!-- Top Left: Mentors -->
                 <g style="animation: floatCard1 5s ease-in-out infinite; transform-origin: 100px 120px;">
-                  <circle cx="100" cy="120" r="35" fill="rgba(20,15,20,0.8)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
-                  <!-- User Icon -->
-                  <path d="M 100 115 A 8 8 0 1 0 100 99 A 8 8 0 1 0 100 115 Z M 88 132 C 88 126 94 122 100 122 C 106 122 112 126 112 132" fill="none" stroke="var(--rose)" stroke-width="1.5" />
-                  <text x="100" y="145" fill="rgba(255,255,255,0.7)" font-size="12" font-family="sans-serif" text-anchor="middle">Mentors</text>
+                  <circle cx="100" cy="120" r="35" fill="rgba(20,15,20,0.8)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+                  <!-- User Icon (Cyan) -->
+                  <path d="M 100 115 A 8 8 0 1 0 100 99 A 8 8 0 1 0 100 115 Z M 88 132 C 88 126 94 122 100 122 C 106 122 112 126 112 132" fill="none" stroke="#21c2e0" stroke-width="1.5" />
+                  <text x="100" y="145" fill="rgba(255,255,255,0.8)" font-size="12" font-family="sans-serif" text-anchor="middle">Mentors</text>
                 </g>
 
                 <!-- Top Right: Projects -->
                 <g style="animation: floatCard2 6s ease-in-out infinite; transform-origin: 400px 100px;">
-                  <circle cx="400" cy="100" r="40" fill="rgba(20,15,20,0.8)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
-                  <!-- Code Icon -->
-                  <path d="M 392 92 L 384 100 L 392 108 M 408 92 L 416 100 L 408 108" fill="none" stroke="var(--rose)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                  <text x="400" y="128" fill="rgba(255,255,255,0.7)" font-size="12" font-family="sans-serif" text-anchor="middle">Projects</text>
+                  <circle cx="400" cy="100" r="40" fill="rgba(20,15,20,0.8)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+                  <!-- Code Icon (Green) -->
+                  <path d="M 392 92 L 384 100 L 392 108 M 408 92 L 416 100 L 408 108" fill="none" stroke="#27c93f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <text x="400" y="128" fill="rgba(255,255,255,0.8)" font-size="12" font-family="sans-serif" text-anchor="middle">Projects</text>
                 </g>
 
                 <!-- Bottom Left: Builders -->
                 <g style="animation: floatCard2 7s ease-in-out infinite; transform-origin: 80px 380px;">
-                  <circle cx="80" cy="380" r="40" fill="rgba(20,15,20,0.8)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
-                  <!-- Terminal Icon -->
-                  <rect x="66" y="366" width="28" height="20" rx="3" fill="none" stroke="var(--rose)" stroke-width="1.5" />
-                  <path d="M 70 372 L 74 376 L 70 380 M 78 380 L 82 380" fill="none" stroke="var(--rose)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                  <text x="80" y="408" fill="rgba(255,255,255,0.7)" font-size="12" font-family="sans-serif" text-anchor="middle">Builders</text>
+                  <circle cx="80" cy="380" r="40" fill="rgba(20,15,20,0.8)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+                  <!-- Terminal Icon (Amber) -->
+                  <rect x="66" y="366" width="28" height="20" rx="3" fill="none" stroke="#ffbd2e" stroke-width="1.5" />
+                  <path d="M 70 372 L 74 376 L 70 380 M 78 380 L 82 380" fill="none" stroke="#ffbd2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <text x="80" y="408" fill="rgba(255,255,255,0.8)" font-size="12" font-family="sans-serif" text-anchor="middle">Builders</text>
                 </g>
 
                 <!-- Bottom Right: Code -->
                 <g style="animation: floatCard1 8s ease-in-out infinite; transform-origin: 380px 400px;">
-                  <circle cx="380" cy="400" r="35" fill="rgba(20,15,20,0.8)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
-                  <!-- Branch Icon -->
-                  <circle cx="374" cy="392" r="3" fill="none" stroke="var(--rose)" stroke-width="1.5" />
-                  <circle cx="374" cy="408" r="3" fill="none" stroke="var(--rose)" stroke-width="1.5" />
-                  <circle cx="386" cy="400" r="3" fill="none" stroke="var(--rose)" stroke-width="1.5" />
-                  <path d="M 374 395 L 374 405 M 377 395 C 382 397 384 400 384 400" fill="none" stroke="var(--rose)" stroke-width="1.5" />
-                  <text x="380" y="425" fill="rgba(255,255,255,0.7)" font-size="12" font-family="sans-serif" text-anchor="middle">Code</text>
+                  <circle cx="380" cy="400" r="35" fill="rgba(20,15,20,0.8)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+                  <!-- Branch Icon (Rose) -->
+                  <circle cx="374" cy="392" r="3" fill="none" stroke="#e6234b" stroke-width="1.5" />
+                  <circle cx="374" cy="408" r="3" fill="none" stroke="#e6234b" stroke-width="1.5" />
+                  <circle cx="386" cy="400" r="3" fill="none" stroke="#e6234b" stroke-width="1.5" />
+                  <path d="M 374 395 L 374 405 M 377 395 C 382 397 384 400 384 400" fill="none" stroke="#e6234b" stroke-width="1.5" />
+                  <text x="380" y="425" fill="rgba(255,255,255,0.8)" font-size="12" font-family="sans-serif" text-anchor="middle">Code</text>
                 </g>
                 
                 <!-- Floating data particles -->
-                <circle cx="0" cy="0" r="4" fill="#fff" filter="drop-shadow(0 0 6px #fff)">
+                <circle cx="0" cy="0" r="3.5" fill="#21c2e0" filter="drop-shadow(0 0 6px #21c2e0)">
                   <animateMotion dur="4s" repeatCount="indefinite" path="M 100 120 L 250 250" />
                 </circle>
-                <circle cx="0" cy="0" r="4" fill="#fff" filter="drop-shadow(0 0 6px #fff)">
+                <circle cx="0" cy="0" r="3.5" fill="#27c93f" filter="drop-shadow(0 0 6px #27c93f)">
                   <animateMotion dur="5.5s" repeatCount="indefinite" path="M 400 100 L 250 250" />
                 </circle>
-                <circle cx="0" cy="0" r="4" fill="#fff" filter="drop-shadow(0 0 6px #fff)">
+                <circle cx="0" cy="0" r="3.5" fill="#ffbd2e" filter="drop-shadow(0 0 6px #ffbd2e)">
                   <animateMotion dur="4.5s" repeatCount="indefinite" path="M 80 380 L 250 250" />
                 </circle>
-                <circle cx="0" cy="0" r="4" fill="#fff" filter="drop-shadow(0 0 6px #fff)">
+                <circle cx="0" cy="0" r="3.5" fill="#e6234b" filter="drop-shadow(0 0 6px #e6234b)">
                   <animateMotion dur="6s" repeatCount="indefinite" path="M 380 400 L 250 250" />
                 </circle>
               </svg>
