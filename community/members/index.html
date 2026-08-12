@@ -136,79 +136,94 @@
 
   <main id="main-content" class="json-loading">
     <!-- ===== HERO ===== -->
-    <section style="min-height: 70vh; padding: 180px 0 100px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-      <!-- Orbital Background System -->
+    <section style="min-height: 70vh; padding: 180px 0 100px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; background: var(--bg-gradient-start);">
+      
+      <!-- Builder's Wall Marquee Background -->
       <style>
-        @keyframes slowOrbit {
-          0% { transform: rotate(0deg) translateX(180px) rotate(0deg); }
-          100% { transform: rotate(360deg) translateX(180px) rotate(-360deg); }
+        @keyframes scrollLeft {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
         }
-        @keyframes slowOrbitReverse {
-          0% { transform: rotate(360deg) translateX(280px) rotate(-360deg); }
-          100% { transform: rotate(0deg) translateX(280px) rotate(0deg); }
+        @keyframes scrollRight {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
         }
-        @keyframes floatUpDown {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-20px); }
+        .marquee-track {
+          display: flex;
+          gap: 24px;
+          width: fit-content;
+          margin-bottom: 24px;
+          opacity: 0.15;
+          filter: grayscale(100%) contrast(200%);
         }
-        .orbit-avatar {
-          position: absolute;
-          width: 50px; height: 50px;
-          border-radius: 50%;
+        .marquee-track.left {
+          animation: scrollLeft 40s linear infinite;
+        }
+        .marquee-track.right {
+          animation: scrollRight 45s linear infinite;
+        }
+        .marquee-avatar {
+          width: 80px; height: 80px;
+          border-radius: 16px;
+          background: rgba(255,255,255,0.1);
+          border: 1px solid rgba(255,255,255,0.2);
           display: flex; align-items: center; justify-content: center;
-          font-family: var(--font-mono); font-weight: 700; font-size: 14px;
-          background: rgba(255,255,255,0.03);
-          border: 1px solid rgba(255,255,255,0.1);
-          backdrop-filter: blur(10px);
-          box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-          color: var(--white);
-          z-index: 0;
+          font-family: var(--font-mono); font-weight: 700; font-size: 24px;
+          color: rgba(255,255,255,0.8);
+          flex-shrink: 0;
         }
       </style>
 
-      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; max-width: 1000px; height: 100%; pointer-events: none;">
-        <!-- Inner Orbit Ring -->
-        <div style="position: absolute; top: 50%; left: 50%; width: 360px; height: 360px; margin-top: -180px; margin-left: -180px; border-radius: 50%; border: 1px dashed rgba(255,255,255,0.05); z-index: 0;"></div>
-        
-        <!-- Outer Orbit Ring -->
-        <div style="position: absolute; top: 50%; left: 50%; width: 560px; height: 560px; margin-top: -280px; margin-left: -280px; border-radius: 50%; border: 1px dashed rgba(255,255,255,0.05); z-index: 0;"></div>
-        
-        <!-- Center Glow -->
-        <div style="position: absolute; top: 50%; left: 50%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(172, 13, 48, 0.15) 0%, transparent 60%); transform: translate(-50%, -50%); z-index: 0;"></div>
-
-        <!-- Avatars on Inner Orbit -->
-        <div style="position: absolute; top: 50%; left: 50%; z-index: 0; animation: slowOrbit 25s linear infinite;">
-          <div class="orbit-avatar" style="color: var(--rose); border-color: rgba(230,168,168,0.3);">RV</div>
+      <div style="position: absolute; top: -10%; left: -10%; width: 120%; height: 120%; z-index: 0; pointer-events: none; transform: rotate(-5deg) scale(1.1);">
+        <!-- Track 1 -->
+        <div class="marquee-track left">
+          <div class="marquee-avatar">RV</div><div class="marquee-avatar">DP</div><div class="marquee-avatar">SC</div>
+          <div class="marquee-avatar">MS</div><div class="marquee-avatar">AJ</div><div class="marquee-avatar">PS</div>
+          <div class="marquee-avatar">KT</div><div class="marquee-avatar">LM</div><div class="marquee-avatar">NK</div>
+          <div class="marquee-avatar">RV</div><div class="marquee-avatar">DP</div><div class="marquee-avatar">SC</div>
+          <div class="marquee-avatar">MS</div><div class="marquee-avatar">AJ</div><div class="marquee-avatar">PS</div>
+          <div class="marquee-avatar">KT</div><div class="marquee-avatar">LM</div><div class="marquee-avatar">NK</div>
         </div>
-        <div style="position: absolute; top: 50%; left: 50%; z-index: 0; animation: slowOrbit 25s linear infinite; animation-delay: -8s;">
-          <div class="orbit-avatar" style="color: var(--silver); border-color: rgba(214,214,214,0.3);">DP</div>
+        <!-- Track 2 -->
+        <div class="marquee-track right" style="margin-left: -100px;">
+          <div class="marquee-avatar">PS</div><div class="marquee-avatar">AJ</div><div class="marquee-avatar">MS</div>
+          <div class="marquee-avatar">SC</div><div class="marquee-avatar">DP</div><div class="marquee-avatar">RV</div>
+          <div class="marquee-avatar">NK</div><div class="marquee-avatar">LM</div><div class="marquee-avatar">KT</div>
+          <div class="marquee-avatar">PS</div><div class="marquee-avatar">AJ</div><div class="marquee-avatar">MS</div>
+          <div class="marquee-avatar">SC</div><div class="marquee-avatar">DP</div><div class="marquee-avatar">RV</div>
+          <div class="marquee-avatar">NK</div><div class="marquee-avatar">LM</div><div class="marquee-avatar">KT</div>
         </div>
-        <div style="position: absolute; top: 50%; left: 50%; z-index: 0; animation: slowOrbit 25s linear infinite; animation-delay: -16s;">
-          <div class="orbit-avatar" style="color: var(--maroon-light); border-color: rgba(193,74,93,0.3);">SC</div>
+        <!-- Track 3 -->
+        <div class="marquee-track left" style="margin-left: -50px;">
+          <div class="marquee-avatar">AJ</div><div class="marquee-avatar">SC</div><div class="marquee-avatar">PS</div>
+          <div class="marquee-avatar">RV</div><div class="marquee-avatar">MS</div><div class="marquee-avatar">DP</div>
+          <div class="marquee-avatar">LM</div><div class="marquee-avatar">NK</div><div class="marquee-avatar">KT</div>
+          <div class="marquee-avatar">AJ</div><div class="marquee-avatar">SC</div><div class="marquee-avatar">PS</div>
+          <div class="marquee-avatar">RV</div><div class="marquee-avatar">MS</div><div class="marquee-avatar">DP</div>
+          <div class="marquee-avatar">LM</div><div class="marquee-avatar">NK</div><div class="marquee-avatar">KT</div>
         </div>
-
-        <!-- Avatars on Outer Orbit -->
-        <div style="position: absolute; top: 50%; left: 50%; z-index: 0; animation: slowOrbitReverse 35s linear infinite;">
-          <div class="orbit-avatar" style="color: var(--white); border-color: rgba(255,255,255,0.3); width: 60px; height: 60px; font-size: 16px;">MS</div>
-        </div>
-        <div style="position: absolute; top: 50%; left: 50%; z-index: 0; animation: slowOrbitReverse 35s linear infinite; animation-delay: -12s;">
-          <div class="orbit-avatar" style="color: var(--rose); border-color: rgba(230,168,168,0.3); width: 40px; height: 40px; font-size: 12px;">AJ</div>
-        </div>
-        <div style="position: absolute; top: 50%; left: 50%; z-index: 0; animation: slowOrbitReverse 35s linear infinite; animation-delay: -24s;">
-          <div class="orbit-avatar" style="color: var(--silver); border-color: rgba(214,214,214,0.3); width: 55px; height: 55px; font-size: 15px;">PS</div>
+        <!-- Track 4 -->
+        <div class="marquee-track right" style="margin-left: -150px;">
+          <div class="marquee-avatar">MS</div><div class="marquee-avatar">RV</div><div class="marquee-avatar">DP</div>
+          <div class="marquee-avatar">PS</div><div class="marquee-avatar">SC</div><div class="marquee-avatar">AJ</div>
+          <div class="marquee-avatar">KT</div><div class="marquee-avatar">NK</div><div class="marquee-avatar">LM</div>
+          <div class="marquee-avatar">MS</div><div class="marquee-avatar">RV</div><div class="marquee-avatar">DP</div>
+          <div class="marquee-avatar">PS</div><div class="marquee-avatar">SC</div><div class="marquee-avatar">AJ</div>
+          <div class="marquee-avatar">KT</div><div class="marquee-avatar">NK</div><div class="marquee-avatar">LM</div>
         </div>
       </div>
       
+      <!-- Heavy Gradient Overlay to ensure text legibility -->
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(30,2,10,0.8) 0%, rgba(30,2,10,1) 100%); z-index: 1; pointer-events: none;"></div>
+      
       <!-- Text Content -->
-      <div class="container" style="position: relative; z-index: 2; text-align: center; animation: floatUpDown 6s ease-in-out infinite;">
-        <div style="display: inline-block; padding: 30px 50px; background: rgba(15,10,15,0.4); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; box-shadow: 0 30px 60px rgba(0,0,0,0.5);">
-          <p class="section-eyebrow reveal" style="color: var(--rose); margin-bottom: 16px; display: inline-flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: 1px;">
-            <span style="display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--rose); box-shadow: 0 0 12px var(--rose);"></span>
-            The People
-          </p>
-          <h1 class="hero-heading-text reveal reveal-stagger-1" id="hero-heading" style="font-size: 64px; line-height: 1.1; margin-bottom: 24px; max-width: 800px; margin-left: auto; margin-right: auto; color: #fff; font-weight: 700; letter-spacing: -1px; text-shadow: 0 10px 30px rgba(0,0,0,0.5);"></h1>
-          <p class="hero-subheading-text reveal reveal-stagger-2" id="hero-subheading" style="font-size: 18px; max-width: 500px; color: rgba(255,255,255,0.8); line-height: 1.6; margin: 0 auto;"></p>
-        </div>
+      <div class="container" style="position: relative; z-index: 2; text-align: center;">
+        <p class="section-eyebrow reveal" style="color: var(--rose); margin-bottom: 16px; display: inline-flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: 1px;">
+          <span style="display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--rose); box-shadow: 0 0 12px var(--rose);"></span>
+          The People
+        </p>
+        <h1 class="hero-heading-text reveal reveal-stagger-1" id="hero-heading" style="font-size: 72px; line-height: 1.1; margin-bottom: 24px; max-width: 800px; margin-left: auto; margin-right: auto; color: #fff; font-weight: 700; letter-spacing: -2px;"></h1>
+        <p class="hero-subheading-text reveal reveal-stagger-2" id="hero-subheading" style="font-size: 20px; max-width: 600px; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0 auto;"></p>
       </div>
     </section>
 
