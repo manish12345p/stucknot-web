@@ -108,7 +108,7 @@
         "role": "Backend Engineer",
         "track": "Backend",
         "initials": "RV",
-        "color": "#21c2e0",
+        "color": "var(--rose)",
         "trajectory": "From Tutorials → Shipped PayEase Portal",
         "shipped": "PayEase Merchant Portal",
         "github": "github.com/rohitv"
@@ -118,7 +118,7 @@
         "role": "Full-Stack Developer",
         "track": "Full-Stack",
         "initials": "SC",
-        "color": "#27c93f",
+        "color": "var(--silver)",
         "trajectory": "Self-Taught → CampusConnect Lead",
         "shipped": "CampusConnect Mobile App",
         "github": "github.com/sarahcodes"
@@ -128,7 +128,7 @@
         "role": "Frontend Intern",
         "track": "Frontend",
         "initials": "DP",
-        "color": "#ffbd2e",
+        "color": "var(--maroon-light)",
         "trajectory": "First PR → Open Source Contributor",
         "shipped": "stucknot/cli-toolkit",
         "github": "github.com/devp"
@@ -138,7 +138,7 @@
         "role": "Senior Mentor",
         "track": "Alumni",
         "initials": "MS",
-        "color": "#e6234b",
+        "color": "var(--white)",
         "trajectory": "Early Builder → Now Mentoring 12+",
         "shipped": "RetailFlow Inventory API",
         "github": "github.com/mayas"
@@ -148,7 +148,7 @@
         "role": "DevOps Engineer",
         "track": "Backend",
         "initials": "AJ",
-        "color": "#21c2e0",
+        "color": "var(--rose)",
         "trajectory": "SysAdmin → Cloud Architect",
         "shipped": "CI/CD Pipeline v2",
         "github": "github.com/alexj"
@@ -158,7 +158,7 @@
         "role": "UI/UX Designer",
         "track": "Frontend",
         "initials": "PS",
-        "color": "#ffbd2e",
+        "color": "var(--silver)",
         "trajectory": "Graphic Design → Product Lead",
         "shipped": "Stucknot Design System",
         "github": "github.com/priyadesigns"
