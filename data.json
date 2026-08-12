@@ -97,6 +97,74 @@
       }
     ]
   },
+  "members": {
+    "hero": {
+      "headline": "Meet the Builders.",
+      "description": "These are the engineers, designers, and problem-solvers shipping production code inside Stucknot."
+    },
+    "list": [
+      {
+        "name": "Rohit Verma",
+        "role": "Backend Engineer",
+        "track": "Backend",
+        "initials": "RV",
+        "color": "#21c2e0",
+        "trajectory": "From Tutorials → Shipped PayEase Portal",
+        "shipped": "PayEase Merchant Portal",
+        "github": "github.com/rohitv"
+      },
+      {
+        "name": "Sarah Chen",
+        "role": "Full-Stack Developer",
+        "track": "Full-Stack",
+        "initials": "SC",
+        "color": "#27c93f",
+        "trajectory": "Self-Taught → CampusConnect Lead",
+        "shipped": "CampusConnect Mobile App",
+        "github": "github.com/sarahcodes"
+      },
+      {
+        "name": "Dev Patel",
+        "role": "Frontend Intern",
+        "track": "Frontend",
+        "initials": "DP",
+        "color": "#ffbd2e",
+        "trajectory": "First PR → Open Source Contributor",
+        "shipped": "stucknot/cli-toolkit",
+        "github": "github.com/devp"
+      },
+      {
+        "name": "Maya Singh",
+        "role": "Senior Mentor",
+        "track": "Alumni",
+        "initials": "MS",
+        "color": "#e6234b",
+        "trajectory": "Early Builder → Now Mentoring 12+",
+        "shipped": "RetailFlow Inventory API",
+        "github": "github.com/mayas"
+      },
+      {
+        "name": "Alex Johnson",
+        "role": "DevOps Engineer",
+        "track": "Backend",
+        "initials": "AJ",
+        "color": "#21c2e0",
+        "trajectory": "SysAdmin → Cloud Architect",
+        "shipped": "CI/CD Pipeline v2",
+        "github": "github.com/alexj"
+      },
+      {
+        "name": "Priya Sharma",
+        "role": "UI/UX Designer",
+        "track": "Frontend",
+        "initials": "PS",
+        "color": "#ffbd2e",
+        "trajectory": "Graphic Design → Product Lead",
+        "shipped": "Stucknot Design System",
+        "github": "github.com/priyadesigns"
+      }
+    ]
+  },
   "footer": {
     "brandDescription": "A community of builders. We learn by shipping real software to production.",
     "links": {

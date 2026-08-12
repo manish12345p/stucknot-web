@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Members | StuckNot</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../stucknot-design-system.css">
+  <style>
+    /* Inline styles for navigation alignment */
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .json-loading { opacity: 0; transition: opacity 0.3s ease; }
+    .json-loaded { opacity: 1; }
+    
+    @media (min-width: 900px) {
+      .header-nav-wrapper {
+        position: static !important;
+        flex-direction: row !important;
+        width: 100% !important;
+        height: auto !important;
+        padding: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+        gap: 16px;
+      }
+      .nav-links {
+        flex-wrap: nowrap;
+        gap: 16px;
+        align-items: center;
+      }
+      .nav-links a {
+        padding: 8px 12px;
+      }
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 60px;
+      flex-wrap: wrap;
+    }
+    .filter-pill {
+      padding: 8px 16px;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .filter-pill.active {
+      background: var(--rose);
+      color: #fff;
+      border-color: var(--rose);
+    }
+    .filter-pill:hover:not(.active) {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .member-card {
+      padding: 32px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .member-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .member-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 700;
+      color: #140f14;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" role="banner">
+    <div class="container">
+      <a href="../../index.html" aria-label="StuckNot Home"><span class="logo-img" role="img" aria-label="StuckNot logo"></span></a>
+      <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+      </button>
+      <div class="header-nav-wrapper" id="mobile-nav">
+        <nav class="nav-links" aria-label="Main navigation" id="nav-main-links">
+          <a href="../../index.html">Home</a>
+          <!-- Populated by JSON -->
+        </nav>
+        <div class="header-cta" id="nav-cta-buttons">
+          <!-- Populated by JSON -->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="json-loading">
+    <!-- ===== HERO ===== -->
+    <section class="hero-bg" style="min-height: 40vh; padding: 180px 0 60px; position: relative; overflow: hidden; justify-content: center; align-items: center;">
+      <!-- Ambient Glow -->
+      <div style="position: absolute; top: 50%; left: 50%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(172, 13, 48, 0.15) 0%, transparent 70%); transform: translate(-50%, -50%); pointer-events: none; z-index: 0;"></div>
+      
+      <div class="container" style="position: relative; z-index: 1; text-align: center;">
+        <p class="section-eyebrow reveal" style="color: var(--rose); margin-bottom: 16px; display: inline-flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: 1px;">
+          <span style="display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--rose); box-shadow: 0 0 12px var(--rose);"></span>
+          The People
+        </p>
+        <h1 class="hero-heading-text reveal reveal-stagger-1" id="hero-heading" style="font-size: 56px; line-height: 1.1; margin-bottom: 24px; max-width: 800px; margin-left: auto; margin-right: auto;"></h1>
+        <p class="hero-subheading-text reveal reveal-stagger-2" id="hero-subheading" style="font-size: 18px; max-width: 600px; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0 auto;"></p>
+      </div>
+    </section>
+
+    <!-- ===== MEMBERS GRID ===== -->
+    <section style="padding: 60px 0 120px;">
+      <div class="container">
+        
+        <!-- Filter Bar -->
+        <div class="filter-bar reveal reveal-stagger-3">
+          <div class="filter-pill active">All Builders</div>
+          <div class="filter-pill">Frontend</div>
+          <div class="filter-pill">Backend</div>
+          <div class="filter-pill">Full-Stack</div>
+          <div class="filter-pill">Alumni</div>
+        </div>
+
+        <!-- Members Grid -->
+        <div class="members-grid reveal reveal-stagger-4" id="members-grid">
+          <!-- Populated by JSON -->
+        </div>
+
+        <!-- Call to Action -->
+        <div class="reveal" style="margin-top: 100px; text-align: center; padding: 60px 20px; background: rgba(255,255,255,0.02); border-radius: 24px; border: 1px solid rgba(255,255,255,0.05);">
+          <h2 style="font-size: 32px; color: #fff; margin-bottom: 16px;">Ready to join the room?</h2>
+          <p style="color: rgba(255,255,255,0.6); max-width: 500px; margin: 0 auto 32px; font-size: 16px;">Ship real code, build your portfolio, and grow alongside engineers who push you to be better.</p>
+          <a href="../../programs/overview.html" class="base-button">Start Your Path</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo" style="margin-top: 0;">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-img" style="margin-bottom: 24px;"></div>
+          <p id="footer-desc"></p>
+        </div>
+        <div class="footer-links-wrapper" id="footer-inner">
+          <!-- Populated by JSON -->
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="current-year"></span> StuckNot. A community of builders.</p>
+        <div style="display:flex; gap:16px;">
+          <a href="../../legal/privacy-policy.html">Privacy Policy</a>
+          <a href="../../legal/terms-of-service.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Link to the main JS file for global scripts -->
+  <script src="../../main.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Set current year
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+
+      try {
+        const response = await fetch('../../data.json');
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await (await response).json();
+
+        // --- Populate Navigation ---
+        const navMain = document.getElementById('nav-main-links');
+        const navCta = document.getElementById('nav-cta-buttons');
+        
+        Object.keys(data.footer.links).forEach(section => {
+          if (section !== 'Community') {
+             navMain.innerHTML += `<a href="../../${section.toLowerCase()}/index.html">${section}</a>`;
+          } else {
+             navMain.innerHTML += `<a href="../../community/index.html" class="active">${section}</a>`;
+          }
+        });
+        navCta.innerHTML = `
+          <a href="../../community/join.html" class="base-button">Join the Community</a>
+          <a href="../../work/hire.html" class="base-button secondary-btn">Hire Talent</a>
+        `;
+
+        // --- Populate Hero ---
+        if(data.members && data.members.hero) {
+          document.getElementById('hero-heading').textContent = data.members.hero.headline;
+          document.getElementById('hero-subheading').textContent = data.members.hero.description;
+        }
+
+        // --- Populate Members Grid ---
+        const grid = document.getElementById('members-grid');
+        if(data.members && data.members.list) {
+          data.members.list.forEach(member => {
+            grid.innerHTML += `
+              <div class="member-card">
+                <div class="member-avatar" style="background: ${member.color}; box-shadow: 0 0 20px ${member.color}40;">
+                  ${member.initials}
+                </div>
+                <h3 style="font-size: 22px; color: #fff; margin-bottom: 4px; font-weight: 600;">${member.name}</h3>
+                <p style="color: ${member.color}; font-size: 14px; font-weight: 600; margin-bottom: 24px; letter-spacing: 0.5px;">${member.role}</p>
+                
+                <div style="flex-grow: 1;">
+                  <div style="margin-bottom: 16px;">
+                    <div style="font-size: 11px; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 6px; letter-spacing: 1px;">Trajectory</div>
+                    <div style="font-size: 14px; color: rgba(255,255,255,0.8);">${member.trajectory}</div>
+                  </div>
+                  <div>
+                    <div style="font-size: 11px; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 6px; letter-spacing: 1px;">Shipped</div>
+                    <div style="font-size: 14px; color: rgba(255,255,255,0.8); display: flex; align-items: center; gap: 6px;">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                      ${member.shipped}
+                    </div>
+                  </div>
+                </div>
+
+                <div style="margin-top: 32px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 16px; display: flex; justify-content: space-between; align-items: center;">
+                   <span style="font-size: 12px; color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 100px;">${member.track}</span>
+                   <a href="#" style="color: rgba(255,255,255,0.5); display: flex; align-items: center; gap: 4px; font-size: 12px; text-decoration: none; transition: color 0.2s;">
+                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                     GitHub
+                   </a>
+                </div>
+              </div>
+            `;
+          });
+        }
+
+        // --- Populate Footer ---
+        document.getElementById('footer-desc').textContent = data.footer.brandDescription;
+        const footerInner = document.getElementById('footer-inner');
+        Object.keys(data.footer.links).forEach(section => {
+          let linksHtml = data.footer.links[section].map(link => `<a href="../../${link.url.replace(/^\//, '')}">${link.name}</a>`).join('');
+          footerInner.innerHTML += `
+            <div>
+              <h3 class="footer-col-heading">${section}</h3>
+              <div class="footer-links">
+                ${linksHtml}
+              </div>
+            </div>
+          `;
+        });
+
+        // Show content
+        document.getElementById('main-content').classList.replace('json-loading', 'json-loaded');
+        
+        // Trigger existing animations
+        if (typeof initScrollReveal === 'function') {
+           setTimeout(() => { initScrollReveal(); }, 100);
+        }
+
+      } catch (error) {
+        console.error('Failed to load JSON database:', error);
+        document.getElementById('main-content').innerHTML = '<div class="container" style="padding:100px 0; text-align:center;"><h2>Error loading content. Please try again.</h2></div>';
+        document.getElementById('main-content').classList.replace('json-loading', 'json-loaded');
+      }
+    });
+  </script>
+</body>
+</html>
