@@ -165,6 +165,51 @@
       }
     ]
   },
+  "community_about": {
+    "hero": {
+      "headline": "A different kind of community.",
+      "description": "We don't just talk about code. We build it, ship it, and scale it together. Stucknot is where ambition meets execution."
+    },
+    "engine": [
+      {
+        "step": "01",
+        "title": "Learn & Build",
+        "desc": "Master fundamentals by building real tools with mentors who ship production code daily."
+      },
+      {
+        "step": "02",
+        "title": "Ship & Deploy",
+        "desc": "Contribute to open-source libraries or internal tools used by hundreds of developers."
+      },
+      {
+        "step": "03",
+        "title": "Deliver & Scale",
+        "desc": "Graduate to building enterprise software for real clients, adding massive value to your portfolio."
+      }
+    ],
+    "values": [
+      {
+        "icon": "person",
+        "title": "Leave your ego at the door.",
+        "text": "The best idea wins, regardless of who it came from."
+      },
+      {
+        "icon": "code",
+        "title": "Build in public.",
+        "text": "We share our wins, our losses, and our source code."
+      },
+      {
+        "icon": "network",
+        "title": "Code wins arguments.",
+        "text": "Debates are settled by shipping. If it works, it works."
+      },
+      {
+        "icon": "handshake",
+        "title": "Lift as you climb.",
+        "text": "When you master a skill, you turn around and pull the next person up."
+      }
+    ]
+  },
   "footer": {
     "brandDescription": "A community of builders. We learn by shipping real software to production.",
     "links": {
