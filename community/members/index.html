@@ -132,95 +132,27 @@
   </header>
 
   <main id="main-content" class="json-loading">
-    <!-- ===== HERO ===== -->
-    <section style="min-height: 70vh; padding: 180px 0 100px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; background: var(--bg-gradient-start);">
+    <section style="min-height: 60vh; padding: 160px 0 80px; position: relative; overflow: visible; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <!-- Ambient Glow (Inherits body background, just adds a subtle highlight) -->
+      <div style="position: absolute; top: 0; left: 50%; width: 100%; height: 500px; background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.05) 0%, transparent 70%); transform: translateX(-50%); pointer-events: none; z-index: 0;"></div>
       
-      <!-- Builder's Wall Marquee Background -->
-      <style>
-        @keyframes scrollLeft {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        @keyframes scrollRight {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
-        }
-        .marquee-track {
-          display: flex;
-          gap: 24px;
-          width: fit-content;
-          margin-bottom: 24px;
-          opacity: 0.15;
-          filter: grayscale(100%) contrast(200%);
-        }
-        .marquee-track.left {
-          animation: scrollLeft 40s linear infinite;
-        }
-        .marquee-track.right {
-          animation: scrollRight 45s linear infinite;
-        }
-        .marquee-avatar {
-          width: 80px; height: 80px;
-          border-radius: 16px;
-          background: rgba(255,255,255,0.1);
-          border: 1px solid rgba(255,255,255,0.2);
-          display: flex; align-items: center; justify-content: center;
-          font-family: var(--font-mono); font-weight: 700; font-size: 24px;
-          color: rgba(255,255,255,0.8);
-          flex-shrink: 0;
-        }
-      </style>
-
-      <div style="position: absolute; top: -10%; left: -10%; width: 120%; height: 120%; z-index: 0; pointer-events: none; transform: rotate(-5deg) scale(1.1);">
-        <!-- Track 1 -->
-        <div class="marquee-track left">
-          <div class="marquee-avatar">RV</div><div class="marquee-avatar">DP</div><div class="marquee-avatar">SC</div>
-          <div class="marquee-avatar">MS</div><div class="marquee-avatar">AJ</div><div class="marquee-avatar">PS</div>
-          <div class="marquee-avatar">KT</div><div class="marquee-avatar">LM</div><div class="marquee-avatar">NK</div>
-          <div class="marquee-avatar">RV</div><div class="marquee-avatar">DP</div><div class="marquee-avatar">SC</div>
-          <div class="marquee-avatar">MS</div><div class="marquee-avatar">AJ</div><div class="marquee-avatar">PS</div>
-          <div class="marquee-avatar">KT</div><div class="marquee-avatar">LM</div><div class="marquee-avatar">NK</div>
+      <div class="container" style="position: relative; z-index: 2; text-align: center; perspective: 1000px;">
+        
+        <!-- Glassmorphic Card -->
+        <div class="hero-glass-card bento-card bento-flywheel reveal reveal-stagger-1" style="display: inline-block; padding: 60px 80px; background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); border-radius: 32px; box-shadow: 0 40px 80px rgba(0,0,0,0.3); max-width: 900px; margin: 0 auto; transform-style: preserve-3d; transition: transform 0.5s var(--ease-out);">
+          
+          <div class="flywheel" style="transform-style: preserve-3d; transition: transform 0.5s var(--ease-out);">
+            <p class="section-eyebrow" style="color: var(--rose); margin-bottom: 24px; display: inline-flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: 1px; transform: translateZ(30px);">
+              <span style="display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--rose); box-shadow: 0 0 12px var(--rose);"></span>
+              The People
+            </p>
+            
+            <h1 class="hero-heading-text" id="hero-heading" style="font-size: 68px; line-height: 1.1; margin-bottom: 24px; color: #fff; font-weight: 700; letter-spacing: -2px; transform: translateZ(50px); text-shadow: 0 20px 40px rgba(0,0,0,0.4);"></h1>
+            
+            <p class="hero-subheading-text" id="hero-subheading" style="font-size: 20px; max-width: 600px; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0 auto; transform: translateZ(20px);"></p>
+          </div>
+          
         </div>
-        <!-- Track 2 -->
-        <div class="marquee-track right" style="margin-left: -100px;">
-          <div class="marquee-avatar">PS</div><div class="marquee-avatar">AJ</div><div class="marquee-avatar">MS</div>
-          <div class="marquee-avatar">SC</div><div class="marquee-avatar">DP</div><div class="marquee-avatar">RV</div>
-          <div class="marquee-avatar">NK</div><div class="marquee-avatar">LM</div><div class="marquee-avatar">KT</div>
-          <div class="marquee-avatar">PS</div><div class="marquee-avatar">AJ</div><div class="marquee-avatar">MS</div>
-          <div class="marquee-avatar">SC</div><div class="marquee-avatar">DP</div><div class="marquee-avatar">RV</div>
-          <div class="marquee-avatar">NK</div><div class="marquee-avatar">LM</div><div class="marquee-avatar">KT</div>
-        </div>
-        <!-- Track 3 -->
-        <div class="marquee-track left" style="margin-left: -50px;">
-          <div class="marquee-avatar">AJ</div><div class="marquee-avatar">SC</div><div class="marquee-avatar">PS</div>
-          <div class="marquee-avatar">RV</div><div class="marquee-avatar">MS</div><div class="marquee-avatar">DP</div>
-          <div class="marquee-avatar">LM</div><div class="marquee-avatar">NK</div><div class="marquee-avatar">KT</div>
-          <div class="marquee-avatar">AJ</div><div class="marquee-avatar">SC</div><div class="marquee-avatar">PS</div>
-          <div class="marquee-avatar">RV</div><div class="marquee-avatar">MS</div><div class="marquee-avatar">DP</div>
-          <div class="marquee-avatar">LM</div><div class="marquee-avatar">NK</div><div class="marquee-avatar">KT</div>
-        </div>
-        <!-- Track 4 -->
-        <div class="marquee-track right" style="margin-left: -150px;">
-          <div class="marquee-avatar">MS</div><div class="marquee-avatar">RV</div><div class="marquee-avatar">DP</div>
-          <div class="marquee-avatar">PS</div><div class="marquee-avatar">SC</div><div class="marquee-avatar">AJ</div>
-          <div class="marquee-avatar">KT</div><div class="marquee-avatar">NK</div><div class="marquee-avatar">LM</div>
-          <div class="marquee-avatar">MS</div><div class="marquee-avatar">RV</div><div class="marquee-avatar">DP</div>
-          <div class="marquee-avatar">PS</div><div class="marquee-avatar">SC</div><div class="marquee-avatar">AJ</div>
-          <div class="marquee-avatar">KT</div><div class="marquee-avatar">NK</div><div class="marquee-avatar">LM</div>
-        </div>
-      </div>
-      
-      <!-- Heavy Gradient Overlay to ensure text legibility -->
-      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(30,2,10,0.8) 0%, rgba(30,2,10,1) 100%); z-index: 1; pointer-events: none;"></div>
-      
-      <!-- Text Content -->
-      <div class="container" style="position: relative; z-index: 2; text-align: center;">
-        <p class="section-eyebrow reveal" style="color: var(--rose); margin-bottom: 16px; display: inline-flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: 1px;">
-          <span style="display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--rose); box-shadow: 0 0 12px var(--rose);"></span>
-          The People
-        </p>
-        <h1 class="hero-heading-text reveal reveal-stagger-1" id="hero-heading" style="font-size: 72px; line-height: 1.1; margin-bottom: 24px; max-width: 800px; margin-left: auto; margin-right: auto; color: #fff; font-weight: 700; letter-spacing: -2px;"></h1>
-        <p class="hero-subheading-text reveal reveal-stagger-2" id="hero-subheading" style="font-size: 20px; max-width: 600px; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0 auto;"></p>
       </div>
     </section>
 
