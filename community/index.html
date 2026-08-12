@@ -335,7 +335,7 @@
         document.getElementById('footer-desc').textContent = data.footer.brandDescription;
         const footerInner = document.getElementById('footer-inner');
         Object.keys(data.footer.links).forEach(section => {
-          let linksHtml = data.footer.links[section].map(link => `<a href="${link.url}">${link.name}</a>`).join('');
+          let linksHtml = data.footer.links[section].map(link => `<a href="../${link.url.replace(/^\//, '')}">${link.name}</a>`).join('');
           footerInner.innerHTML += `
             <div>
               <h3 class="footer-col-heading">${section}</h3>

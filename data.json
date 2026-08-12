@@ -214,27 +214,27 @@
     "brandDescription": "A community of builders. We learn by shipping real software to production.",
     "links": {
       "Community": [
-        {"name": "About", "url": "/community/about.html"},
-        {"name": "Members", "url": "/community/members.html"},
-        {"name": "Events", "url": "/community/events.html"},
-        {"name": "Join", "url": "/community/join.html"}
+        {"name": "About", "url": "community/about/index.html"},
+        {"name": "Members", "url": "community/members/index.html"},
+        {"name": "Events", "url": "community/events/index.html"},
+        {"name": "Join", "url": "community/join/index.html"}
       ],
       "Work": [
-        {"name": "Case Studies", "url": "/work/case-studies.html"},
-        {"name": "Services", "url": "/work/services.html"},
-        {"name": "Process", "url": "/work/process.html"},
-        {"name": "Hire Talent", "url": "/work/hire.html"}
+        {"name": "Case Studies", "url": "work/case-studies/index.html"},
+        {"name": "Services", "url": "work/services/index.html"},
+        {"name": "Process", "url": "work/process/index.html"},
+        {"name": "Hire Talent", "url": "work/hire/index.html"}
       ],
       "Programs": [
-        {"name": "Overview", "url": "/programs/overview.html"},
-        {"name": "Curriculum", "url": "/programs/curriculum.html"},
-        {"name": "Outcomes", "url": "/programs/outcomes.html"},
-        {"name": "Apply", "url": "/programs/apply.html"}
+        {"name": "Overview", "url": "programs/overview/index.html"},
+        {"name": "Curriculum", "url": "programs/curriculum/index.html"},
+        {"name": "Outcomes", "url": "programs/outcomes/index.html"},
+        {"name": "Apply", "url": "programs/apply/index.html"}
       ],
       "Learn": [
-        {"name": "Blog", "url": "/learn/blog.html"},
-        {"name": "Open Source", "url": "/learn/open-source.html"},
-        {"name": "Resources", "url": "/learn/resources.html"}
+        {"name": "Blog", "url": "learn/blog/index.html"},
+        {"name": "Open Source", "url": "learn/open-source/index.html"},
+        {"name": "Resources", "url": "learn/resources/index.html"}
       ]
     }
   }
