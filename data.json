@@ -210,6 +210,52 @@
       }
     ]
   },
+  "community_events": {
+    "hero": {
+      "headline": "Gatherings that ship.",
+      "description": "Join our open hackathons, demo days, and technical deep-dives. We don't do 'networking' — we meet up to build."
+    },
+    "upcoming": [
+      {
+        "date": "OCT 12",
+        "title": "Fall Open Source Hackathon",
+        "location": "Virtual / Discord",
+        "description": "A 48-hour sprint to build and merge features into our open-source CLI toolkit. Mentors on standby for code reviews.",
+        "link": "#register"
+      },
+      {
+        "date": "NOV 05",
+        "title": "Production React Patterns",
+        "location": "Delhi HQ & Livestream",
+        "description": "Deep dive into state management architectures we use on live client dashboards.",
+        "link": "#register"
+      },
+      {
+        "date": "DEC 15",
+        "title": "Winter Cohort Demo Day",
+        "location": "Virtual",
+        "description": "Watch our latest graduating cohort present the production systems they built for real clients.",
+        "link": "#register"
+      }
+    ],
+    "past": [
+      {
+        "title": "Spring Hackathon 2026",
+        "stats": "120 Builders • 14 Projects Shipped",
+        "image": "images/hackathon-spring.webp"
+      },
+      {
+        "title": "System Design Workshop",
+        "stats": "Led by Senior Engineers",
+        "image": "images/workshop-sysdesign.webp"
+      },
+      {
+        "title": "Summer Demo Day",
+        "stats": "3 Client Apps Launched",
+        "image": "images/demo-day-summer.webp"
+      }
+    ]
+  },
   "footer": {
     "brandDescription": "A community of builders. We learn by shipping real software to production.",
     "links": {

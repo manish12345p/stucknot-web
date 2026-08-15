@@ -475,7 +475,7 @@ function initProgramTabs(){
 })();
 
 (function initHeaderScroll(){
-  var header = document.querySelector('.header');
+  var header = document.querySelector('.header, .site-header');
   var ticking = false;
   window.addEventListener('scroll', function(){
     if (!ticking) {

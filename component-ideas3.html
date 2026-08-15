@@ -1,0 +1,2101 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-theme">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Component Ideas Gallery 3</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Montserrat:wght@400;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="stucknot-design-system.css">
+  <style>
+    body {
+      background: var(--theme-bg);
+      color: var(--theme-text);
+      padding: 60px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .gallery-section {
+      margin-bottom: 80px;
+      padding-bottom: 60px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+
+    .gallery-title {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: var(--white);
+    }
+
+    .gallery-desc {
+      color: var(--silver);
+      margin-bottom: 40px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Stucknot Component Lab 3</h1>
+  <p style="color: var(--silver); margin-bottom: 60px;">Expert-level, high-fidelity components.</p>
+
+  <!-- 19. The Deep Parallax Holographic Work Card -->
+  <div class="gallery-section">
+    <h2 class="gallery-title">19. The Holographic Work Bounty (Deep Parallax)</h2>
+    <p class="gallery-desc">An expert-level interactive card. It features true multi-layered depth, dynamic ambient lighting that tracks the cursor, and a holographic shimmer effect. This is the kind of interaction you see on high-end award-winning sites.</p>
+
+    <div class="holo-container" style="perspective: 1500px; display: flex; justify-content: center; padding: 40px;">
+      
+      <div class="holo-card" id="holo-card">
+        <!-- Ambient lighting layer that tracks the mouse -->
+        <div class="holo-glow" id="holo-glow"></div>
+        
+        <!-- The background layer (deepest) -->
+        <div class="holo-layer holo-bg">
+          <div class="bg-grid"></div>
+        </div>
+
+        <!-- Middle layer (code and text) -->
+        <div class="holo-layer holo-mid">
+          <div class="bounty-badge">BOUNTY: $4,500</div>
+          <h3 class="bounty-title">Core Routing Protocol Refactor</h3>
+          <p class="bounty-desc">Optimize the telemetry routing logic. Reduce latency by 40ms on cross-node verification.</p>
+          
+          <div class="bounty-code">
+            <span style="color:#ffbd2e;">pub fn</span> <span style="color:#21c2e0;">route_telemetry</span>(packet: &Packet) -> <span style="color:#27c93f;">Result</span>&lt;(), Error&gt; {
+                <span style="color:#ac0d30;">let</span> node = find_optimal(packet.dest);
+                <span style="color:#555;">// Holographic depth rendering</span>
+            }
+          </div>
+        </div>
+
+        <!-- Foreground layer (floating avatars and buttons) -->
+        <div class="holo-layer holo-front">
+          <div class="builders-row">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=64&q=80" class="builder-avatar" style="z-index: 3;">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=64&q=80" class="builder-avatar" style="z-index: 2; margin-left: -15px;">
+            <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=64&q=80" class="builder-avatar" style="z-index: 1; margin-left: -15px;">
+            <span style="margin-left: 10px; font-size: 11px; font-weight: bold; font-family: 'JetBrains Mono', monospace; color: #21c2e0;">+12 Active Bidders</span>
+          </div>
+          
+          <button class="holo-btn">EXECUTE WORK</button>
+        </div>
+
+        <!-- The Shimmer effect -->
+        <div class="holo-shimmer"></div>
+      </div>
+
+      <style>
+        .holo-card {
+          width: 400px;
+          height: 550px;
+          position: relative;
+          border-radius: 20px;
+          transform-style: preserve-3d;
+          transition: transform 0.1s ease-out;
+          cursor: crosshair;
+          box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 40px rgba(33, 194, 224, 0.1);
+          background: #070709;
+          border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .holo-layer {
+          position: absolute;
+          inset: 0;
+          border-radius: 20px;
+          padding: 30px;
+          transform-style: preserve-3d;
+          pointer-events: none;
+        }
+
+        /* Ambient Glow that follows cursor */
+        .holo-glow {
+          position: absolute;
+          width: 250px;
+          height: 250px;
+          background: radial-gradient(circle, rgba(33, 194, 224, 0.4) 0%, transparent 70%);
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          mix-blend-mode: screen;
+          z-index: 5;
+        }
+
+        /* Shimmer effect for that "trading card" foil feel */
+        .holo-shimmer {
+          position: absolute;
+          inset: 0;
+          border-radius: 20px;
+          background: linear-gradient(125deg, transparent 20%, rgba(255,255,255,0.1) 40%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.1) 60%, transparent 80%);
+          background-size: 200% 200%;
+          background-position: 100% 100%;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          pointer-events: none;
+          z-index: 20;
+          mix-blend-mode: overlay;
+        }
+
+        /* Layer Depth Transforms */
+        .holo-bg {
+          transform: translateZ(-40px);
+          overflow: hidden;
+        }
+        .bg-grid {
+          position: absolute;
+          inset: -50%;
+          background-image: 
+            linear-gradient(rgba(33, 194, 224, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(33, 194, 224, 0.1) 1px, transparent 1px);
+          background-size: 20px 20px;
+          transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+          animation: gridMove 10s linear infinite;
+        }
+        @keyframes gridMove {
+          0% { transform: perspective(500px) rotateX(60deg) translateY(0px) translateZ(-200px); }
+          100% { transform: perspective(500px) rotateX(60deg) translateY(20px) translateZ(-200px); }
+        }
+
+        .holo-mid {
+          transform: translateZ(20px);
+        }
+
+        .holo-front {
+          transform: translateZ(60px);
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+        }
+
+        /* Content Styling */
+        .bounty-badge {
+          display: inline-block;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 11px;
+          font-weight: bold;
+          color: #27c93f;
+          border: 1px solid #27c93f;
+          padding: 6px 12px;
+          border-radius: 20px;
+          margin-bottom: 20px;
+          background: rgba(39, 201, 63, 0.1);
+        }
+        .bounty-title {
+          font-size: 28px;
+          font-weight: 900;
+          color: #fff;
+          margin: 0 0 12px 0;
+          line-height: 1.1;
+          text-transform: uppercase;
+        }
+        .bounty-desc {
+          font-size: 13px;
+          color: #aaa;
+          line-height: 1.5;
+          margin-bottom: 30px;
+        }
+        .bounty-code {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 11px;
+          color: #888;
+          background: rgba(0,0,0,0.6);
+          padding: 16px;
+          border-radius: 8px;
+          border: 1px solid rgba(255,255,255,0.1);
+          white-space: pre-wrap;
+        }
+
+        .builders-row {
+          display: flex;
+          align-items: center;
+          margin-bottom: 30px;
+        }
+        .builder-avatar {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          border: 2px solid #070709;
+          object-fit: cover;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .holo-btn {
+          width: 100%;
+          padding: 16px;
+          background: #21c2e0;
+          color: #000;
+          border: none;
+          border-radius: 8px;
+          font-family: 'Montserrat', sans-serif;
+          font-size: 14px;
+          font-weight: 900;
+          cursor: pointer;
+          pointer-events: auto;
+          text-transform: uppercase;
+          transition: all 0.2s;
+        }
+        .holo-btn:hover {
+          background: #fff;
+          box-shadow: 0 0 20px rgba(255,255,255,0.5);
+        }
+
+      </style>
+
+      <script>
+        const card = document.getElementById('holo-card');
+        const glow = document.getElementById('holo-glow');
+        const shimmer = document.querySelector('.holo-shimmer');
+
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          // Calculate rotation
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotX = -((y - centerY) / 10);
+          const rotY = ((x - centerX) / 10);
+          
+          // Apply transform
+          card.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+          
+          // Move ambient glow
+          glow.style.opacity = '1';
+          glow.style.left = `${x}px`;
+          glow.style.top = `${y}px`;
+
+          // Move shimmer background position
+          shimmer.style.opacity = '1';
+          const shimmerX = (x / rect.width) * 100;
+          const shimmerY = (y / rect.height) * 100;
+          shimmer.style.backgroundPosition = `${shimmerX}% ${shimmerY}%`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+          glow.style.opacity = '0';
+          shimmer.style.opacity = '0';
+        });
+      </script>
+    </div>
+  </div>
+
+  <!-- 20. The Isometric Cloud Deployment Engine -->
+  <div class="gallery-section">
+    <h2 class="gallery-title">20. The Command-to-Cloud Deployment Engine (Isometric Hero)</h2>
+    <p class="gallery-desc">A dramatic, narrative-driven hero component. It starts as a simple command line execution, then physically tilts into 3D space and extrudes an entire glowing cloud infrastructure architecture, complete with network lines and builder avatars. This perfectly visualizes the text: "engineered, designed, and deployed". Hover over the container to reset the animation.</p>
+
+    <div class="deploy-hero" style="width: 100%; max-width: 1000px; height: 600px; background: #050508; border-radius: 12px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; perspective: 2000px;">
+      
+      <!-- Background Grid that also tilts -->
+      <div class="dh-bg-grid" style="position: absolute; width: 200%; height: 200%; background-image: linear-gradient(rgba(33, 194, 224, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(33, 194, 224, 0.05) 1px, transparent 1px); background-size: 40px 40px; transition: transform 2s cubic-bezier(0.8, 0, 0.2, 1); transform: rotateX(0deg) rotateZ(0deg) translateZ(-500px);"></div>
+
+      <!-- The 3D Scene Container -->
+      <div class="dh-scene" style="position: relative; width: 600px; height: 600px; transform-style: preserve-3d; transition: transform 2s cubic-bezier(0.8, 0, 0.2, 1); transform: rotateX(0deg) rotateZ(0deg);">
+        
+        <!-- Phase 1: The Terminal (Flattens and fades out) -->
+        <div class="dh-terminal" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) translateZ(10px); width: 400px; background: rgba(10,10,15,0.9); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.8); transition: all 1s ease-in-out; opacity: 1;">
+          <div style="display: flex; gap: 6px; margin-bottom: 16px;">
+            <div style="width: 10px; height: 10px; border-radius: 50%; background: #ac0d30;"></div>
+            <div style="width: 10px; height: 10px; border-radius: 50%; background: #ffbd2e;"></div>
+            <div style="width: 10px; height: 10px; border-radius: 50%; background: #27c93f;"></div>
+          </div>
+          <div style="color: #21c2e0; font-size: 13px;">~ <span style="color:#fff">stucknot</span> deploy --verify --network=global</div>
+          <div class="dh-terminal-log" style="color: #888; font-size: 11px; margin-top: 10px; opacity: 0; transition: opacity 0.3s;">
+            > Authenticating community signatures...<br>
+            > Signatures verified. 3 builders approved.<br>
+            > Initializing architecture extrusion...
+          </div>
+        </div>
+
+        <!-- Phase 2: The Isometric Architecture (Extrudes up) -->
+        <!-- Center Node (API Gateway) -->
+        <div class="dh-node dh-node-center" style="left: 250px; top: 250px; --delay: 2.5s;">
+          <div class="dh-cube">
+            <div class="dh-face dh-top">API</div>
+            <div class="dh-face dh-left"></div>
+            <div class="dh-face dh-right"></div>
+          </div>
+          <div class="dh-avatar" style="--adelay: 3.5s;"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=64&q=80"></div>
+        </div>
+
+        <!-- Satellite Node 1 (Database) -->
+        <div class="dh-node dh-node-db" style="left: 100px; top: 100px; --delay: 2.8s;">
+          <div class="dh-cylinder">
+            <div class="dh-cyl-top">DB</div>
+            <div class="dh-cyl-body"></div>
+          </div>
+          <div class="dh-avatar" style="--adelay: 3.8s;"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=64&q=80"></div>
+        </div>
+
+        <!-- Satellite Node 2 (Compute Worker) -->
+        <div class="dh-node dh-node-worker1" style="left: 450px; top: 150px; --delay: 3.0s;">
+          <div class="dh-cube">
+            <div class="dh-face dh-top">WRK</div>
+            <div class="dh-face dh-left"></div>
+            <div class="dh-face dh-right"></div>
+          </div>
+          <div class="dh-avatar" style="--adelay: 4.0s;"><img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=64&q=80"></div>
+        </div>
+
+        <!-- Satellite Node 3 (Compute Worker 2) -->
+        <div class="dh-node dh-node-worker2" style="left: 200px; top: 450px; --delay: 3.2s;">
+          <div class="dh-cube">
+            <div class="dh-face dh-top">WRK</div>
+            <div class="dh-face dh-left"></div>
+            <div class="dh-face dh-right"></div>
+          </div>
+          <div class="dh-avatar" style="--adelay: 4.2s;"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=64&q=80"></div>
+        </div>
+
+        <!-- Connecting Data Lines (Drawn after nodes appear) -->
+        <svg class="dh-svg" width="600" height="600" style="position: absolute; top: 0; left: 0; pointer-events: none; transform: translateZ(10px);">
+          <path class="dh-line" d="M 300 300 L 150 150" style="--ldelay: 3.5s; stroke: #21c2e0;" />
+          <path class="dh-line" d="M 300 300 L 500 200" style="--ldelay: 3.7s; stroke: #27c93f;" />
+          <path class="dh-line" d="M 300 300 L 250 500" style="--ldelay: 3.9s; stroke: #ffbd2e;" />
+          
+          <!-- Moving packets -->
+          <circle class="dh-packet" cx="0" cy="0" r="4" fill="#21c2e0" style="--pdelay: 4.5s;">
+            <animateMotion dur="2s" repeatCount="indefinite" path="M 300 300 L 150 150" />
+          </circle>
+          <circle class="dh-packet" cx="0" cy="0" r="4" fill="#27c93f" style="--pdelay: 4.7s;">
+            <animateMotion dur="2.5s" repeatCount="indefinite" path="M 300 300 L 500 200" />
+          </circle>
+          <circle class="dh-packet" cx="0" cy="0" r="4" fill="#ffbd2e" style="--pdelay: 4.9s;">
+            <animateMotion dur="1.8s" repeatCount="indefinite" path="M 250 500 L 300 300" />
+          </circle>
+        </svg>
+
+      </div>
+
+      <!-- Action Overlay (Appears at end) -->
+      <div class="dh-overlay" style="position: absolute; bottom: 40px; right: 40px; opacity: 0; transition: opacity 1s; transition-delay: 5s;">
+        <div style="background: rgba(33, 194, 224, 0.1); border: 1px solid #21c2e0; color: #21c2e0; padding: 12px 24px; border-radius: 30px; font-weight: bold; text-transform: uppercase; font-size: 12px; box-shadow: 0 0 20px rgba(33,194,224,0.3);">Network Deployed & Verified</div>
+      </div>
+
+      <style>
+        /* Base Isometric Tilting */
+        .deploy-hero.is-active .dh-scene {
+          transform: rotateX(60deg) rotateZ(-45deg);
+        }
+        .deploy-hero.is-active .dh-bg-grid {
+          transform: rotateX(60deg) rotateZ(-45deg) translateZ(-200px);
+        }
+
+        /* Terminal fades out and shrinks */
+        .deploy-hero.is-active .dh-terminal {
+          opacity: 0;
+          transform: translate(-50%, -50%) translateZ(10px) scale(0.5);
+          transition-delay: 1.5s;
+        }
+        
+        .deploy-hero.is-active .dh-terminal-log {
+          opacity: 1;
+          transition-delay: 0.5s;
+        }
+
+        /* Nodes (Blocks and Cylinders) */
+        .dh-node {
+          position: absolute;
+          width: 100px;
+          height: 100px;
+          transform-style: preserve-3d;
+          transform: translateZ(0) scale(0);
+          transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .deploy-hero.is-active .dh-node {
+          transform: translateZ(0) scale(1);
+          transition-delay: var(--delay);
+        }
+
+        /* 3D Cube Construction */
+        .dh-cube {
+          position: absolute;
+          width: 100%; height: 100%;
+          transform-style: preserve-3d;
+        }
+        .dh-face {
+          position: absolute;
+          border: 1px solid rgba(255,255,255,0.2);
+        }
+        .dh-top {
+          width: 100px; height: 100px;
+          background: rgba(33, 194, 224, 0.2);
+          transform: translateZ(40px);
+          display: flex; align-items: center; justify-content: center;
+          color: #fff; font-weight: bold; font-size: 20px;
+          box-shadow: inset 0 0 20px rgba(33,194,224,0.5);
+        }
+        .dh-left {
+          width: 100px; height: 40px;
+          background: rgba(33, 194, 224, 0.4);
+          transform: rotateX(90deg) translateZ(20px) translateY(20px);
+        }
+        .dh-right {
+          width: 40px; height: 100px;
+          background: rgba(33, 194, 224, 0.6);
+          transform: rotateY(90deg) translateZ(80px) translateX(-20px);
+        }
+
+        /* DB Cylinder Construction */
+        .dh-cylinder {
+          position: absolute;
+          width: 80px; height: 80px; left: 10px; top: 10px;
+          transform-style: preserve-3d;
+        }
+        .dh-cyl-top {
+          width: 80px; height: 80px; border-radius: 50%;
+          background: rgba(255, 189, 46, 0.4);
+          border: 1px solid #ffbd2e;
+          transform: translateZ(60px);
+          display: flex; align-items: center; justify-content: center;
+          color: #fff; font-weight: bold;
+          box-shadow: inset 0 0 20px rgba(255,189,46,0.8);
+        }
+        .dh-cyl-body {
+          width: 80px; height: 80px; border-radius: 50%;
+          background: rgba(255, 189, 46, 0.8);
+          transform: translateZ(30px);
+          box-shadow: 0 0 30px rgba(255, 189, 46, 0.5);
+        }
+
+        /* Changing colors for workers */
+        .dh-node-worker1 .dh-top { background: rgba(39, 201, 63, 0.2); box-shadow: inset 0 0 20px rgba(39, 201, 63, 0.5); }
+        .dh-node-worker1 .dh-left { background: rgba(39, 201, 63, 0.4); }
+        .dh-node-worker1 .dh-right { background: rgba(39, 201, 63, 0.6); }
+
+        .dh-node-worker2 .dh-top { background: rgba(172, 13, 48, 0.2); box-shadow: inset 0 0 20px rgba(172, 13, 48, 0.5); }
+        .dh-node-worker2 .dh-left { background: rgba(172, 13, 48, 0.4); }
+        .dh-node-worker2 .dh-right { background: rgba(172, 13, 48, 0.6); }
+
+        /* Avatars floating above nodes */
+        .dh-avatar {
+          position: absolute;
+          width: 40px; height: 40px;
+          left: 30px; top: 30px;
+          transform: translateZ(120px) rotateZ(45deg) rotateX(-60deg) scale(0);
+          transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          box-shadow: 0 20px 20px rgba(0,0,0,0.5);
+          border-radius: 50%;
+        }
+        .dh-avatar img {
+          width: 100%; height: 100%; border-radius: 50%; border: 2px solid #fff; object-fit: cover;
+        }
+        .deploy-hero.is-active .dh-avatar {
+          transform: translateZ(120px) rotateZ(45deg) rotateX(-60deg) scale(1);
+          transition-delay: var(--adelay);
+        }
+
+        /* SVG Connecting Lines */
+        .dh-line {
+          fill: none;
+          stroke-width: 2;
+          stroke-dasharray: 500;
+          stroke-dashoffset: 500;
+          transition: stroke-dashoffset 1s ease-in-out;
+        }
+        .deploy-hero.is-active .dh-line {
+          stroke-dashoffset: 0;
+          transition-delay: var(--ldelay);
+        }
+
+        /* Data Packets */
+        .dh-packet {
+          opacity: 0;
+          transition: opacity 0.5s;
+        }
+        .deploy-hero.is-active .dh-packet {
+          opacity: 1;
+          transition-delay: var(--pdelay);
+        }
+        
+        .deploy-hero.is-active .dh-overlay {
+          opacity: 1;
+        }
+
+      </style>
+
+      <script>
+        const dhHero = document.querySelector('.deploy-hero');
+        
+        // Auto trigger animation shortly after load, or click to toggle
+        setTimeout(() => {
+          dhHero.classList.add('is-active');
+        }, 500);
+
+        dhHero.addEventListener('click', () => {
+          dhHero.classList.remove('is-active');
+          setTimeout(() => {
+            dhHero.classList.add('is-active');
+          }, 100); // small delay to reset CSS transitions
+        });
+      </script>
+
+    </div>
+  </div>
+
+  <!-- 21. The X-Ray Code Inspector -->
+  <div class="gallery-section">
+    <h2 class="gallery-title">21. The X-Ray Code Inspector (Spotlight Hero)</h2>
+    <p class="gallery-desc">This hits the "inspect the code" prompt perfectly. The user sees a polished, high-fidelity project interface. But their cursor acts as an X-Ray lensâ€”wherever they point, the UI melts away to reveal the raw, syntax-highlighted code running underneath. This is a highly sought-after "expert" interaction using synced layers and dynamic CSS clip-paths.</p>
+
+    <div class="xray-hero" id="xray-hero">
+      
+      <!-- The Base Layer: The Raw Code -->
+      <div class="xray-layer xray-code-layer">
+        <div class="xray-code-content">
+          <pre><code><span class="kw">import</span> { Suspense } <span class="kw">from</span> <span class="str">'react'</span>;
+<span class="kw">import</span> { Canvas } <span class="kw">from</span> <span class="str">'@react-three/fiber'</span>;
+<span class="kw">import</span> { Environment, OrbitControls } <span class="kw">from</span> <span class="str">'@react-three/drei'</span>;
+
+<span class="kw">export default function</span> <span class="fn">CommunityProject</span>() {
+  <span class="kw">return</span> (
+    &lt;<span class="tag">div</span> <span class="attr">className</span>=<span class="str">"w-full h-screen bg-black"</span>&gt;
+      &lt;<span class="tag">Canvas</span> <span class="attr">camera</span>={{ position: [0, 0, 5] }}&gt;
+        &lt;<span class="tag">Suspense</span> <span class="attr">fallback</span>={&lt;<span class="tag">Loader</span> /&gt;}&gt;
+          &lt;<span class="tag">ambientLight</span> <span class="attr">intensity</span>={0.5} /&gt;
+          &lt;<span class="tag">directionalLight</span> <span class="attr">position</span>={[10, 10, 5]} <span class="attr">intensity</span>={1} /&gt;
+          
+          <span class="cmt">{/* Verifiable Builder Signatures */}</span>
+          &lt;<span class="tag">BuilderMesh</span> <span class="attr">author</span>=<span class="str">"@sarah_dev"</span> <span class="attr">verified</span>={<span class="kw">true</span>} /&gt;
+          &lt;<span class="tag">PhysicsEngine</span> <span class="attr">author</span>=<span class="str">"@alex_ui"</span> <span class="attr">optimized</span>={<span class="kw">true</span>} /&gt;
+
+          &lt;<span class="tag">Environment</span> <span class="attr">preset</span>=<span class="str">"city"</span> /&gt;
+          &lt;<span class="tag">OrbitControls</span> <span class="attr">enablePan</span>={<span class="kw">false</span>} /&gt;
+        &lt;/<span class="tag">Suspense</span>&gt;
+      &lt;/<span class="tag">Canvas</span>&gt;
+      
+      &lt;<span class="tag">VerificationBadge</span> <span class="attr">status</span>=<span class="str">"DEPLOYED"</span> /&gt;
+    &lt;/<span class="tag">div</span>&gt;
+  );
+}</code></pre>
+        </div>
+        
+        <!-- Animated floating particles in the code layer -->
+        <div class="code-particles"></div>
+      </div>
+
+      <!-- The Top Layer: The Polished UI -->
+      <!-- This layer uses a clip-path circle that follows the mouse to REVEAL the code underneath -->
+      <!-- Actually, standard is the UI is on bottom and mouse reveals code on top, or vice versa. 
+           Let's make the UI the base, and the mouse reveals the code on top! -->
+      <div class="xray-layer xray-ui-layer" id="xray-ui-layer">
+        
+        <!-- A beautiful mockup UI -->
+        <div class="mock-ui">
+          <div class="mock-header">
+            <div class="mock-dots"><span></span><span></span><span></span></div>
+            <div class="mock-title">Stucknot Project / Community Render</div>
+          </div>
+          <div class="mock-body">
+            <div class="mock-sidebar">
+              <div class="mock-item active"></div>
+              <div class="mock-item"></div>
+              <div class="mock-item"></div>
+              <div class="mock-item"></div>
+            </div>
+            <div class="mock-main">
+              <!-- A beautiful CSS-only 3D object to represent the "rendered" output -->
+              <div class="mock-3d-object">
+                <div class="cube-wrapper">
+                  <div class="cube-face front"></div>
+                  <div class="cube-face back"></div>
+                  <div class="cube-face right"></div>
+                  <div class="cube-face left"></div>
+                  <div class="cube-face top"></div>
+                  <div class="cube-face bottom"></div>
+                </div>
+              </div>
+              <div class="mock-status">
+                <span class="mock-badge">VERIFIED BUILD</span>
+                <h1>Community Project Render</h1>
+                <p>Engineered by @sarah_dev and @alex_ui</p>
+                <button class="mock-btn">View Deployment</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+      <!-- The X-Ray Lens Ring -->
+      <div class="xray-lens" id="xray-lens">
+        <div class="lens-text">INSPECT CODE</div>
+        <div class="lens-crosshair"></div>
+      </div>
+
+      <style>
+        .xray-hero {
+          width: 100%;
+          max-width: 1000px;
+          height: 600px;
+          position: relative;
+          background: #000;
+          border-radius: 12px;
+          overflow: hidden;
+          border: 1px solid rgba(255,255,255,0.1);
+          cursor: none; /* Hide default cursor */
+        }
+
+        .xray-layer {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        /* --- THE CODE LAYER (BOTTOM) --- */
+        .xray-code-layer {
+          background: #0a0a0f;
+          padding: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: 'JetBrains Mono', monospace;
+          background-image: radial-gradient(circle at center, rgba(33,194,224,0.1) 0%, transparent 70%);
+        }
+        .xray-code-content {
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+        }
+        .xray-code-content pre {
+          margin: 0;
+          font-size: 14px;
+          line-height: 1.6;
+          color: #a0a0a0;
+        }
+        .xray-code-content .kw { color: #ff7b72; font-weight: bold; }
+        .xray-code-content .str { color: #a5d6ff; }
+        .xray-code-content .fn { color: #d2a8ff; font-weight: bold; }
+        .xray-code-content .tag { color: #7ee787; }
+        .xray-code-content .attr { color: #79c0ff; }
+        .xray-code-content .cmt { color: #8b949e; font-style: italic; }
+
+        /* --- THE UI LAYER (TOP) --- */
+        .xray-ui-layer {
+          background: var(--theme-bg);
+          z-index: 10;
+          /* The magic part: we cut a hole in this layer based on mouse position */
+          clip-path: circle(0px at 50% 50%);
+          transition: clip-path 0.1s ease-out;
+        }
+        
+        /* Initialize it to full screen before JS kicks in, or we can make the Code layer top. 
+           Let's make UI the base (no clip path), and CODE the top layer (with clip path) so the lens REVEALS the code! */
+      </style>
+      
+      <!-- WAIT! Let's swap the layers so the Code is on top and clipped, so it looks like we are peering INTO the code -->
+      <script>
+        // Move UI to bottom, Code to top for the CSS
+        const uiLayer = document.getElementById('xray-ui-layer');
+        const codeLayer = document.querySelector('.xray-code-layer');
+        
+        // Reset styles for the swap
+        uiLayer.style.clipPath = 'none';
+        uiLayer.style.zIndex = '5';
+        
+        codeLayer.style.zIndex = '10';
+        codeLayer.style.clipPath = 'circle(120px at 50% 50%)';
+        codeLayer.style.pointerEvents = 'none'; // let mouse events pass through
+      </script>
+
+      <style>
+        /* MOCK UI STYLING */
+        .mock-ui {
+          width: 100%; height: 100%;
+          display: flex; flex-direction: column;
+          background: #111;
+        }
+        .mock-header {
+          height: 40px; background: #1a1a1a; display: flex; align-items: center; padding: 0 20px;
+          border-bottom: 1px solid #333;
+        }
+        .mock-dots { display: flex; gap: 8px; }
+        .mock-dots span { width: 12px; height: 12px; border-radius: 50%; background: #333; }
+        .mock-dots span:nth-child(1) { background: #ff5f56; }
+        .mock-dots span:nth-child(2) { background: #ffbd2e; }
+        .mock-dots span:nth-child(3) { background: #27c93f; }
+        .mock-title { flex-grow: 1; text-align: center; color: #888; font-size: 12px; font-family: sans-serif; }
+        
+        .mock-body {
+          display: flex; flex-grow: 1;
+        }
+        .mock-sidebar {
+          width: 80px; background: #151515; border-right: 1px solid #333;
+          display: flex; flex-direction: column; align-items: center; padding-top: 20px; gap: 20px;
+        }
+        .mock-item { width: 40px; height: 40px; border-radius: 8px; background: #222; }
+        .mock-item.active { background: rgba(33,194,224,0.2); border: 1px solid #21c2e0; }
+        
+        .mock-main {
+          flex-grow: 1; position: relative;
+          display: flex; flex-direction: column; align-items: center; justify-content: center;
+          background: radial-gradient(circle at center, #1a1a24 0%, #0a0a0a 100%);
+        }
+
+        /* 3D Object in the Mock UI */
+        .mock-3d-object {
+          width: 200px; height: 200px; perspective: 800px;
+          margin-bottom: 40px;
+        }
+        .cube-wrapper {
+          width: 100%; height: 100%; position: relative;
+          transform-style: preserve-3d;
+          animation: spinCube 10s linear infinite;
+        }
+        .cube-face {
+          position: absolute; width: 120px; height: 120px;
+          top: 40px; left: 40px;
+          background: rgba(33,194,224,0.1);
+          border: 2px solid #21c2e0;
+          box-shadow: 0 0 20px rgba(33,194,224,0.2);
+        }
+        .front  { transform: translateZ(60px); }
+        .back   { transform: rotateY(180deg) translateZ(60px); }
+        .right  { transform: rotateY(90deg) translateZ(60px); }
+        .left   { transform: rotateY(-90deg) translateZ(60px); }
+        .top    { transform: rotateX(90deg) translateZ(60px); }
+        .bottom { transform: rotateX(-90deg) translateZ(60px); }
+
+        @keyframes spinCube {
+          0% { transform: rotateX(0deg) rotateY(0deg); }
+          100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        .mock-status { text-align: center; }
+        .mock-badge { display: inline-block; padding: 6px 12px; background: rgba(39,201,63,0.1); color: #27c93f; border: 1px solid #27c93f; border-radius: 20px; font-size: 10px; font-weight: bold; letter-spacing: 1px; margin-bottom: 15px; }
+        .mock-status h1 { margin: 0 0 10px 0; font-size: 24px; color: #fff; }
+        .mock-status p { margin: 0 0 20px 0; color: #888; font-size: 14px; }
+        .mock-btn { background: #fff; color: #000; border: none; padding: 12px 24px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+
+        /* --- THE LENS RING --- */
+        .xray-lens {
+          position: absolute;
+          width: 240px; height: 240px;
+          border-radius: 50%;
+          border: 2px solid rgba(255,255,255,0.4);
+          box-shadow: 0 0 0 9999px rgba(0,0,0,0.6), inset 0 0 20px rgba(0,0,0,0.8);
+          pointer-events: none;
+          z-index: 20;
+          transform: translate(-50%, -50%);
+          display: flex; align-items: center; justify-content: center;
+        }
+        /* When hovering outside the container, hide the lens */
+        .xray-hero:not(:hover) .xray-lens {
+          opacity: 0;
+        }
+        .xray-hero:not(:hover) .xray-code-layer {
+          clip-path: circle(0px at 50% 50%) !important;
+        }
+
+        .lens-text {
+          position: absolute; top: -30px;
+          color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px;
+          background: #000; padding: 4px 10px; border-radius: 10px; border: 1px solid #333;
+        }
+        .lens-crosshair {
+          width: 20px; height: 20px; position: relative;
+        }
+        .lens-crosshair::before, .lens-crosshair::after {
+          content: ''; position: absolute; background: rgba(255,255,255,0.5);
+        }
+        .lens-crosshair::before { top: 9px; left: 0; width: 20px; height: 2px; }
+        .lens-crosshair::after { left: 9px; top: 0; height: 20px; width: 2px; }
+
+      </style>
+
+      <script>
+        const hero = document.getElementById('xray-hero');
+        const codeL = document.querySelector('.xray-code-layer');
+        const lens = document.getElementById('xray-lens');
+
+        // Initial position
+        let mouseX = 500;
+        let mouseY = 300;
+
+        hero.addEventListener('mousemove', (e) => {
+          const rect = hero.getBoundingClientRect();
+          mouseX = e.clientX - rect.left;
+          mouseY = e.clientY - rect.top;
+
+          // Update the clip path for the code layer (the X-Ray hole)
+          codeL.style.clipPath = `circle(120px at ${mouseX}px ${mouseY}px)`;
+          
+          // Update the physical lens ring
+          lens.style.left = `${mouseX}px`;
+          lens.style.top = `${mouseY}px`;
+        });
+      </script>
+
+    </div>
+  </div>
+
+  <!-- 22. The Web of Builders Canvas Mesh -->
+  <div class="gallery-section">
+    <h2 class="gallery-title">22. The "Web of Builders" (Full Canvas Hero Section)</h2>
+    <p class="gallery-desc">This completely abandons the "widget" approach. This is a full-scale, integrated Hero Section replacement. It uses a custom-built 3D Canvas Engine to render an undulating, triangulated ocean of nodes (representing the community) behind frosted glass typography. This is the exact visual technique used by top-tier tech startups to create immediate, breathtaking impact on page load without requiring any user interaction.</p>
+
+    <!-- The Actual Hero Section Container -->
+    <div style="position: relative; width: 100%; max-width: 1200px; height: 700px; border-radius: 20px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 40px 100px rgba(0,0,0,0.8);">
+      
+      <!-- The Canvas Background (Expert Level Math) -->
+      <canvas id="meshCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
+
+      <!-- The Content Layer (Glassmorphism + Typography) -->
+      <div style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; pointer-events: none; text-align: center; z-index: 10;">
+        
+        <!-- Glass Panel -->
+        <div style="background: rgba(10, 10, 15, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 60px 80px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 30px 60px rgba(0,0,0,0.5); pointer-events: auto;">
+          <span style="font-family: 'JetBrains Mono', monospace; color: #ac0d30; font-size: 14px; font-weight: bold; letter-spacing: 4px; text-transform: uppercase; display: block; margin-bottom: 20px;">
+            Verifiable Proof
+          </span>
+          <h1 style="font-size: 72px; line-height: 1.1; font-weight: 900; color: #fff; margin: 0 0 30px 0; letter-spacing: -2px;">
+            Built by the<br>
+            <span style="background: linear-gradient(90deg, #21c2e0, #27c93f); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Community.</span>
+          </h1>
+          <p style="color: #a0a0a0; font-size: 18px; max-width: 500px; margin: 0 auto 40px auto; line-height: 1.6;">
+            We don't hide behind vague statistics. Every project here was engineered, designed, and deployed by verifiable members of the Stucknot network.
+          </p>
+          
+          <div style="display: flex; gap: 20px; justify-content: center;">
+            <button style="background: #fff; color: #000; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 14px; padding: 18px 36px; border-radius: 8px; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">START A PROJECT</button>
+            <button style="background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.2); font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 14px; padding: 18px 36px; border-radius: 8px; cursor: pointer; transition: background 0.2s;">BROWSE WORK</button>
+          </div>
+        </div>
+
+      </div>
+
+      <script>
+        const canvas = document.getElementById('meshCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let points = [];
+        const cols = 40; // Number of columns in grid
+        const rows = 25; // Number of rows in grid
+        let mouseX = 0;
+        let mouseY = 0;
+        let time = 0;
+
+        function resize() {
+          width = canvas.parentElement.clientWidth;
+          height = canvas.parentElement.clientHeight;
+          // Support high DPI displays
+          const dpr = window.devicePixelRatio || 1;
+          canvas.width = width * dpr;
+          canvas.height = height * dpr;
+          ctx.scale(dpr, dpr);
+        }
+
+        function initPoints() {
+          points = [];
+          for (let x = 0; x < cols; x++) {
+            for (let y = 0; y < rows; y++) {
+              points.push({
+                cx: x,
+                cy: y,
+                baseX: (x / (cols - 1)) * width * 1.5 - (width * 0.25),
+                baseY: (y / (rows - 1)) * height * 1.5 - (height * 0.25),
+                z: 0,
+                // Assign a color randomly for highlights
+                highlight: Math.random() > 0.95 ? (Math.random() > 0.5 ? '#21c2e0' : '#ac0d30') : null
+              });
+            }
+          }
+        }
+
+        // Custom 3D projection and mesh rendering
+        function render() {
+          ctx.clearRect(0, 0, width, height);
+          
+          time += 0.02;
+
+          // Calculate current positions based on 3D wave math (Perlin-ish)
+          for (let i = 0; i < points.length; i++) {
+            const p = points[i];
+            
+            // Complex wave function
+            const distanceToCenter = Math.sqrt(Math.pow(p.cx - cols/2, 2) + Math.pow(p.cy - rows/2, 2));
+            const wave1 = Math.sin(p.cx * 0.2 + time) * 30;
+            const wave2 = Math.cos(p.cy * 0.2 + time * 0.8) * 30;
+            const wave3 = Math.sin(distanceToCenter * 0.1 - time * 1.5) * 40;
+            
+            p.z = wave1 + wave2 + wave3;
+            
+            // Mouse interaction push
+            const dx = p.baseX - mouseX;
+            const dy = p.baseY - mouseY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 200) {
+              p.z += (200 - dist) * 0.5; // Push up when mouse is near
+            }
+
+            // Pseudo-3D Projection
+            // The further down the Y axis, the larger it appears
+            const scale = 800 / (800 - p.z);
+            p.px = p.baseX;
+            p.py = p.baseY - (p.z * 1.5); // Push up based on Z height
+          }
+
+          // Draw the Triangulated Mesh lines
+          ctx.lineWidth = 1;
+          for (let x = 0; x < cols - 1; x++) {
+            for (let y = 0; y < rows - 1; y++) {
+              const i = x * rows + y;
+              const p1 = points[i];
+              const p2 = points[i + 1]; // Next in row
+              const p3 = points[(x + 1) * rows + y]; // Next in col
+
+              // Calculate average Z of the triangle to determine color/opacity
+              const avgZ = (p1.z + p2.z + p3.z) / 3;
+              const opacity = Math.max(0.02, Math.min(0.4, (avgZ + 100) / 200));
+              
+              ctx.strokeStyle = `rgba(100, 150, 255, ${opacity})`;
+
+              ctx.beginPath();
+              ctx.moveTo(p1.px, p1.py);
+              ctx.lineTo(p2.px, p2.py);
+              ctx.lineTo(p3.px, p3.py);
+              ctx.stroke();
+            }
+          }
+
+          // Draw highlight points
+          for (let i = 0; i < points.length; i++) {
+            const p = points[i];
+            if (p.highlight) {
+              const pulse = (Math.sin(time * 3 + p.cx) + 1) / 2; // 0 to 1
+              ctx.fillStyle = p.highlight;
+              ctx.beginPath();
+              ctx.arc(p.px, p.py, 2 + (pulse * 3), 0, Math.PI * 2);
+              ctx.fill();
+              
+              // Glow
+              ctx.shadowColor = p.highlight;
+              ctx.shadowBlur = 10 * pulse;
+              ctx.fill();
+              ctx.shadowBlur = 0;
+            }
+          }
+
+          requestAnimationFrame(render);
+        }
+
+        window.addEventListener('resize', () => {
+          resize();
+          initPoints();
+        });
+
+        canvas.parentElement.addEventListener('mousemove', (e) => {
+          const rect = canvas.getBoundingClientRect();
+          mouseX = e.clientX - rect.left;
+          mouseY = e.clientY - rect.top;
+        });
+
+        canvas.parentElement.addEventListener('mouseleave', () => {
+          mouseX = -1000;
+          mouseY = -1000;
+        });
+
+        // Init
+        resize();
+        initPoints();
+        render();
+
+      </script>
+
+    </div>
+  </div>
+
+  <!-- 23. The Community Proof Stream Component -->
+  <div class="gallery-section">
+    <h2 class="gallery-title">23. The Community Proof Stream (Hero Widget)</h2>
+    <p class="gallery-desc">A self-contained, expert-level widget designed to sit next to the text in the Hero section. It visualizes "Verifiable Proof" by showing a constant, high-fidelity live stream of code commits being cryptographically matched with community avatars. It requires zero interaction to look stunning, instantly drawing the eye with synchronized flashing, sliding data, and polished glassmorphic styling.</p>
+
+    <!-- Widget Container -->
+    <div class="proof-stream-widget" style="width: 100%; max-width: 550px; height: 380px; background: #07070a; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 20px 40px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05); position: relative; overflow: hidden; display: flex; flex-direction: column;">
+      
+      <!-- Top Bar -->
+      <div style="height: 50px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; padding: 0 20px; justify-content: space-between; background: rgba(255,255,255,0.02);">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="pulse-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #27c93f; box-shadow: 0 0 10px #27c93f;"></div>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #888; font-weight: bold; letter-spacing: 1px;">LIVE VERIFICATION NETWORK</span>
+        </div>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #21c2e0;">842 ACTIVE</span>
+      </div>
+
+      <!-- Main Activity Area -->
+      <div style="flex-grow: 1; position: relative; display: flex; align-items: center; justify-content: center;">
+        
+        <!-- Background Grid -->
+        <div style="position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 20px 20px; pointer-events: none;"></div>
+
+        <!-- The Central Scanner -->
+        <div style="position: absolute; width: 120px; height: 260px; background: rgba(33, 194, 224, 0.05); border-left: 1px solid rgba(33, 194, 224, 0.3); border-right: 1px solid rgba(33, 194, 224, 0.3); z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+          <!-- Scanner Laser Line -->
+          <div class="scanner-laser" style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: #21c2e0; box-shadow: 0 0 15px #21c2e0, 0 0 30px #21c2e0;"></div>
+          
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #21c2e0; font-weight: bold; padding: 4px 8px; background: rgba(33,194,224,0.1); border-radius: 12px; margin-bottom: 12px;">MATCHING</div>
+          
+          <!-- Verification Core -->
+          <div class="verify-core" style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid rgba(39, 201, 63, 0.2); display: flex; align-items: center; justify-content: center; position: relative;">
+            <div class="core-inner" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(39, 201, 63, 0.1); display: flex; align-items: center; justify-content: center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#27c93f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <!-- Ripple Effects -->
+            <div class="core-ripple" style="position: absolute; inset: -10px; border-radius: 50%; border: 1px solid #27c93f; opacity: 0;"></div>
+          </div>
+        </div>
+
+        <!-- Track 1: Avatars (Moving Right to Left) -->
+        <div class="stream-track avatar-track" style="position: absolute; top: 50px; width: 100%; height: 60px; overflow: hidden; display: flex; align-items: center;">
+          <div class="track-mover track-left" id="avatar-mover">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Track 2: Commits (Moving Left to Right) -->
+        <div class="stream-track commit-track" style="position: absolute; bottom: 50px; width: 100%; height: 60px; overflow: hidden; display: flex; align-items: center;">
+          <div class="track-mover track-right" id="commit-mover">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Dynamic Connection Lines (drawn by JS) -->
+        <svg id="connection-svg" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5;"></svg>
+
+      </div>
+    </div>
+
+    <style>
+      .pulse-dot {
+        animation: activePulse 2s infinite;
+      }
+      @keyframes activePulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(0.8); }
+      }
+
+      .scanner-laser {
+        animation: scanMove 4s ease-in-out infinite alternate;
+      }
+      @keyframes scanMove {
+        0% { top: 0%; }
+        100% { top: 100%; }
+      }
+
+      .track-mover {
+        display: flex; gap: 40px; position: absolute;
+      }
+
+      /* Stream Items */
+      .stream-avatar {
+        width: 48px; height: 48px; border-radius: 50%; overflow: hidden; border: 2px solid #1a1a24;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5); position: relative;
+        transition: transform 0.2s, border-color 0.2s;
+      }
+      .stream-avatar img {
+        width: 100%; height: 100%; object-fit: cover;
+      }
+      
+      .stream-commit {
+        background: #111; border: 1px solid #222; border-radius: 8px; padding: 12px 16px;
+        display: flex; flex-direction: column; gap: 4px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        min-width: 180px; position: relative;
+        transition: transform 0.2s, border-color 0.2s;
+      }
+      .stream-commit .hash { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #ffbd2e; }
+      .stream-commit .msg { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: bold; color: #fff; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+
+      /* Animation Classes added by JS */
+      .is-verified {
+        transform: scale(1.1);
+        border-color: #27c93f !important;
+        box-shadow: 0 0 20px rgba(39, 201, 63, 0.4) !important;
+      }
+      .core-verified .core-ripple {
+        animation: rippleBurst 0.6s ease-out;
+      }
+      .core-verified .core-inner {
+        background: rgba(39, 201, 63, 0.3) !important;
+      }
+
+      @keyframes rippleBurst {
+        0% { transform: scale(1); opacity: 1; }
+        100% { transform: scale(2); opacity: 0; }
+      }
+      
+      .conn-line {
+        stroke: #27c93f; stroke-width: 2; stroke-dasharray: 6 6;
+        animation: dashFlow 1s linear infinite;
+        opacity: 0; transition: opacity 0.2s;
+      }
+      @keyframes dashFlow {
+        to { stroke-dashoffset: -12; }
+      }
+    </style>
+
+    <script>
+      (function() {
+        const avatarMover = document.getElementById('avatar-mover');
+        const commitMover = document.getElementById('commit-mover');
+        const svg = document.getElementById('connection-svg');
+        const core = document.querySelector('.verify-core');
+        
+        const avatars = [
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80",
+          "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80",
+          "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=100&q=80",
+          "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80",
+          "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=100&q=80"
+        ];
+        
+        const commits = [
+          { h: "a9f3b2c", m: "feat: Zero-knowledge proofs" },
+          { h: "e4d1c9a", m: "fix: Sub-second TTI routing" },
+          { h: "8f2a1b9", m: "perf: Edge caching logic" },
+          { h: "c7e9d4f", m: "feat: Multi-sig architecture" },
+          { h: "b1a2c3d", m: "chore: Upgrade node engine" }
+        ];
+
+        // Populate tracks
+        for(let i=0; i<15; i++) {
+          const avImg = avatars[i % avatars.length];
+          const divA = document.createElement('div');
+          divA.className = 'stream-avatar';
+          divA.innerHTML = `<img src="${avImg}">`;
+          avatarMover.appendChild(divA);
+
+          const c = commits[i % commits.length];
+          const divC = document.createElement('div');
+          divC.className = 'stream-commit';
+          divC.innerHTML = `<span class="hash">${c.h}</span><span class="msg">${c.m}</span>`;
+          commitMover.appendChild(divC);
+        }
+
+        let avatarOffset = 0;
+        let commitOffset = -800; // Start offscreen right
+        let centerZone = 275; // roughly middle of 550px widget
+
+        function animateStream() {
+          avatarOffset -= 1.5; // moving left
+          commitOffset += 2.0; // moving right
+
+          // reset loops
+          if(avatarOffset < -800) avatarOffset = 0;
+          if(commitOffset > 0) commitOffset = -800;
+
+          avatarMover.style.transform = `translateX(${avatarOffset}px)`;
+          commitMover.style.transform = `translateX(${commitOffset}px)`;
+
+          // Check for alignment in the center scanner
+          checkAlignment();
+
+          requestAnimationFrame(animateStream);
+        }
+
+        let isVerifying = false;
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("class", "conn-line");
+        svg.appendChild(line);
+
+        function checkAlignment() {
+          const avNodes = avatarMover.children;
+          const coNodes = commitMover.children;
+          
+          let avMatch = null;
+          let coMatch = null;
+
+          // Find avatar near center
+          for(let i=0; i<avNodes.length; i++) {
+            const rect = avNodes[i].getBoundingClientRect();
+            const parentRect = avatarMover.parentElement.getBoundingClientRect();
+            const relativeX = rect.left - parentRect.left + (rect.width/2);
+            
+            if(Math.abs(relativeX - centerZone) < 30) {
+              avMatch = avNodes[i];
+              break;
+            }
+          }
+
+          // Find commit near center
+          for(let i=0; i<coNodes.length; i++) {
+            const rect = coNodes[i].getBoundingClientRect();
+            const parentRect = commitMover.parentElement.getBoundingClientRect();
+            const relativeX = rect.left - parentRect.left + (rect.width/2);
+            
+            if(Math.abs(relativeX - centerZone) < 40) {
+              coMatch = coNodes[i];
+              break;
+            }
+          }
+
+          if(avMatch && coMatch) {
+            if(!isVerifying) {
+              isVerifying = true;
+              avMatch.classList.add('is-verified');
+              coMatch.classList.add('is-verified');
+              core.classList.add('core-verified');
+              
+              line.style.opacity = '1';
+              
+              // Remove classes after a short delay
+              setTimeout(() => {
+                avMatch.classList.remove('is-verified');
+                coMatch.classList.remove('is-verified');
+                core.classList.remove('core-verified');
+                line.style.opacity = '0';
+                setTimeout(() => { isVerifying = false; }, 200); // debounce
+              }, 400);
+            }
+            
+            // Draw line between them
+            // Track 1 is top: 50px, height: 60px. Center Y = 80px
+            // Track 2 is bottom: 50px, height: 60px. Parent is 380px tall. Y = 330px - 30px = 300px
+            line.setAttribute("x1", centerZone);
+            line.setAttribute("y1", 80);
+            line.setAttribute("x2", centerZone);
+            line.setAttribute("y2", 300);
+
+          }
+        }
+
+        animateStream();
+
+      })();
+    </script>
+  </div>
+
+  <!-- 24. The Interactive Git Stream Engine (Upgraded Idea 62) -->
+  <div class="gallery-section">
+    <h2 class="gallery-title">24. The Interactive Contributor Stream (Expert-Level Idea 62 Upgrade)</h2>
+    <p class="gallery-desc">Takes the core concept of Idea 62 and makes it fully interactive. Hover feed items to see SVG lines connect to the git graph. Hover git nodes for tooltips. Click "Simulate" to inject live commits. No face images â€” uses colored letter avatars.</p>
+
+    <div id="ge24-root" style="width: 100%; max-width: 580px; height: 460px; background: #07070a; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; font-family: 'JetBrains Mono', monospace; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.04); position: relative;">
+
+      <!-- Cursor-following glow spotlight -->
+      <div id="ge24-glow" style="position: absolute; width: 250px; height: 250px; border-radius: 50%; background: radial-gradient(circle, rgba(172,13,48,0.12) 0%, rgba(172,13,48,0.03) 40%, transparent 70%); pointer-events: none; z-index: 0; transform: translate(-50%,-50%); opacity: 0; transition: opacity 0.3s;"></div>
+
+      <!-- Top Action Bar -->
+      <div style="height: 46px; min-height: 46px; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; background: rgba(255,255,255,0.02);">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 7px; height: 7px; border-radius: 50%; background: #E6A8A8; box-shadow: 0 0 8px #E6A8A8; animation: ge24pulse 2s infinite;"></div>
+          <span style="font-size: 10px; color: #777; font-weight: bold; letter-spacing: 1.5px;">LIVE NETWORK ACTIVITY</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span style="font-size: 10px; color: #21c2e0;">842 contributors</span>
+          <button id="ge24-btn" style="background: rgba(172, 13, 48, 0.15); border: 1px solid rgba(172,13,48,0.4); color: #ac0d30; font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: bold; padding: 5px 10px; border-radius: 4px; cursor: pointer; transition: all 0.2s; letter-spacing: 0.5px;" onmouseover="this.style.background='rgba(172,13,48,0.3)'" onmouseout="this.style.background='rgba(172,13,48,0.15)'">+ SIMULATE</button>
+        </div>
+      </div>
+
+      <!-- Main Content Area -->
+      <div style="flex: 1; display: flex; min-height: 0; position: relative;">
+
+        <!-- Left: Activity Feed -->
+        <div style="width: 55%; border-right: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; position: relative;">
+          
+          <!-- Column Header -->
+          <div style="padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 9px; color: #555; letter-spacing: 2px; font-weight: bold;">RECENT COMMITS</div>
+
+          <!-- Feed scroll area -->
+          <div id="ge24-feed" style="flex: 1; overflow-y: auto; padding: 12px 16px; display: flex; flex-direction: column; gap: 8px;">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Right: Git Graph -->
+        <div style="width: 45%; position: relative; background: #0a0b10;">
+          
+          <!-- Column Header -->
+          <div style="padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 9px; color: #555; letter-spacing: 2px; font-weight: bold;">BRANCH GRAPH</div>
+
+          <!-- Graph Area -->
+          <div id="ge24-graph-area" style="position: relative; width: 100%; height: calc(100% - 38px); overflow: hidden;">
+            <!-- Subtle dot grid -->
+            <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none;"></div>
+            <!-- Scan line -->
+            <div class="ge24-scanline"></div>
+
+            <!-- Branch Labels -->
+            <div style="position: absolute; top: 14px; left: 0; width: 100%; display: flex; justify-content: space-around; z-index: 5; pointer-events: none;">
+              <span style="font-size: 8px; color: #890320; letter-spacing: 1px; opacity: 0.6;">SEC</span>
+              <span style="font-size: 8px; color: #c14a5d; letter-spacing: 1px; opacity: 0.6;">MAIN</span>
+              <span style="font-size: 8px; color: #E6A8A8; letter-spacing: 1px; opacity: 0.6;">FEAT</span>
+            </div>
+
+            <!-- SVG tree -->
+            <svg id="ge24-tree" style="position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden;"></svg>
+
+            <!-- Nodes container -->
+            <div id="ge24-nodes" style="position: absolute; inset: 0; width: 100%; height: 100%;"></div>
+
+          </div>
+        </div>
+
+        <!-- Cross-pane hover line SVG overlay -->
+        <svg id="ge24-hover-svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 15;">
+          <path id="ge24-hover-path" fill="none" stroke="#AC0D30" stroke-width="1.5" stroke-dasharray="4 3" style="opacity: 0; transition: opacity 0.15s;" />
+        </svg>
+
+        <!-- Tooltip -->
+        <div id="ge24-tip" style="position: absolute; opacity: 0; pointer-events: none; background: #111; border: 1px solid #333; padding: 10px 14px; border-radius: 6px; font-size: 10px; color: #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.6); z-index: 30; transition: opacity 0.15s; max-width: 220px;">
+          <div id="ge24-tip-hash" style="color: #ffbd2e; margin-bottom: 3px; font-size: 9px;"></div>
+          <div id="ge24-tip-msg" style="color: #fff; font-weight: bold; font-family: 'Montserrat', sans-serif; font-size: 12px; margin-bottom: 6px;"></div>
+          <div style="display: flex; gap: 8px; color: #666; font-size: 9px;">
+            <span id="ge24-tip-author" style="color: #c14a5d;"></span>
+            <span>Â·</span>
+            <span id="ge24-tip-time"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Stats Bar -->
+      <div style="height: 36px; min-height: 36px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; background: rgba(255,255,255,0.015); font-size: 9px; color: #555;">
+        <div style="display: flex; gap: 16px;">
+          <span><span style="color: #c14a5d;">●</span> 14 pushes</span>
+          <span><span style="color: #E6A8A8;">●</span> 6 PRs</span>
+          <span><span style="color: #890320;">●</span> 3 merges</span>
+        </div>
+        <span style="color: #333;">last sync 4s ago</span>
+      </div>
+    </div>
+
+    <style>
+      @keyframes ge24pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+      @keyframes ge24scan { 0%{top:0%;opacity:0} 10%{opacity:1} 90%{opacity:1} 100%{top:100%;opacity:0} }
+
+      .ge24-item {
+        display: flex; gap: 10px; padding: 10px 12px; border-radius: 6px; border: 1px solid transparent;
+        cursor: pointer; transition: all 0.15s ease; position: relative;
+      }
+      .ge24-item:hover { background: rgba(172,13,48,0.04); border-color: rgba(172,13,48,0.15); box-shadow: 0 0 10px rgba(172,13,48,0.08); }
+      .ge24-item.ge24-active { background: rgba(172,13,48,0.08); border-color: rgba(172,13,48,0.3); box-shadow: 0 0 12px rgba(172,13,48,0.1); }
+
+      .ge24-avatar {
+        width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 11px; font-weight: bold; color: #fff; border: none;
+      }
+      .ge24-body { flex: 1; min-width: 0; }
+      .ge24-msg { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; color: #ddd; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .ge24-meta { font-size: 9px; color: #555; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+      .ge24-branch-tag { color: #27c93f; }
+      .ge24-hash-tag { color: #ffbd2e; }
+
+      .ge24-type-badge {
+        padding: 1px 6px; border-radius: 3px; font-size: 8px; font-weight: bold; letter-spacing: 0.5px; text-transform: uppercase;
+      }
+      .ge24-type-push { background: rgba(193,74,93,0.15); color: #c14a5d; }
+      .ge24-type-pr { background: rgba(230,168,168,0.15); color: #E6A8A8; }
+      .ge24-type-merge { background: rgba(137,3,32,0.15); color: #890320; }
+
+      .ge24-node {
+        position: absolute; width: 14px; height: 14px; border-radius: 50%;
+        background: #0a0b10; border: 3px solid #61afef;
+        transform: translate(-50%, -50%); cursor: pointer; transition: all 0.15s; z-index: 10;
+      }
+      .ge24-node:hover, .ge24-node.ge24-active {
+        transform: translate(-50%,-50%) scale(1.6);
+        box-shadow: 0 0 12px currentColor;
+      }
+
+      /* Scan line on graph */
+      .ge24-scanline {
+        position: absolute; left: 0; width: 100%; height: 1px; z-index: 3; pointer-events: none;
+        background: linear-gradient(90deg, transparent, rgba(172,13,48,0.4), transparent);
+        box-shadow: 0 0 8px rgba(172,13,48,0.3);
+        animation: ge24scan 6s linear infinite;
+      }
+
+      @keyframes ge24slideIn { 0%{opacity:0;transform:translateY(-20px)} 100%{opacity:1;transform:translateY(0)} }
+      @keyframes ge24popIn { 0%{opacity:0;transform:translate(-50%,-50%) scale(0)} 70%{transform:translate(-50%,-50%) scale(1.3)} 100%{opacity:1;transform:translate(-50%,-50%) scale(1)} }
+
+      /* Custom scrollbar for feed */
+      #ge24-feed::-webkit-scrollbar { width: 4px; }
+      #ge24-feed::-webkit-scrollbar-track { background: transparent; }
+      #ge24-feed::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+    </style>
+
+    <script>
+      (function() {
+        const root = document.getElementById('ge24-root');
+        const feed = document.getElementById('ge24-feed');
+        const treeSvg = document.getElementById('ge24-tree');
+        const nodesEl = document.getElementById('ge24-nodes');
+        const hoverPath = document.getElementById('ge24-hover-path');
+        const hoverSvg = document.getElementById('ge24-hover-svg');
+        const tip = document.getElementById('ge24-tip');
+
+        const avatarColors = ['#AC0D30','#890320','#c14a5d','#E6A8A8','#4F4F4D','#FEFDFB','#D6D6D6'];
+
+        let commits = [
+          { id:'c1', hash:'a1b2c3d', msg:'Refactor core routing engine', author:'sarah_dev', time:'2m ago', branch:'main', color:'#c14a5d', type:'push' },
+          { id:'c2', hash:'f9e8d7c', msg:'Fix memory leak in webgl renderer', author:'alex_ui', time:'15m ago', branch:'feat', color:'#E6A8A8', type:'pr' },
+          { id:'c3', hash:'b5c6d7e', msg:'Update runtime dependencies', author:'manish', time:'1h ago', branch:'main', color:'#c14a5d', type:'push' },
+          { id:'c4', hash:'9a8b7c6', msg:'Implement zero-knowledge auth', author:'crypto_sec', time:'3h ago', branch:'sec', color:'#890320', type:'merge' },
+          { id:'c5', hash:'d4e5f6a', msg:'Add integration test suite', author:'tester_k', time:'5h ago', branch:'feat', color:'#E6A8A8', type:'push' },
+          { id:'c6', hash:'7b8c9d0', msg:'Optimize bundler pipeline', author:'perf_eng', time:'8h ago', branch:'main', color:'#c14a5d', type:'push' }
+        ];
+
+        // Branch track X positions (percentage of graph width mapped to pixels later)
+        const branchX = { 'sec': 0.2, 'main': 0.5, 'feat': 0.8 };
+
+        function getInitial(name) { return name.charAt(0).toUpperCase(); }
+        function getAvatarColor(name) { 
+          let h = 0; for(let i=0;i<name.length;i++) h = name.charCodeAt(i) + ((h<<5)-h);
+          return avatarColors[Math.abs(h) % avatarColors.length];
+        }
+
+        function typeIcon(type) {
+          if(type==='push') return 'â†‘';
+          if(type==='pr') return 'â‘‚';
+          if(type==='merge') return 'â¤µ';
+          return 'â€¢';
+        }
+
+        function renderFeed() {
+          feed.innerHTML = '';
+          commits.forEach(c => {
+            const el = document.createElement('div');
+            el.className = 'ge24-item';
+            el.dataset.id = c.id;
+
+            const col = getAvatarColor(c.author);
+            const initial = getInitial(c.author);
+
+            let action = c.type==='push' ? 'pushed to' : c.type==='pr' ? 'opened PR in' : 'merged into';
+            let badgeClass = `ge24-type-${c.type}`;
+
+            el.innerHTML = `
+              <div class="ge24-avatar" style="background:${col};">${initial}</div>
+              <div class="ge24-body">
+                <div class="ge24-msg">${c.msg}</div>
+                <div class="ge24-meta">
+                  <span class="ge24-type-badge ${badgeClass}">${c.type}</span>
+                  <span style="color:${col};">@${c.author}</span>
+                  <span>${typeIcon(c.type)} ${action}</span>
+                  <span class="ge24-branch-tag">${c.branch}</span>
+                  <span class="ge24-hash-tag">${c.hash}</span>
+                  <span>${c.time}</span>
+                </div>
+              </div>
+            `;
+
+            el.addEventListener('mouseenter', () => activateLink(c.id));
+            el.addEventListener('mouseleave', deactivateLink);
+            feed.appendChild(el);
+          });
+        }
+
+        function renderGraph() {
+          treeSvg.innerHTML = '';
+          nodesEl.innerHTML = '';
+
+          const graphArea = document.getElementById('ge24-graph-area');
+          const w = graphArea.clientWidth || 300;
+          const h = graphArea.clientHeight || 340;
+          const startY = 40;
+          const spacing = Math.min(60, (h - startY - 30) / Math.max(commits.length - 1, 1));
+
+          // Draw vertical branch lines (subtle)
+          Object.entries(branchX).forEach(([name, pct]) => {
+            const x = w * pct;
+            const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+            line.setAttribute('x1', x); line.setAttribute('y1', 30);
+            line.setAttribute('x2', x); line.setAttribute('y2', startY + (commits.length - 1) * spacing);
+            const bColor = name==='main'?'#c14a5d':name==='feat'?'#E6A8A8':'#890320';
+            line.setAttribute('stroke', bColor);
+            line.setAttribute('stroke-width', '1');
+            line.setAttribute('opacity', '0.15');
+            treeSvg.appendChild(line);
+          });
+
+          // Track previous node position per branch for connecting lines
+          const prev = {};
+
+          commits.forEach((c, i) => {
+            const x = w * branchX[c.branch];
+            const y = startY + i * spacing;
+
+            // Connect to previous same-branch node
+            if(prev[c.branch]) {
+              const p = prev[c.branch];
+              const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+              path.setAttribute('d', `M ${p.x} ${p.y} L ${x} ${y}`);
+              path.setAttribute('stroke', c.color);
+              path.setAttribute('stroke-width', '2.5');
+              path.setAttribute('fill', 'none');
+              path.setAttribute('opacity', '0.7');
+              treeSvg.appendChild(path);
+            }
+
+            // Cross-branch curves for merges and PRs
+            if(c.type === 'merge' && c.branch !== 'main') {
+              const mainX = w * branchX['main'];
+              const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+              const cpOffset = Math.abs(mainX - x) * 0.5;
+              const halfSpacing = spacing * 0.5;
+              const quarterSpacing = spacing * 0.25;
+              path.setAttribute('d', `M ${mainX} ${y - halfSpacing} C ${mainX} ${y}, ${x + (mainX > x ? cpOffset : -cpOffset)} ${y - quarterSpacing}, ${x} ${y}`);
+              path.setAttribute('stroke', c.color);
+              path.setAttribute('stroke-width', '2');
+              path.setAttribute('fill', 'none');
+              path.setAttribute('opacity', '0.5');
+              treeSvg.appendChild(path);
+            }
+            if(c.type === 'pr' && c.branch !== 'main') {
+              const mainX = w * branchX['main'];
+              const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+              const cpOffset = Math.abs(mainX - x) * 0.5;
+              const halfSpacing = spacing * 0.5;
+              const quarterSpacing = spacing * 0.25;
+              path.setAttribute('d', `M ${mainX} ${y + halfSpacing} C ${mainX} ${y}, ${x} ${y + quarterSpacing}, ${x} ${y}`);
+              path.setAttribute('stroke', c.color);
+              path.setAttribute('stroke-width', '2');
+              path.setAttribute('stroke-dasharray', '5 3');
+              path.setAttribute('fill', 'none');
+              path.setAttribute('opacity', '0.5');
+              treeSvg.appendChild(path);
+            }
+
+            // Node element
+            const node = document.createElement('div');
+            node.className = 'ge24-node';
+            node.dataset.id = c.id;
+            node.style.left = x + 'px';
+            node.style.top = y + 'px';
+            node.style.borderColor = c.color;
+            node.style.color = c.color;
+
+            node.addEventListener('mouseenter', (e) => {
+              activateLink(c.id);
+              showTip(e, c);
+            });
+            node.addEventListener('mouseleave', () => {
+              deactivateLink();
+              tip.style.opacity = '0';
+            });
+
+            nodesEl.appendChild(node);
+            prev[c.branch] = { x, y };
+          });
+        }
+
+        function activateLink(id) {
+          // Highlight feed item
+          feed.querySelectorAll('.ge24-item').forEach(el => el.classList.toggle('ge24-active', el.dataset.id === id));
+          // Highlight node
+          nodesEl.querySelectorAll('.ge24-node').forEach(el => el.classList.toggle('ge24-active', el.dataset.id === id));
+
+          // Draw connecting bezier
+          const feedEl = feed.querySelector(`.ge24-item[data-id="${id}"]`);
+          const nodeEl = nodesEl.querySelector(`.ge24-node[data-id="${id}"]`);
+          if(!feedEl || !nodeEl) return;
+
+          const contentArea = hoverSvg.parentElement;
+          const cRect = contentArea.getBoundingClientRect();
+          const fRect = feedEl.getBoundingClientRect();
+          const nRect = nodeEl.getBoundingClientRect();
+
+          const sx = fRect.right - cRect.left;
+          const sy = fRect.top - cRect.top + fRect.height / 2;
+          const ex = nRect.left - cRect.left + nRect.width / 2;
+          const ey = nRect.top - cRect.top + nRect.height / 2;
+          const cpx = (sx + ex) / 2;
+
+          hoverPath.setAttribute('d', `M ${sx} ${sy} C ${cpx} ${sy}, ${cpx} ${ey}, ${ex} ${ey}`);
+          hoverPath.style.opacity = '1';
+        }
+
+        function deactivateLink() {
+          feed.querySelectorAll('.ge24-item').forEach(el => el.classList.remove('ge24-active'));
+          nodesEl.querySelectorAll('.ge24-node').forEach(el => el.classList.remove('ge24-active'));
+          hoverPath.style.opacity = '0';
+        }
+
+        function showTip(e, c) {
+          const area = tip.parentElement;
+          const r = area.getBoundingClientRect();
+          let x = e.clientX - r.left + 16;
+          let y = e.clientY - r.top - 10;
+          if(x + 220 > r.width) x = e.clientX - r.left - 230;
+          if(x < 10) x = 10;
+
+          document.getElementById('ge24-tip-hash').textContent = c.hash;
+          document.getElementById('ge24-tip-msg').textContent = c.msg;
+          document.getElementById('ge24-tip-author').textContent = '@' + c.author;
+          document.getElementById('ge24-tip-time').textContent = c.time;
+          tip.style.left = x + 'px';
+          tip.style.top = y + 'px';
+          tip.style.opacity = '1';
+        }
+
+        // Simulate button
+        let counter = 7;
+        const msgs = ['Hotfix auth token refresh','Add rate limiter middleware','Migrate to edge runtime','Refactor state machine','Optimize tree-shaking','Deploy canary build','Patch XSS vulnerability','Lint codebase cleanup'];
+        const authors = ['riley','jordan','quinn','nova','sage','blake','reese'];
+
+        document.getElementById('ge24-btn').addEventListener('click', () => {
+          const branches = ['main','feat','sec'];
+          const colors = ['#61afef','#98c379','#e06c75'];
+          const types = ['push','pr','merge'];
+          const r = Math.floor(Math.random() * 3);
+
+          const nc = {
+            id: 'c' + counter,
+            hash: Math.random().toString(16).substr(2,7),
+            msg: msgs[counter % msgs.length],
+            author: authors[counter % authors.length],
+            time: 'Just now',
+            branch: branches[r],
+            color: colors[r],
+            type: types[r]
+          };
+          counter++;
+
+          commits.unshift(nc);
+          if(commits.length > 8) commits.pop();
+
+          renderFeed();
+          renderGraph();
+
+          // Animate new entries
+          const newFeed = feed.querySelector(`.ge24-item[data-id="${nc.id}"]`);
+          const newNode = nodesEl.querySelector(`.ge24-node[data-id="${nc.id}"]`);
+          if(newFeed) newFeed.style.animation = 'ge24slideIn 0.35s ease-out';
+          if(newNode) newNode.style.animation = 'ge24popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275)';
+        });
+
+        // Initial render
+        renderFeed();
+        renderGraph();
+
+        // Re-render graph on resize
+        window.addEventListener('resize', renderGraph);
+
+        // ===== POINTER INTERACTION =====
+        const glow = document.getElementById('ge24-glow');
+
+        root.addEventListener('mousemove', (e) => {
+          const rect = root.getBoundingClientRect();
+          const mx = e.clientX - rect.left;
+          const my = e.clientY - rect.top;
+
+          // Move the glow spotlight
+          glow.style.left = mx + 'px';
+          glow.style.top = my + 'px';
+          glow.style.opacity = '1';
+
+          // Border highlight effect
+          const px = (mx / rect.width) * 100;
+          const py = (my / rect.height) * 100;
+          root.style.borderImage = `radial-gradient(circle at ${px}% ${py}%, rgba(172,13,48,0.5) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 100%) 1`;
+
+          // Node proximity — scale nodes near cursor
+          const allNodes = nodesEl.querySelectorAll('.ge24-node');
+          allNodes.forEach(node => {
+            const nr = node.getBoundingClientRect();
+            const nx = nr.left - rect.left + nr.width / 2;
+            const ny = nr.top - rect.top + nr.height / 2;
+            const dist = Math.sqrt((mx - nx) ** 2 + (my - ny) ** 2);
+
+            if (dist < 80) {
+              const s = 1 + (1 - dist / 80) * 0.8; // scale 1.0 to 1.8
+              node.style.transform = `translate(-50%,-50%) scale(${s})`;
+              node.style.boxShadow = `0 0 ${12 + (1 - dist/80) * 15}px currentColor`;
+            } else {
+              node.style.transform = 'translate(-50%,-50%) scale(1)';
+              node.style.boxShadow = 'none';
+            }
+          });
+        });
+
+        root.addEventListener('mouseleave', () => {
+          glow.style.opacity = '0';
+          root.style.borderImage = 'none';
+          root.style.border = '1px solid rgba(255,255,255,0.08)';
+          nodesEl.querySelectorAll('.ge24-node').forEach(node => {
+            node.style.transform = 'translate(-50%,-50%) scale(1)';
+            node.style.boxShadow = 'none';
+          });
+        });
+
+      })();
+    </script>
+  </div>
+
+  <!-- 25. The Interactive Learning Path Engine (Learn Page Hero Component) -->
+  <div class="gallery-section">
+    <h2 class="gallery-title">25. The Learning Path Engine (Learn Page Hero Component)</h2>
+    <p class="gallery-desc">An interactive two-pane widget for the Learn page hero. Left pane: a live skill-tree with unlockable nodes connected by SVG paths. Right pane: a mini code-challenge terminal that runs live. Hover a skill node to see its details. Click nodes to "unlock" them. Click "Run Challenge" to simulate a code test passing. Cursor-following glow + proximity effects.</p>
+
+    <div id="lp25-root" style="width: 100%; max-width: 580px; height: 460px; background: #07070a; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; font-family: 'JetBrains Mono', monospace; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.04); position: relative;">
+
+      <!-- Cursor glow -->
+      <div id="lp25-glow" style="position: absolute; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(172,13,48,0.12) 0%, rgba(172,13,48,0.03) 40%, transparent 70%); pointer-events: none; z-index: 0; transform: translate(-50%,-50%); opacity: 0; transition: opacity 0.3s;"></div>
+
+      <!-- Top Bar -->
+      <div style="height: 44px; min-height: 44px; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; background: rgba(255,255,255,0.02);">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 7px; height: 7px; border-radius: 50%; background: #E6A8A8; box-shadow: 0 0 8px #E6A8A8; animation: lp25pulse 2s infinite;"></div>
+          <span style="font-size: 10px; color: #777; font-weight: bold; letter-spacing: 1.5px;">LEARNING PATH ENGINE</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span style="font-size: 9px; color: #AC0D30;"><span id="lp25-xp">240</span> XP earned</span>
+          <span style="font-size: 9px; color: #555;">|</span>
+          <span style="font-size: 9px; color: #E6A8A8;"><span id="lp25-streak">5</span> day streak 🔥</span>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div style="flex: 1; display: flex; min-height: 0; position: relative;">
+
+        <!-- Left: Skill Tree -->
+        <div style="width: 50%; border-right: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; position: relative;">
+          <div style="padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 9px; color: #555; letter-spacing: 2px; font-weight: bold; display: flex; justify-content: space-between;">
+            <span>SKILL TREE</span>
+            <span id="lp25-progress" style="color: #AC0D30;">2 / 8 unlocked</span>
+          </div>
+
+          <div id="lp25-tree-area" style="flex: 1; position: relative; overflow: hidden;">
+            <!-- Dot grid bg -->
+            <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 20px 20px; pointer-events: none;"></div>
+            <!-- SVG connections -->
+            <svg id="lp25-tree-svg" style="position: absolute; inset: 0; width: 100%; height: 100%;"></svg>
+            <!-- Nodes -->
+            <div id="lp25-tree-nodes" style="position: absolute; inset: 0; width: 100%; height: 100%;"></div>
+          </div>
+        </div>
+
+        <!-- Right: Code Challenge Terminal -->
+        <div style="width: 50%; display: flex; flex-direction: column; position: relative; background: #0a0b10;">
+          <div style="padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 9px; color: #555; letter-spacing: 2px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+            <span>CODE CHALLENGE</span>
+            <button id="lp25-run-btn" style="background: rgba(172,13,48,0.15); border: 1px solid rgba(172,13,48,0.4); color: #AC0D30; font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: bold; padding: 4px 10px; border-radius: 3px; cursor: pointer; transition: all 0.2s; letter-spacing: 0.5px;" onmouseover="this.style.background='rgba(172,13,48,0.3)'" onmouseout="this.style.background='rgba(172,13,48,0.15)'">▶ RUN</button>
+          </div>
+
+          <!-- Challenge Info -->
+          <div id="lp25-challenge-info" style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.04);">
+            <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; color: #ddd; margin-bottom: 4px;" id="lp25-challenge-title">Array Manipulation</div>
+            <div style="font-size: 9px; color: #555; display: flex; gap: 8px; align-items: center;">
+              <span class="lp25-diff-badge lp25-diff-medium">MEDIUM</span>
+              <span>Module 3</span>
+              <span style="color: #E6A8A8;">+40 XP</span>
+            </div>
+          </div>
+
+          <!-- Code Area -->
+          <div id="lp25-code" style="flex: 1; padding: 12px 16px; font-size: 11px; line-height: 1.7; color: #D6D6D6; overflow-y: auto;">
+            <div><span style="color:#E6A8A8;">function</span> <span style="color:#FEFDFB;">filterActive</span><span style="color:#c14a5d;">(</span><span style="color:#E6A8A8;">users</span><span style="color:#c14a5d;">)</span> {</div>
+            <div>&nbsp;&nbsp;<span style="color:#E6A8A8;">return</span> users.<span style="color:#FEFDFB;">filter</span>(u => u.active);</div>
+            <div>}</div>
+            <div style="margin-top: 8px;"><span style="color:#4F4F4D;">// Test cases</span></div>
+            <div><span style="color:#E6A8A8;">const</span> <span style="color:#FEFDFB;">data</span> = [</div>
+            <div>&nbsp;&nbsp;{ name: <span style="color:#c14a5d;">"sarah"</span>, active: <span style="color:#E6A8A8;">true</span> },</div>
+            <div>&nbsp;&nbsp;{ name: <span style="color:#c14a5d;">"alex"</span>, active: <span style="color:#E6A8A8;">false</span> },</div>
+            <div>&nbsp;&nbsp;{ name: <span style="color:#c14a5d;">"manish"</span>, active: <span style="color:#E6A8A8;">true</span> },</div>
+            <div>];</div>
+          </div>
+
+          <!-- Test Output -->
+          <div id="lp25-output" style="height: 80px; min-height: 80px; border-top: 1px solid rgba(255,255,255,0.06); padding: 10px 16px; font-size: 10px; background: rgba(0,0,0,0.3); overflow-y: auto;">
+            <div style="color: #555; margin-bottom: 4px;">$ waiting for run...</div>
+          </div>
+        </div>
+
+        <!-- Hover tooltip for skill nodes -->
+        <div id="lp25-tip" style="position: absolute; opacity: 0; pointer-events: none; background: #111; border: 1px solid #333; padding: 10px 14px; border-radius: 6px; font-size: 10px; color: #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.6); z-index: 30; transition: opacity 0.15s; max-width: 200px; z-index: 50;">
+          <div id="lp25-tip-name" style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px; margin-bottom: 4px;"></div>
+          <div id="lp25-tip-desc" style="color: #888; font-size: 9px; margin-bottom: 6px;"></div>
+          <div style="display: flex; gap: 8px; font-size: 9px;">
+            <span id="lp25-tip-xp" style="color: #E6A8A8;"></span>
+            <span>·</span>
+            <span id="lp25-tip-status"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Stats -->
+      <div style="height: 34px; min-height: 34px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; background: rgba(255,255,255,0.015); font-size: 9px; color: #555;">
+        <div style="display: flex; gap: 14px;">
+          <span><span style="color: #AC0D30;">●</span> 2 completed</span>
+          <span><span style="color: #E6A8A8;">●</span> 1 in progress</span>
+          <span><span style="color: #555;">●</span> 5 locked</span>
+        </div>
+        <span style="color: #333;">path: fundamentals</span>
+      </div>
+    </div>
+
+    <style>
+      @keyframes lp25pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+      .lp25-skill-node {
+        position: absolute; width: 36px; height: 36px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 14px; cursor: pointer; transition: all 0.2s;
+        transform: translate(-50%, -50%); z-index: 10;
+        border: 2px solid #333; background: #111;
+      }
+      .lp25-skill-node.lp25-unlocked {
+        border-color: #AC0D30; background: rgba(172,13,48,0.1);
+        box-shadow: 0 0 10px rgba(172,13,48,0.2);
+      }
+      .lp25-skill-node.lp25-active {
+        border-color: #E6A8A8; background: rgba(230,168,168,0.1);
+        box-shadow: 0 0 10px rgba(230,168,168,0.2);
+        animation: lp25nodePulse 2s infinite;
+      }
+      .lp25-skill-node.lp25-locked {
+        border-color: #222; background: #0d0d0d; opacity: 0.5; cursor: default;
+      }
+      .lp25-skill-node:hover:not(.lp25-locked) {
+        transform: translate(-50%,-50%) scale(1.2);
+        box-shadow: 0 0 16px rgba(172,13,48,0.3);
+      }
+
+      @keyframes lp25nodePulse { 0%,100%{box-shadow: 0 0 10px rgba(230,168,168,0.2)} 50%{box-shadow: 0 0 20px rgba(230,168,168,0.4)} }
+
+      .lp25-diff-badge {
+        padding: 1px 6px; border-radius: 3px; font-size: 8px; font-weight: bold; letter-spacing: 0.5px;
+      }
+      .lp25-diff-easy { background: rgba(172,13,48,0.15); color: #AC0D30; }
+      .lp25-diff-medium { background: rgba(230,168,168,0.15); color: #E6A8A8; }
+      .lp25-diff-hard { background: rgba(137,3,32,0.15); color: #890320; }
+
+      .lp25-test-pass { color: #AC0D30; }
+      .lp25-test-fail { color: #890320; }
+
+      @keyframes lp25typeIn { from{width:0} to{width:100%} }
+
+      #lp25-code::-webkit-scrollbar, #lp25-output::-webkit-scrollbar { width: 3px; }
+      #lp25-code::-webkit-scrollbar-track, #lp25-output::-webkit-scrollbar-track { background: transparent; }
+      #lp25-code::-webkit-scrollbar-thumb, #lp25-output::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+    </style>
+
+    <script>
+      (function() {
+        const root = document.getElementById('lp25-root');
+        const treeArea = document.getElementById('lp25-tree-area');
+        const treeSvg = document.getElementById('lp25-tree-svg');
+        const treeNodes = document.getElementById('lp25-tree-nodes');
+        const tip = document.getElementById('lp25-tip');
+        const output = document.getElementById('lp25-output');
+        const glow = document.getElementById('lp25-glow');
+
+        const skills = [
+          { id:'s1', name:'Variables & Types', icon:'{}', desc:'Primitives, objects, and type coercion', xp:20, status:'unlocked', x:0.5, y:0.08 },
+          { id:'s2', name:'Control Flow', icon:'⑂', desc:'if/else, loops, switch statements', xp:25, status:'unlocked', x:0.3, y:0.24 },
+          { id:'s3', name:'Functions', icon:'ƒ', desc:'Closures, scope, arrow functions', xp:30, status:'active', x:0.7, y:0.24 },
+          { id:'s4', name:'Arrays', icon:'[]', desc:'Map, filter, reduce, and mutations', xp:40, status:'locked', x:0.25, y:0.44 },
+          { id:'s5', name:'Objects', icon:'◇', desc:'Destructuring, spread, prototypes', xp:40, status:'locked', x:0.75, y:0.44 },
+          { id:'s6', name:'Async/Await', icon:'⏳', desc:'Promises, async patterns, error handling', xp:50, status:'locked', x:0.5, y:0.60 },
+          { id:'s7', name:'DOM & Events', icon:'◎', desc:'Selectors, listeners, delegation', xp:50, status:'locked', x:0.3, y:0.78 },
+          { id:'s8', name:'APIs & Fetch', icon:'↗', desc:'REST, JSON, HTTP methods, headers', xp:60, status:'locked', x:0.7, y:0.78 }
+        ];
+
+        // Connections (parent -> child)
+        const edges = [
+          ['s1','s2'], ['s1','s3'],
+          ['s2','s4'], ['s3','s5'],
+          ['s4','s6'], ['s5','s6'],
+          ['s6','s7'], ['s6','s8']
+        ];
+
+        function renderTree() {
+          treeSvg.innerHTML = '';
+          treeNodes.innerHTML = '';
+          const w = treeArea.clientWidth || 280;
+          const h = treeArea.clientHeight || 350;
+
+          // Draw edges
+          edges.forEach(([fromId, toId]) => {
+            const from = skills.find(s => s.id === fromId);
+            const to = skills.find(s => s.id === toId);
+            const x1 = from.x * w, y1 = from.y * h;
+            const x2 = to.x * w, y2 = to.y * h;
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+            const cy1 = y1 + (y2 - y1) * 0.5;
+            path.setAttribute('d', `M ${x1} ${y1} C ${x1} ${cy1}, ${x2} ${cy1}, ${x2} ${y2}`);
+
+            const isActive = from.status === 'unlocked' || from.status === 'active';
+            path.setAttribute('stroke', isActive ? 'rgba(172,13,48,0.4)' : '#1a1a1a');
+            path.setAttribute('stroke-width', '2');
+            path.setAttribute('fill', 'none');
+            if (!isActive) path.setAttribute('stroke-dasharray', '4 4');
+            treeSvg.appendChild(path);
+          });
+
+          // Draw nodes
+          skills.forEach(s => {
+            const node = document.createElement('div');
+            node.className = `lp25-skill-node lp25-${s.status}`;
+            node.dataset.id = s.id;
+            node.style.left = (s.x * w) + 'px';
+            node.style.top = (s.y * h) + 'px';
+            node.textContent = s.icon;
+
+            if (s.status !== 'locked') {
+              node.addEventListener('click', () => handleNodeClick(s));
+            }
+            node.addEventListener('mouseenter', (e) => showSkillTip(e, s));
+            node.addEventListener('mouseleave', () => { tip.style.opacity = '0'; });
+
+            treeNodes.appendChild(node);
+          });
+
+          updateProgress();
+        }
+
+        function showSkillTip(e, s) {
+          const r = root.getBoundingClientRect();
+          let x = e.clientX - r.left + 16;
+          let y = e.clientY - r.top - 10;
+          if (x + 180 > r.width) x = e.clientX - r.left - 180;
+
+          document.getElementById('lp25-tip-name').textContent = s.name;
+          document.getElementById('lp25-tip-desc').textContent = s.desc;
+          document.getElementById('lp25-tip-xp').textContent = '+' + s.xp + ' XP';
+          const statusEl = document.getElementById('lp25-tip-status');
+          statusEl.textContent = s.status === 'unlocked' ? '✓ Completed' : s.status === 'active' ? '● In Progress' : '🔒 Locked';
+          statusEl.style.color = s.status === 'unlocked' ? '#AC0D30' : s.status === 'active' ? '#E6A8A8' : '#555';
+
+          tip.style.left = x + 'px';
+          tip.style.top = y + 'px';
+          tip.style.opacity = '1';
+        }
+
+        function handleNodeClick(s) {
+          if (s.status === 'locked') return;
+          // Load a challenge for this skill
+          document.getElementById('lp25-challenge-title').textContent = s.name + ' Challenge';
+          output.innerHTML = '<div style="color:#555;">$ waiting for run...</div>';
+        }
+
+        function updateProgress() {
+          const unlocked = skills.filter(s => s.status === 'unlocked').length;
+          const total = skills.length;
+          document.getElementById('lp25-progress').textContent = `${unlocked} / ${total} unlocked`;
+        }
+
+        // Run button - simulate test execution
+        let running = false;
+        document.getElementById('lp25-run-btn').addEventListener('click', () => {
+          if (running) return;
+          running = true;
+          output.innerHTML = '';
+
+          const tests = [
+            { name: 'filters active users', pass: true, delay: 400 },
+            { name: 'handles empty array', pass: true, delay: 800 },
+            { name: 'preserves order', pass: true, delay: 1200 },
+            { name: 'returns new array', pass: Math.random() > 0.3, delay: 1600 }
+          ];
+
+          // Compiling line
+          const compLine = document.createElement('div');
+          compLine.style.color = '#555';
+          compLine.textContent = '$ compiling...';
+          output.appendChild(compLine);
+
+          tests.forEach((t, i) => {
+            setTimeout(() => {
+              const line = document.createElement('div');
+              line.className = t.pass ? 'lp25-test-pass' : 'lp25-test-fail';
+              line.textContent = `  ${t.pass ? '✓' : '✗'} ${t.name}`;
+              output.appendChild(line);
+              output.scrollTop = output.scrollHeight;
+
+              // After last test
+              if (i === tests.length - 1) {
+                setTimeout(() => {
+                  const allPass = tests.every(t => t.pass);
+                  const summary = document.createElement('div');
+                  summary.style.marginTop = '6px';
+                  summary.style.fontWeight = 'bold';
+
+                  if (allPass) {
+                    summary.style.color = '#AC0D30';
+                    summary.textContent = `✓ All ${tests.length} tests passed! +40 XP`;
+
+                    // Unlock next skill
+                    const active = skills.find(s => s.status === 'active');
+                    if (active) {
+                      active.status = 'unlocked';
+                      // Find next locked and make active
+                      const nextLocked = skills.find(s => s.status === 'locked');
+                      if (nextLocked) nextLocked.status = 'active';
+
+                      const xpEl = document.getElementById('lp25-xp');
+                      xpEl.textContent = parseInt(xpEl.textContent) + 40;
+                    }
+                    renderTree();
+                  } else {
+                    summary.style.color = '#890320';
+                    const passed = tests.filter(t => t.pass).length;
+                    summary.textContent = `✗ ${passed}/${tests.length} passed. Try again.`;
+                  }
+
+                  output.appendChild(summary);
+                  output.scrollTop = output.scrollHeight;
+                  running = false;
+                }, 300);
+              }
+            }, t.delay);
+          });
+        });
+
+        // Cursor glow
+        root.addEventListener('mousemove', (e) => {
+          const rect = root.getBoundingClientRect();
+          const mx = e.clientX - rect.left;
+          const my = e.clientY - rect.top;
+          glow.style.left = mx + 'px';
+          glow.style.top = my + 'px';
+          glow.style.opacity = '1';
+
+          const px = (mx / rect.width) * 100;
+          const py = (my / rect.height) * 100;
+          root.style.borderImage = `radial-gradient(circle at ${px}% ${py}%, rgba(172,13,48,0.4) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 100%) 1`;
+
+          // Node proximity
+          treeNodes.querySelectorAll('.lp25-skill-node:not(.lp25-locked)').forEach(node => {
+            const nr = node.getBoundingClientRect();
+            const nx = nr.left - rect.left + nr.width / 2;
+            const ny = nr.top - rect.top + nr.height / 2;
+            const dist = Math.sqrt((mx - nx) ** 2 + (my - ny) ** 2);
+            if (dist < 70) {
+              const s = 1 + (1 - dist / 70) * 0.3;
+              node.style.transform = `translate(-50%,-50%) scale(${s})`;
+            } else {
+              node.style.transform = 'translate(-50%,-50%) scale(1)';
+            }
+          });
+        });
+
+        root.addEventListener('mouseleave', () => {
+          glow.style.opacity = '0';
+          root.style.borderImage = 'none';
+          root.style.border = '1px solid rgba(255,255,255,0.08)';
+          treeNodes.querySelectorAll('.lp25-skill-node').forEach(n => {
+            n.style.transform = 'translate(-50%,-50%) scale(1)';
+          });
+        });
+
+        // Init
+        renderTree();
+        window.addEventListener('resize', renderTree);
+      })();
+    </script>
+  </div>
+
+</body>
+</html>

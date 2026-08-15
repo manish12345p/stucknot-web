@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-theme">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work - Stucknot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../stucknot-design-system.css" />
+  <style>
+    /* Contributor Stream Styles */
+    @keyframes ge24pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.4
+      }
+    }
+
+    @keyframes ge24scan {
+      0% {
+        top: 0%;
+        opacity: 0
+      }
+
+      10% {
+        opacity: 1
+      }
+
+      90% {
+        opacity: 1
+      }
+
+      100% {
+        top: 100%;
+        opacity: 0
+      }
+    }
+
+    /* Theme Variables for Contributor Stream */
+    #ge24-root {
+      --ge24-bg: #1e1418;
+      --ge24-graph-bg: #271b20;
+      --ge24-border: rgba(255, 255, 255, 0.12);
+      --ge24-border-sub: rgba(255, 255, 255, 0.09);
+      --ge24-border-minor: rgba(255, 255, 255, 0.06);
+      --ge24-header-bg: rgba(255, 255, 255, 0.04);
+      --ge24-text-main: #eee;
+      --ge24-text-meta: #888;
+      --ge24-text-header: #aaa;
+      --ge24-node-bg: #271b20;
+      --ge24-grid-dot: rgba(255, 255, 255, 0.08);
+      --ge24-tooltip-bg: #22181b;
+      --ge24-tooltip-border: rgba(255, 255, 255, 0.15);
+      --ge24-tooltip-text: #fff;
+      --ge24-scrollbar-thumb: rgba(255, 255, 255, 0.15);
+      --ge24-color-sec: #890320;
+      --ge24-color-main: #c14a5d;
+      --ge24-color-feat: #E6A8A8;
+    }
+
+    .light-theme #ge24-root {
+      --ge24-bg: #ffffff;
+      --ge24-graph-bg: #f1f3f5;
+      --ge24-border: rgba(0, 0, 0, 0.08);
+      --ge24-border-sub: rgba(0, 0, 0, 0.06);
+      --ge24-border-minor: rgba(0, 0, 0, 0.04);
+      --ge24-header-bg: rgba(0, 0, 0, 0.015);
+      --ge24-text-main: #111;
+      --ge24-text-meta: #666;
+      --ge24-text-header: #555;
+      --ge24-node-bg: #ffffff;
+      --ge24-grid-dot: rgba(0, 0, 0, 0.06);
+      --ge24-tooltip-bg: #ffffff;
+      --ge24-tooltip-border: rgba(0, 0, 0, 0.12);
+      --ge24-tooltip-text: #111;
+      --ge24-scrollbar-thumb: rgba(0, 0, 0, 0.15);
+      --ge24-color-sec: #890320;
+      --ge24-color-main: #ac0d30;
+      --ge24-color-feat: #c96b6b;
+    }
+
+    .work-hero-content {
+      max-width: 600px;
+    }
+
+    /* Spacing Refinements to make page tighter and clear fixed header */
+    .section {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    .work-hero {
+      padding-top: 170px;
+      /* clear floating site-header */
+      padding-bottom: 30px;
+      justify-content: flex-start;
+      gap: 140px;
+    }
+
+    .ge24-item {
+      display: flex;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      position: relative;
+    }
+
+    .ge24-item:hover {
+      background: rgba(172, 13, 48, 0.04);
+      border-color: rgba(172, 13, 48, 0.15);
+      box-shadow: 0 0 10px rgba(172, 13, 48, 0.08);
+    }
+
+    .ge24-item.ge24-active {
+      background: rgba(172, 13, 48, 0.08);
+      border-color: rgba(172, 13, 48, 0.3);
+      box-shadow: 0 0 12px rgba(172, 13, 48, 0.1);
+    }
+
+    .ge24-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: bold;
+      color: #fff;
+      border: none;
+    }
+
+    .ge24-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .ge24-msg {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ge24-text-main);
+      margin-bottom: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ge24-meta {
+      font-size: 9px;
+      color: var(--ge24-text-meta);
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .ge24-branch-tag {
+      color: #27c93f;
+    }
+
+    .ge24-hash-tag {
+      color: #ffbd2e;
+    }
+
+    .ge24-type-badge {
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 8px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .ge24-type-push {
+      background: rgba(193, 74, 93, 0.15);
+      color: #c14a5d;
+    }
+
+    .ge24-type-pr {
+      background: rgba(230, 168, 168, 0.15);
+      color: #E6A8A8;
+    }
+
+    .ge24-type-merge {
+      background: rgba(137, 3, 32, 0.15);
+      color: #890320;
+    }
+
+    .ge24-node {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--ge24-node-bg);
+      border: 3px solid #61afef;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      transition: all 0.15s;
+      z-index: 10;
+    }
+
+    .ge24-node:hover,
+    .ge24-node.ge24-active {
+      transform: translate(-50%, -50%) scale(1.6);
+      box-shadow: 0 0 12px currentColor;
+    }
+
+    /* Scan line on graph */
+    .ge24-scanline {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      z-index: 3;
+      pointer-events: none;
+      background: linear-gradient(90deg, transparent, rgba(172, 13, 48, 0.4), transparent);
+      box-shadow: 0 0 8px rgba(172, 13, 48, 0.3);
+      animation: ge24scan 6s linear infinite;
+    }
+
+    @keyframes ge24slideIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px)
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes ge24popIn {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0)
+      }
+
+      70% {
+        transform: translate(-50%, -50%) scale(1.3)
+      }
+
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1)
+      }
+    }
+
+    /* Custom scrollbar for feed */
+    #ge24-feed::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    #ge24-feed::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    #ge24-feed::-webkit-scrollbar-thumb {
+      background: var(--ge24-scrollbar-thumb);
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="header" role="banner">
+    <div class="container">
+      <a href="../index.html" aria-label="StuckNot Home"><span class="logo-img" role="img" aria-label="StuckNot logo"></span></a>
+      <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+      </button>
+      <div class="header-nav-wrapper" id="mobile-nav">
+        <nav class="nav-links" aria-label="Main navigation" id="nav-main-links">
+          <a href="../index.html">Home</a>
+          <a href="../community/index.html">Community</a>
+          <a href="../work/index.html" class="active">Work</a>
+          <a href="../programs/index.html">Programs</a>
+          <a href="../learn/index.html">Learn</a>
+          <a href="../community/index.html">About</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- WORK HERO SECTION -->
+    <section class="work-hero container section">
+      <div class="work-hero-content">
+        <span class="eyebrow-text highlight-maroon">VERIFIABLE PROOF</span>
+        <h1 class="hero-title">Built by the<br>Community.</h1>
+        <p class="hero-desc">We don't hide behind vague statistics. Every project here was engineered, designed, and
+          deployed by verifiable members of the Stucknot network. Browse the work, inspect the code, and see the
+          builders.</p>
+        <div class="work-hero-actions">
+          <a href="/projects/start" class="base-button">START A PROJECT</a>
+        </div>
+      </div>
+
+      <!-- 24. The Interactive Contributor Stream (Expert-Level Idea 62 Upgrade) -->
+      <div id="ge24-root"
+        style="width: 100%; max-width: 480px; height: 410px; background: var(--ge24-bg); border: 1px solid var(--ge24-border); border-radius: 12px; font-family: 'JetBrains Mono', monospace; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.04); position: relative; z-index: 10;">
+
+        <!-- Cursor glow -->
+        <div id="ge24-glow"
+          style="position: absolute; width: 250px; height: 250px; border-radius: 50%; background: radial-gradient(circle, rgba(172,13,48,0.12) 0%, rgba(172,13,48,0.03) 40%, transparent 70%); pointer-events: none; z-index: 0; transform: translate(-50%,-50%); opacity: 0; transition: opacity 0.3s;">
+        </div>
+
+        <!-- Top Action Bar -->
+        <div
+          style="height: 46px; min-height: 46px; border-bottom: 1px solid var(--ge24-border); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; background: var(--ge24-header-bg);">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div
+              style="width: 7px; height: 7px; border-radius: 50%; background: #E6A8A8; box-shadow: 0 0 8px #E6A8A8; animation: ge24pulse 2s infinite;">
+            </div>
+            <span
+              style="font-size: 10px; color: var(--ge24-text-header); font-weight: bold; letter-spacing: 1.5px;">LIVE
+              NETWORK ACTIVITY</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <span style="font-size: 10px; color: #21c2e0;">842 contributors</span>
+            <button id="ge24-btn"
+              style="background: rgba(172, 13, 48, 0.15); border: 1px solid rgba(172,13,48,0.4); color: #ac0d30; font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: bold; padding: 5px 10px; border-radius: 4px; cursor: pointer; transition: all 0.2s; letter-spacing: 0.5px;"
+              onmouseover="this.style.background='rgba(172,13,48,0.3)'"
+              onmouseout="this.style.background='rgba(172,13,48,0.15)'">+ SIMULATE</button>
+          </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div style="flex: 1; display: flex; min-height: 0; position: relative;">
+          <!-- Left: Activity Feed -->
+          <div
+            style="width: 55%; border-right: 1px solid var(--ge24-border-sub); display: flex; flex-direction: column; position: relative;">
+            <div
+              style="padding: 12px 20px; border-bottom: 1px solid var(--ge24-border-minor); font-size: 9px; color: var(--ge24-text-header); letter-spacing: 2px; font-weight: bold;">
+              RECENT COMMITS</div>
+            <div id="ge24-feed"
+              style="flex: 1; overflow-y: auto; padding: 12px 16px; display: flex; flex-direction: column; gap: 8px;">
+            </div>
+          </div>
+
+          <!-- Right: Git Graph -->
+          <div style="width: 45%; position: relative; background: var(--ge24-graph-bg);">
+            <div
+              style="padding: 12px 20px; border-bottom: 1px solid var(--ge24-border-minor); font-size: 9px; color: var(--ge24-text-header); letter-spacing: 2px; font-weight: bold;">
+              BRANCH GRAPH</div>
+            <div id="ge24-graph-area"
+              style="position: relative; width: 100%; height: calc(100% - 38px); overflow: hidden;">
+              <div
+                style="position: absolute; inset: 0; background-image: radial-gradient(var(--ge24-grid-dot) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none;">
+              </div>
+              <div class="ge24-scanline"></div>
+              <div
+                style="position: absolute; top: 14px; left: 0; width: 100%; display: flex; justify-content: space-around; z-index: 5; pointer-events: none;">
+                <span
+                  style="font-size: 8px; color: var(--ge24-color-sec); letter-spacing: 1px; opacity: 0.6;">SEC</span>
+                <span
+                  style="font-size: 8px; color: var(--ge24-color-main); letter-spacing: 1px; opacity: 0.6;">MAIN</span>
+                <span
+                  style="font-size: 8px; color: var(--ge24-color-feat); letter-spacing: 1px; opacity: 0.6;">FEAT</span>
+              </div>
+              <svg id="ge24-tree"
+                style="position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden;"></svg>
+              <div id="ge24-nodes" style="position: absolute; inset: 0; width: 100%; height: 100%;"></div>
+            </div>
+          </div>
+
+          <!-- SVG hover overlay -->
+          <svg id="ge24-hover-svg"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 15;">
+            <path id="ge24-hover-path" fill="none" stroke="#AC0D30" stroke-width="1.5" stroke-dasharray="4 3"
+              style="opacity: 0; transition: opacity 0.15s;" />
+          </svg>
+
+          <!-- Tooltip -->
+          <div id="ge24-tip"
+            style="position: absolute; opacity: 0; pointer-events: none; background: var(--ge24-tooltip-bg); border: 1px solid var(--ge24-tooltip-border); padding: 10px 14px; border-radius: 6px; font-size: 10px; color: var(--ge24-tooltip-text); box-shadow: 0 8px 20px rgba(0,0,0,0.6); z-index: 30; transition: opacity 0.15s; max-width: 220px;">
+            <div id="ge24-tip-hash" style="color: #ffbd2e; margin-bottom: 3px; font-size: 9px;"></div>
+            <div id="ge24-tip-msg"
+              style="color: var(--ge24-tooltip-text); font-weight: bold; font-family: 'Montserrat', sans-serif; font-size: 12px; margin-bottom: 6px;">
+            </div>
+            <div style="display: flex; gap: 8px; color: #666; font-size: 9px;">
+              <span id="ge24-tip-author" style="color: #c14a5d;"></span>
+              <span>·</span>
+              <span id="ge24-tip-time"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Stats Bar -->
+        <div
+          style="height: 36px; min-height: 36px; border-top: 1px solid var(--ge24-border-sub); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; background: var(--ge24-header-bg); font-size: 9px; color: var(--ge24-text-meta);">
+          <div style="display: flex; gap: 16px;">
+            <span><span style="color: var(--ge24-color-main);">●</span> 14 pushes</span>
+            <span><span style="color: var(--ge24-color-feat);">●</span> 6 PRs</span>
+            <span><span style="color: var(--ge24-color-sec);">●</span> 3 merges</span>
+          </div>
+          <span style="color: #333;">last sync 4s ago</span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CASE STUDIES GRID -->
+    <section class="work-showcase container section">
+      <div class="case-study-grid">
+
+        <!-- Case Card 1 (Large Image Top) -->
+        <div class="case-card card-large">
+          <div class="case-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80"
+              alt="E-commerce Redesign" class="case-image">
+          </div>
+          <div class="case-content">
+            <h3 class="case-title">
+              <span class="title-icon">◓</span> E-commerce Redesign
+            </h3>
+            <p class="case-desc"><strong>Client Problem:</strong> Legacy checkout flow causing a 42% cart abandonment
+              rate. Needed a high-performance, edge-rendered solution with sub-second TTI.</p>
+
+            <div class="builders-section">
+              <span class="builders-label">BUILDERS</span>
+              <div class="builder-tags">
+                <span class="builder-tag">@sarah_dev (Frontend)</span>
+                <span class="builder-tag">@alex_ui (Design)</span>
+                <span class="builder-tag">@mike_data (Backend)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Card 2 (Text Only) -->
+        <div class="case-card card-small">
+          <div class="case-content">
+            <span class="badge integration-badge">INTEGRATION</span>
+            <h3 class="case-title">
+              <span class="title-icon">◓</span> AI Chatbot Integration
+            </h3>
+            <p class="case-desc"><strong>Client Problem:</strong> Support ticket volume exceeding team capacity.
+              Required an LLM integration capable of resolving L1 queries securely within their intranet.</p>
+
+            <div class="builders-section">
+              <span class="builders-label">BUILDERS</span>
+              <div class="builder-tags">
+                <span class="builder-tag">@jchen_ai (ML Engineer)</span>
+                <span class="builder-tag">@david_ops (DevOps)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Card 3 (Text Left, Image Right) -->
+        <div class="case-card card-wide">
+          <div class="case-content">
+
+            <h3 class="case-title">
+              <span class="title-icon">◓</span> Fintech Dashboard
+            </h3>
+            <p class="case-desc"><strong>Client Problem:</strong> Institutional investors needed real-time aggregation
+              of disparate financial feeds. Required zero-latency WebSockets and WebGL data visualization.</p>
+
+            <div class="builders-section">
+              <span class="builders-label">BUILDERS</span>
+              <div class="builder-tags">
+                <span class="builder-tag">@kyle_vis (Data Vis)</span>
+                <span class="builder-tag">@elena_sys (Systems)</span>
+                <span class="builder-tag">@sam_sec (Security)</span>
+              </div>
+            </div>
+          </div>
+          <div class="case-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
+              alt="Fintech Dashboard" class="case-image">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BOTTOM CTA SECTION -->
+    <section class="work-cta container section">
+      <div class="cta-box">
+        <h2 class="cta-title">Ready to build something real?</h2>
+        <p class="cta-desc">Stop reading case studies and start writing your own. Engage our community of builders
+          today.</p>
+        <a href="/projects/start" class="work-btn work-btn-dark">START A PROJECT</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">Stucknot</div>
+        <p class="copyright">© 2024 Stucknot. Built for the community.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <a href="/community">Community Hub</a>
+          <a href="/work">Work Opportunities</a>
+        </div>
+        <div class="footer-col">
+          <a href="/programs">Active Programs</a>
+          <a href="/learn">Learning Resources</a>
+        </div>
+        <div class="footer-col">
+          <a href="/about">Company Culture</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☀️ Light Mode</button>
+
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const htmlEl = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      htmlEl.className = savedTheme;
+      updateBtnText(savedTheme);
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      const isDark = htmlEl.classList.contains('dark-theme');
+      const newTheme = isDark ? 'light-theme' : 'dark-theme';
+      htmlEl.className = newTheme;
+      localStorage.setItem('theme', newTheme);
+      updateBtnText(newTheme);
+    });
+
+    function updateBtnText(theme) {
+      if (theme === 'light-theme') {
+        toggleBtn.innerHTML = '🌙 Dark Mode';
+      } else {
+        toggleBtn.innerHTML = '☀️ Light Mode';
+      }
+    }
+  </script>
+  <script src="../main.js"></script>
+  <script>
+    (function () {
+      const root = document.getElementById('ge24-root');
+      const feed = document.getElementById('ge24-feed');
+      const treeSvg = document.getElementById('ge24-tree');
+      const nodesEl = document.getElementById('ge24-nodes');
+      const hoverPath = document.getElementById('ge24-hover-path');
+      const hoverSvg = document.getElementById('ge24-hover-svg');
+      const tip = document.getElementById('ge24-tip');
+
+      const avatarColors = ['#AC0D30', '#890320', '#c14a5d', '#4F5D75', '#2D6A4F', '#3D5A80', '#b55441'];
+
+      let commits = [
+        { id: 'c1', hash: 'a1b2c3d', msg: 'Refactor core routing engine', author: 'sarah_dev', time: '2m ago', branch: 'main', color: 'var(--ge24-color-main)', type: 'push' },
+        { id: 'c2', hash: 'f9e8d7c', msg: 'Fix memory leak in webgl renderer', author: 'alex_ui', time: '15m ago', branch: 'feat', color: 'var(--ge24-color-feat)', type: 'pr' },
+        { id: 'c3', hash: 'b5c6d7e', msg: 'Update runtime dependencies', author: 'manish', time: '1h ago', branch: 'main', color: 'var(--ge24-color-main)', type: 'push' },
+        { id: 'c4', hash: '9a8b7c6', msg: 'Implement zero-knowledge auth', author: 'crypto_sec', time: '3h ago', branch: 'sec', color: 'var(--ge24-color-sec)', type: 'merge' },
+        { id: 'c5', hash: 'd4e5f6a', msg: 'Add integration test suite', author: 'tester_k', time: '5h ago', branch: 'feat', color: 'var(--ge24-color-feat)', type: 'push' },
+        { id: 'c6', hash: '7b8c9d0', msg: 'Optimize bundler pipeline', author: 'perf_eng', time: '8h ago', branch: 'main', color: 'var(--ge24-color-main)', type: 'push' }
+      ];
+
+      const branchX = { 'sec': 0.2, 'main': 0.5, 'feat': 0.8 };
+
+      function getInitial(name) { return name.charAt(0).toUpperCase(); }
+      function getAvatarColor(name) {
+        let h = 0; for (let i = 0; i < name.length; i++) h = name.charCodeAt(i) + ((h << 5) - h);
+        return avatarColors[Math.abs(h) % avatarColors.length];
+      }
+
+      function typeIcon(type) {
+        if (type === 'push') return '↑';
+        if (type === 'pr') return '○';
+        if (type === 'merge') return '↓';
+        return '•';
+      }
+
+      function renderFeed() {
+        feed.innerHTML = '';
+        commits.forEach(c => {
+          const el = document.createElement('div');
+          el.className = 'ge24-item';
+          el.dataset.id = c.id;
+
+          const col = getAvatarColor(c.author);
+          const initial = getInitial(c.author);
+
+          let action = c.type === 'push' ? 'pushed to' : c.type === 'pr' ? 'opened PR in' : 'merged into';
+          let badgeClass = `ge24-type-${c.type}`;
+
+          el.innerHTML = `
+            <div class="ge24-avatar" style="background:${col};">${initial}</div>
+            <div class="ge24-body">
+              <div class="ge24-msg">${c.msg}</div>
+              <div class="ge24-meta">
+                <span class="ge24-type-badge ${badgeClass}">${c.type}</span>
+                <span style="color:${col};">@${c.author}</span>
+                <span>${typeIcon(c.type)} ${action}</span>
+                <span class="ge24-branch-tag">${c.branch}</span>
+                <span class="ge24-hash-tag">${c.hash}</span>
+                <span>${c.time}</span>
+              </div>
+            </div>
+          `;
+
+          el.addEventListener('mouseenter', () => activateLink(c.id));
+          el.addEventListener('mouseleave', deactivateLink);
+          feed.appendChild(el);
+        });
+      }
+
+      function renderGraph() {
+        treeSvg.innerHTML = '';
+        nodesEl.innerHTML = '';
+
+        const graphArea = document.getElementById('ge24-graph-area');
+        const w = graphArea.clientWidth || 250;
+        const h = graphArea.clientHeight || 340;
+        const startY = 40;
+        const spacing = Math.min(60, (h - startY - 30) / Math.max(commits.length - 1, 1));
+
+        Object.entries(branchX).forEach(([name, pct]) => {
+          const x = w * pct;
+          const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          line.setAttribute('x1', x); line.setAttribute('y1', 30);
+          line.setAttribute('x2', x); line.setAttribute('y2', startY + (commits.length - 1) * spacing);
+          const bColor = name === 'main' ? 'var(--ge24-color-main)' : name === 'feat' ? 'var(--ge24-color-feat)' : 'var(--ge24-color-sec)';
+          line.setAttribute('stroke', bColor);
+          line.setAttribute('stroke-width', '1');
+          line.setAttribute('opacity', '0.15');
+          treeSvg.appendChild(line);
+        });
+
+        const prev = {};
+
+        commits.forEach((c, i) => {
+          const x = w * branchX[c.branch];
+          const y = startY + i * spacing;
+
+          if (prev[c.branch]) {
+            const p = prev[c.branch];
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', `M ${p.x} ${p.y} L ${x} ${y}`);
+            path.setAttribute('stroke', c.color);
+            path.setAttribute('stroke-width', '2.5');
+            path.setAttribute('fill', 'none');
+            path.setAttribute('opacity', '0.7');
+            treeSvg.appendChild(path);
+          }
+
+          if (c.type === 'merge' && c.branch !== 'main') {
+            const mainX = w * branchX['main'];
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            const cpOffset = Math.abs(mainX - x) * 0.5;
+            const halfSpacing = spacing * 0.5;
+            const quarterSpacing = spacing * 0.25;
+            path.setAttribute('d', `M ${mainX} ${y - halfSpacing} C ${mainX} ${y}, ${x + (mainX > x ? cpOffset : -cpOffset)} ${y - quarterSpacing}, ${x} ${y}`);
+            path.setAttribute('stroke', c.color);
+            path.setAttribute('stroke-width', '2');
+            path.setAttribute('fill', 'none');
+            path.setAttribute('opacity', '0.5');
+            treeSvg.appendChild(path);
+          }
+          if (c.type === 'pr' && c.branch !== 'main') {
+            const mainX = w * branchX['main'];
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            const cpOffset = Math.abs(mainX - x) * 0.5;
+            const halfSpacing = spacing * 0.5;
+            const quarterSpacing = spacing * 0.25;
+            path.setAttribute('d', `M ${mainX} ${y + halfSpacing} C ${mainX} ${y}, ${x} ${y + quarterSpacing}, ${x} ${y}`);
+            path.setAttribute('stroke', c.color);
+            path.setAttribute('stroke-width', '2');
+            path.setAttribute('stroke-dasharray', '5 3');
+            path.setAttribute('fill', 'none');
+            path.setAttribute('opacity', '0.5');
+            treeSvg.appendChild(path);
+          }
+
+          const node = document.createElement('div');
+          node.className = 'ge24-node';
+          node.dataset.id = c.id;
+          node.style.left = x + 'px';
+          node.style.top = y + 'px';
+          node.style.borderColor = c.color;
+          node.style.color = c.color;
+
+          node.addEventListener('mouseenter', (e) => {
+            activateLink(c.id);
+            showTip(e, c);
+          });
+          node.addEventListener('mouseleave', () => {
+            deactivateLink();
+            tip.style.opacity = '0';
+          });
+
+          nodesEl.appendChild(node);
+          prev[c.branch] = { x, y };
+        });
+      }
+
+      function activateLink(id) {
+        feed.querySelectorAll('.ge24-item').forEach(el => el.classList.toggle('ge24-active', el.dataset.id === id));
+        nodesEl.querySelectorAll('.ge24-node').forEach(el => el.classList.toggle('ge24-active', el.dataset.id === id));
+
+        const feedEl = feed.querySelector(`.ge24-item[data-id="${id}"]`);
+        const nodeEl = nodesEl.querySelector(`.ge24-node[data-id="${id}"]`);
+        if (!feedEl || !nodeEl) return;
+
+        const contentArea = hoverSvg.parentElement;
+        const cRect = contentArea.getBoundingClientRect();
+        const fRect = feedEl.getBoundingClientRect();
+        const nRect = nodeEl.getBoundingClientRect();
+
+        const sx = fRect.right - cRect.left;
+        const sy = fRect.top - cRect.top + fRect.height / 2;
+        const ex = nRect.left - cRect.left + nRect.width / 2;
+        const ey = nRect.top - cRect.top + nRect.height / 2;
+        const cpx = (sx + ex) / 2;
+
+        hoverPath.setAttribute('d', `M ${sx} ${sy} C ${cpx} ${sy}, ${cpx} ${ey}, ${ex} ${ey}`);
+        hoverPath.style.opacity = '1';
+      }
+
+      function deactivateLink() {
+        feed.querySelectorAll('.ge24-item').forEach(el => el.classList.remove('ge24-active'));
+        nodesEl.querySelectorAll('.ge24-node').forEach(el => el.classList.remove('ge24-active'));
+        hoverPath.style.opacity = '0';
+      }
+
+      function showTip(e, c) {
+        const area = tip.parentElement;
+        const r = area.getBoundingClientRect();
+        let x = e.clientX - r.left + 16;
+        let y = e.clientY - r.top - 10;
+        if (x + 220 > r.width) x = e.clientX - r.left - 230;
+        if (x < 10) x = 10;
+
+        document.getElementById('ge24-tip-hash').textContent = c.hash;
+        document.getElementById('ge24-tip-msg').textContent = c.msg;
+        document.getElementById('ge24-tip-author').textContent = '@' + c.author;
+        document.getElementById('ge24-tip-time').textContent = c.time;
+        tip.style.left = x + 'px';
+        tip.style.top = y + 'px';
+        tip.style.opacity = '1';
+      }
+
+      let counter = 7;
+      const msgs = ['Hotfix auth token refresh', 'Add rate limiter middleware', 'Migrate to edge runtime', 'Refactor state machine', 'Optimize tree-shaking', 'Deploy canary build', 'Patch XSS vulnerability', 'Lint codebase cleanup'];
+      const authors = ['riley', 'jordan', 'quinn', 'nova', 'sage', 'blake', 'reese'];
+
+      document.getElementById('ge24-btn').addEventListener('click', () => {
+        const branches = ['main', 'feat', 'sec'];
+        const colors = ['var(--ge24-color-main)', 'var(--ge24-color-feat)', 'var(--ge24-color-sec)'];
+        const types = ['push', 'pr', 'merge'];
+        const r = Math.floor(Math.random() * 3);
+
+        const nc = {
+          id: 'c' + counter,
+          hash: Math.random().toString(16).substr(2, 7),
+          msg: msgs[counter % msgs.length],
+          author: authors[counter % authors.length],
+          time: 'Just now',
+          branch: branches[r],
+          color: colors[r],
+          type: types[r]
+        };
+        counter++;
+
+        commits.unshift(nc);
+        if (commits.length > 8) commits.pop();
+
+        renderFeed();
+        renderGraph();
+
+        const newFeed = feed.querySelector(`.ge24-item[data-id="${nc.id}"]`);
+        const newNode = nodesEl.querySelector(`.ge24-node[data-id="${nc.id}"]`);
+        if (newFeed) newFeed.style.animation = 'ge24slideIn 0.35s ease-out';
+        if (newNode) newNode.style.animation = 'ge24popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275)';
+      });
+
+      renderFeed();
+      renderGraph();
+
+      window.addEventListener('resize', renderGraph);
+
+      const glow = document.getElementById('ge24-glow');
+
+      root.addEventListener('mousemove', (e) => {
+        const rect = root.getBoundingClientRect();
+        const mx = e.clientX - rect.left;
+        const my = e.clientY - rect.top;
+
+        glow.style.left = mx + 'px';
+        glow.style.top = my + 'px';
+        glow.style.opacity = '1';
+
+        const px = (mx / rect.width) * 100;
+        const py = (my / rect.height) * 100;
+        root.style.borderImage = `radial-gradient(circle at ${px}% ${py}%, rgba(172,13,48,0.5) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 100%) 1`;
+
+        const allNodes = nodesEl.querySelectorAll('.ge24-node');
+        allNodes.forEach(node => {
+          const nr = node.getBoundingClientRect();
+          const nx = nr.left - rect.left + nr.width / 2;
+          const ny = nr.top - rect.top + nr.height / 2;
+          const dist = Math.sqrt((mx - nx) ** 2 + (my - ny) ** 2);
+
+          if (dist < 80) {
+            const s = 1 + (1 - dist / 80) * 0.8;
+            node.style.transform = `translate(-50%,-50%) scale(${s})`;
+            node.style.boxShadow = `0 0 ${12 + (1 - dist / 80) * 15}px currentColor`;
+          } else {
+            node.style.transform = 'translate(-50%,-50%) scale(1)';
+            node.style.boxShadow = 'none';
+          }
+        });
+      });
+
+      root.addEventListener('mouseleave', () => {
+        glow.style.opacity = '0';
+        root.style.borderImage = 'none';
+        root.style.border = '1px solid rgba(255,255,255,0.08)';
+        nodesEl.querySelectorAll('.ge24-node').forEach(node => {
+          node.style.transform = 'translate(-50%,-50%) scale(1)';
+          node.style.boxShadow = 'none';
+        });
+      });
+
+    })();
+  </script>
+  <script src="../main.js"></script>
+</body>
+
+</html>

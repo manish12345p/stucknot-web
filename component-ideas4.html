@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-theme">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Component Ideas Gallery 4</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Montserrat:wght@400;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="stucknot-design-system.css">
+  <style>
+    :root {
+      --devops-cyan: #21c2e0;
+      --devops-cyan-glow: rgba(33, 194, 224, 0.4);
+      --maroon-glow: rgba(172, 13, 48, 0.4);
+      --rose-glow: rgba(230, 168, 168, 0.4);
+    }
+
+    body {
+      background: #06070a;
+      color: var(--text-light);
+      padding: 60px;
+      font-family: 'Montserrat', sans-serif;
+      overflow-y: auto;
+    }
+
+    .gallery-section {
+      margin-bottom: 80px;
+      padding-bottom: 60px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+
+    .gallery-title {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: var(--white);
+    }
+
+    .gallery-desc {
+      color: var(--silver);
+      margin-bottom: 40px;
+      font-size: 14px;
+    }
+
+    /* ---------- IDEA 26: INTERACTIVE CURRICULUM ROADMAP ---------- */
+    .roadmap-container {
+      width: 100%;
+      max-width: 780px;
+      height: 500px;
+      background: #07070a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      display: flex;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      position: relative;
+      margin: 0 auto;
+    }
+
+    /* Left panel: Control & Stats */
+    .roadmap-left {
+      width: 38%;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.01);
+      z-index: 5;
+    }
+
+    .roadmap-left-header {
+      margin-bottom: 20px;
+    }
+
+    .roadmap-eyebrow {
+      font-size: 8px;
+      letter-spacing: 2px;
+      color: var(--rose);
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .roadmap-main-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--white);
+    }
+
+    /* Track Tabs */
+    .roadmap-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .roadmap-tab-btn {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 14px 18px;
+      border-radius: 10px;
+      color: var(--silver);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .roadmap-tab-btn:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.08);
+      color: var(--white);
+    }
+
+    .roadmap-tab-btn.active[data-track="full-stack"] {
+      background: rgba(230, 168, 168, 0.1);
+      border-color: var(--rose);
+      color: var(--white);
+      box-shadow: 0 0 15px rgba(230, 168, 168, 0.15);
+    }
+
+    .roadmap-tab-btn.active[data-track="distributed"] {
+      background: rgba(193, 74, 93, 0.1);
+      border-color: var(--maroon-light);
+      color: var(--white);
+      box-shadow: 0 0 15px rgba(193, 74, 93, 0.15);
+    }
+
+    .roadmap-tab-btn.active[data-track="devops"] {
+      background: rgba(33, 194, 224, 0.1);
+      border-color: var(--devops-cyan);
+      color: var(--white);
+      box-shadow: 0 0 15px rgba(33, 194, 224, 0.15);
+    }
+
+    .roadmap-tab-arrow {
+      font-size: 14px;
+      opacity: 0.6;
+      transition: transform 0.3s;
+    }
+
+    .roadmap-tab-btn.active .roadmap-tab-arrow {
+      transform: translateX(4px);
+      opacity: 1;
+    }
+
+    /* Career Card stats */
+    .career-stats-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .career-stat-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 11px;
+    }
+
+    .career-stat-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .career-stat-label {
+      color: var(--silver);
+      opacity: 0.7;
+    }
+
+    .career-stat-value {
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    /* Progress bar */
+    .career-progress-container {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .career-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--rose);
+      border-radius: 2px;
+      transition: width 0.6s ease;
+    }
+
+    /* Retro Terminal */
+    .terminal-container {
+      flex: 1;
+      min-height: 0;
+      background: #030305;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #38bdf8;
+      overflow-y: auto;
+      position: relative;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(56, 189, 248, 0.3) transparent;
+    }
+
+    .terminal-container::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+      background-size: 100% 3px, 3px 100%;
+      pointer-events: none;
+    }
+
+    .term-line {
+      line-height: 1.4;
+      white-space: pre-wrap;
+      margin-bottom: 4px;
+    }
+    .term-line:last-child {
+      margin-bottom: 0;
+    }
+
+    .term-line.system {
+      color: #64748b;
+    }
+
+    .term-line.success {
+      color: #22c55e;
+    }
+
+    .term-line.warning {
+      color: #eab308;
+    }
+
+    .term-line.executing {
+      color: #38bdf8;
+    }
+
+    /* Right Panel: Skill Tree */
+    .roadmap-right {
+      width: 62%;
+      background: #090a0f;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .tree-panel {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tree-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 24px 24px;
+      pointer-events: none;
+    }
+
+    .tree-svg-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    /* SVG Connecting paths */
+    .tree-svg-canvas path {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.05);
+      stroke-width: 2;
+      transition: stroke 0.4s, stroke-width 0.4s;
+    }
+
+    .tree-svg-canvas path.flow-line {
+      stroke-dasharray: 6 5;
+      animation: flowDash 2.5s linear infinite;
+    }
+
+    @keyframes flowDash {
+      to {
+        stroke-dashoffset: -22;
+      }
+    }
+
+    /* Active path highlighting */
+    .tree-svg-canvas path.flow-line.active-fs {
+      stroke: var(--rose);
+      stroke-width: 3;
+      animation-duration: 0.8s;
+      filter: drop-shadow(0 0 4px var(--rose-glow));
+    }
+
+    .tree-svg-canvas path.flow-line.active-ds {
+      stroke: var(--maroon-light);
+      stroke-width: 3;
+      animation-duration: 0.8s;
+      filter: drop-shadow(0 0 4px var(--maroon-glow));
+    }
+
+    .tree-svg-canvas path.flow-line.active-co {
+      stroke: var(--devops-cyan);
+      stroke-width: 3;
+      animation-duration: 0.8s;
+      filter: drop-shadow(0 0 4px var(--devops-cyan-glow));
+    }
+
+    /* Skill nodes */
+    .skill-node {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #0e1018;
+      border: 2px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.4);
+      z-index: 10;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .skill-node:hover {
+      transform: translate(-50%, -50%) scale(1.2);
+      color: var(--white);
+    }
+
+    .skill-node.selected {
+      color: var(--white) !important;
+      transform: translate(-50%, -50%) scale(1.15);
+    }
+
+    /* Highlight tracks color on nodes */
+    .skill-node.selected.fs-theme,
+    .skill-node.highlight-fs {
+      border-color: var(--rose);
+      color: var(--rose);
+      box-shadow: 0 0 15px var(--rose-glow);
+    }
+
+    .skill-node.selected.ds-theme,
+    .skill-node.highlight-ds {
+      border-color: var(--maroon-light);
+      color: var(--maroon-light);
+      box-shadow: 0 0 15px var(--maroon-glow);
+    }
+
+    .skill-node.selected.co-theme,
+    .skill-node.highlight-co {
+      border-color: var(--devops-cyan);
+      color: var(--devops-cyan);
+      box-shadow: 0 0 15px var(--devops-cyan-glow);
+    }
+
+    .skill-node-label {
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 130px;
+      text-align: center;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--silver);
+      opacity: 0.6;
+      pointer-events: none;
+      transition: opacity 0.3s, color 0.3s;
+    }
+
+    .skill-node.selected .skill-node-label,
+    .skill-node:hover .skill-node-label {
+      opacity: 1;
+      color: var(--white);
+    }
+
+    /* Details Panel */
+    .details-panel {
+      height: 180px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.005);
+      padding: 12px 20px;
+      display: flex;
+      gap: 24px;
+      z-index: 5;
+    }
+
+    .details-left {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .details-node-level {
+      font-size: 8px;
+      font-weight: 800;
+      color: var(--rose);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .details-node-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .details-node-desc {
+      font-size: 11px;
+      color: var(--silver);
+      line-height: 1.5;
+      opacity: 0.8;
+      flex: 1;
+      overflow-y: auto;
+      max-height: 49.5px;
+      padding-right: 6px;
+      padding-bottom: 6px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+    }
+
+    .details-right {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-left: 1px solid rgba(255, 255, 255, 0.05);
+      padding-left: 20px;
+    }
+
+    .details-project-box {
+      flex: 1;
+      margin-bottom: 6px;
+    }
+
+    .details-project-label {
+      font-size: 8px;
+      font-weight: 800;
+      color: #64748b;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .details-project-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+
+    .details-project-desc {
+      font-size: 10px;
+      color: var(--silver);
+      opacity: 0.6;
+      line-height: 1.4;
+      max-height: 42px;
+      overflow-y: auto;
+      padding-right: 6px;
+      padding-bottom: 6px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+    }
+
+    .details-bottom-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .details-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .details-tag {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 8px;
+      color: var(--silver);
+      font-weight: 500;
+    }
+
+    .simulate-btn {
+      background: rgba(172, 13, 48, 0.15);
+      border: 1px solid rgba(172, 13, 48, 0.4);
+      color: var(--rose);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+    }
+
+    .simulate-btn:hover {
+      background: rgba(172, 13, 48, 0.3);
+      box-shadow: 0 0 10px rgba(172, 13, 48, 0.2);
+    }
+
+    .simulate-btn:disabled {
+      background: rgba(255, 255, 255, 0.02) !important;
+      border-color: rgba(255, 255, 255, 0.05) !important;
+      color: rgba(255, 255, 255, 0.3) !important;
+      cursor: not-allowed !important;
+    }
+
+    /* Custom WebKit Scrollbars */
+    .terminal-container::-webkit-scrollbar,
+    .details-node-desc::-webkit-scrollbar,
+    .details-project-desc::-webkit-scrollbar {
+      width: 4px;
+    }
+    .terminal-container::-webkit-scrollbar-track,
+    .details-node-desc::-webkit-scrollbar-track,
+    .details-project-desc::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .terminal-container::-webkit-scrollbar-thumb {
+      background: rgba(56, 189, 248, 0.3);
+      border-radius: 4px;
+    }
+    .terminal-container::-webkit-scrollbar-thumb:hover {
+      background: rgba(56, 189, 248, 0.5);
+    }
+    .details-node-desc::-webkit-scrollbar-thumb,
+    .details-project-desc::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 4px;
+    }
+    .details-node-desc::-webkit-scrollbar-thumb:hover,
+    .details-project-desc::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Stucknot Component Lab 4</h1>
+  <p style="color: var(--silver); margin-bottom: 60px;">Expert-level, high-fidelity components.</p>
+
+  <!-- ===== IDEA 26: INTERACTIVE CURRICULUM EXPLORER ===== -->
+  <div class="gallery-section">
+    <h2 class="gallery-title">Idea 26: The Interactive Curriculum Skill Tree & Career Roadmap Engine</h2>
+    <p class="gallery-desc">A unified roadmap visualization that dynamically links core systems engineering, branch paths (Web, Distributed, Cloud/DevOps), and realistic terminal simulators to forecast job readiness and show student capstone execution flows.</p>
+
+    <div class="roadmap-container" id="roadmap-root">
+      
+      <!-- Left Panel: Navigation & Terminal -->
+      <div class="roadmap-left">
+        <div class="roadmap-left-header">
+          <div class="roadmap-eyebrow">Stucknot Tracks</div>
+          <div class="roadmap-main-title">Select Career Path</div>
+        </div>
+
+        <div class="roadmap-tabs">
+          <button class="roadmap-tab-btn active" data-track="full-stack">
+            <span>Full-Stack Web Dev</span>
+            <span class="roadmap-tab-arrow">→</span>
+          </button>
+          <button class="roadmap-tab-btn" data-track="distributed">
+            <span>Distributed Systems</span>
+            <span class="roadmap-tab-arrow">→</span>
+          </button>
+          <button class="roadmap-tab-btn" data-track="devops">
+            <span>Cloud & DevOps</span>
+            <span class="roadmap-tab-arrow">→</span>
+          </button>
+        </div>
+
+        <!-- Career Readiness Card -->
+        <div class="career-stats-card">
+          <div class="career-stat-row">
+            <span class="career-stat-label">Projected Role</span>
+            <span class="career-stat-value" id="stat-role-name">Full-Stack Software Engineer</span>
+          </div>
+          <div class="career-stat-row">
+            <span class="career-stat-label">Avg Salary Forecast</span>
+            <span class="career-stat-value" id="stat-role-salary">$104,000 / yr</span>
+          </div>
+          <div class="career-stat-row" style="flex-direction: column;">
+            <div style="display: flex; justify-content: space-between; width: 100%;">
+              <span class="career-stat-label">Production Readiness</span>
+              <span class="career-stat-value" id="stat-role-readiness">84%</span>
+            </div>
+            <div class="career-progress-container">
+              <div class="career-progress-fill" id="stat-progress-fill" style="width: 84%; background: var(--rose);"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CLI Terminal Output -->
+        <div class="terminal-container" id="cli-terminal">
+          <div class="term-line system">[CLI system ready]</div>
+          <div class="term-line system">Hover tree nodes to inspect modules. Click any node and hit "Simulate Project" to test.</div>
+        </div>
+      </div>
+
+      <!-- Right Panel: Tree Canvas & Details Panel -->
+      <div class="roadmap-right">
+        
+        <!-- Top Half: SVG Node Canvas -->
+        <div class="tree-panel">
+          <div class="tree-grid-bg"></div>
+
+          <!-- Dynamic SVG connector paths -->
+          <svg class="tree-svg-canvas" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <!-- Background paths -->
+            <path id="l-core-fs" class="flow-line" d="M 50 15 C 50 28, 20 27, 20 40" />
+            <path id="l-core-ds" class="flow-line" d="M 50 15 L 50 40" />
+            <path id="l-core-co" class="flow-line" d="M 50 15 C 50 28, 80 27, 80 40" />
+            
+            <path id="l-fs-1-2" class="flow-line" d="M 20 40 L 20 65" />
+            <path id="l-fs-2-3" class="flow-line" d="M 20 65 L 20 85" />
+            
+            <path id="l-ds-1-2" class="flow-line" d="M 50 40 L 50 65" />
+            <path id="l-ds-2-3" class="flow-line" d="M 50 65 L 50 85" />
+            
+            <path id="l-co-1-2" class="flow-line" d="M 80 40 L 80 65" />
+            <path id="l-co-2-3" class="flow-line" d="M 80 65 L 80 85" />
+          </svg>
+
+          <!-- Interactive Node elements -->
+          <!-- Level 1 (Core Base) -->
+          <div class="skill-node selected fs-theme" id="n0" style="left: 50%; top: 15%;">
+            C
+            <div class="skill-node-label">Core Architecture</div>
+          </div>
+
+          <!-- Level 2 -->
+          <div class="skill-node highlight-fs" id="n1l" style="left: 20%; top: 40%;">
+            UI
+            <div class="skill-node-label">UI Composition</div>
+          </div>
+          <div class="skill-node" id="n1c" style="left: 50%; top: 40%;">
+            CR
+            <div class="skill-node-label">Concurrent Runtimes</div>
+          </div>
+          <div class="skill-node" id="n1r" style="left: 80%; top: 40%;">
+            IaC
+            <div class="skill-node-label">Infrastructure IaC</div>
+          </div>
+
+          <!-- Level 3 -->
+          <div class="skill-node highlight-fs" id="n2l" style="left: 20%; top: 65%;">
+            ST
+            <div class="skill-node-label">Client State</div>
+          </div>
+          <div class="skill-node" id="n2c" style="left: 50%; top: 65%;">
+            RPC
+            <div class="skill-node-label">gRPC Services</div>
+          </div>
+          <div class="skill-node" id="n2r" style="left: 80%; top: 65%;">
+            K8S
+            <div class="skill-node-label">Orchestration</div>
+          </div>
+
+          <!-- Level 4 -->
+          <div class="skill-node highlight-fs" id="n3l" style="left: 20%; top: 85%;">
+            API
+            <div class="skill-node-label">Edge API</div>
+          </div>
+          <div class="skill-node" id="n3c" style="left: 50%; top: 85%;">
+            MQ
+            <div class="skill-node-label">Message Brokers</div>
+          </div>
+          <div class="skill-node" id="n3r" style="left: 80%; top: 85%;">
+            OBS
+            <div class="skill-node-label">Observability</div>
+          </div>
+        </div>
+
+        <!-- Bottom Half: Detail Card Panel -->
+        <div class="details-panel">
+          <div class="details-left">
+            <div class="details-node-level" id="node-level">Core Level 1</div>
+            <div class="details-node-title" id="node-title">Core Architecture</div>
+            <div class="details-node-desc" id="node-desc">
+              Deep-dive into network protocols, server architectures, and systems programming basics. Learn how data travels across memory channels and sockets.
+            </div>
+          </div>
+          <div class="details-right">
+            <div class="details-project-box">
+              <div class="details-project-label">Capstone Project</div>
+              <div class="details-project-name" id="node-project-name">Raw Socket Web Server</div>
+              <div class="details-project-desc" id="node-project-desc">
+                Write a concurrent HTTP/1.1 file server in raw system sockets. Handle connection pooling, keep-alive headers, and file streaming without dependencies.
+              </div>
+            </div>
+            <div class="details-bottom-row">
+              <div class="details-tags" id="node-tags">
+                <span class="details-tag">HTTP/3</span>
+                <span class="details-tag">gRPC Proto</span>
+                <span class="details-tag">TCP/Sockets</span>
+                <span class="details-tag">Systems Design</span>
+              </div>
+              <button class="simulate-btn" id="simulate-action-btn">
+                <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" style="margin-right: 2px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Simulate Project
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // Configuration objects for paths and details
+      const trackConfigs = {
+        'full-stack': {
+          title: 'Full-Stack Software Engineer',
+          salary: '$104,000 / yr',
+          readiness: '84%',
+          color: '#E6A8A8',
+          glowColor: 'rgba(230, 168, 168, 0.4)',
+          activeNodes: ['n0', 'n1l', 'n2l', 'n3l'],
+          activeLines: ['l-core-fs', 'l-fs-1-2', 'l-fs-2-3'],
+          themeClass: 'fs-theme',
+          highlightClass: 'highlight-fs'
+        },
+        'distributed': {
+          title: 'Distributed Systems Engineer',
+          salary: '$122,000 / yr',
+          readiness: '72%',
+          color: '#c14a5d',
+          glowColor: 'rgba(193, 74, 93, 0.4)',
+          activeNodes: ['n0', 'n1c', 'n2c', 'n3c'],
+          activeLines: ['l-core-ds', 'l-ds-1-2', 'l-ds-2-3'],
+          themeClass: 'ds-theme',
+          highlightClass: 'highlight-ds'
+        },
+        'devops': {
+          title: 'Cloud & Infrastructure Engineer',
+          salary: '$118,000 / yr',
+          readiness: '76%',
+          color: '#21c2e0',
+          glowColor: 'rgba(33, 194, 224, 0.4)',
+          activeNodes: ['n0', 'n1r', 'n2r', 'n3r'],
+          activeLines: ['l-core-co', 'l-co-1-2', 'l-co-2-3'],
+          themeClass: 'co-theme',
+          highlightClass: 'highlight-co'
+        }
+      };
+
+      const nodeDetails = {
+        'n0': {
+          level: 'Core Level 1',
+          title: 'Core Architecture',
+          desc: 'Deep-dive into network protocols, server architectures, and systems programming basics. Learn how data travels across memory channels and sockets.',
+          techs: ['HTTP/3', 'gRPC Proto', 'TCP/Sockets', 'Systems Design'],
+          project: 'Raw Socket Web Server',
+          projectDesc: 'Write a concurrent HTTP/1.1 file server in raw system sockets. Handle connection pooling, keep-alive headers, and file streaming without dependencies.',
+          simLogs: [
+            'Initializing Raw Socket Server project compiler...',
+            'Compiling main.rs target: x86_64-pc-windows-msvc',
+            'Running cargo clippy lint check... PASS',
+            'Executing unit tests for request parser: 12 tests run, 12 passed.',
+            'Launching local server at localhost:8080...',
+            'Simulating 5,000 concurrent HTTP requests (ab benchmark)...',
+            'Completed in 234ms. Request rate: 21,367 req/sec. CPU: 12% Memory: 42MB',
+            'Mock packaging socket server into Docker scratch image...',
+            'Deploying container to cloud orchestrator edge cluster...',
+            '✔ Deployment Successful! Live edge endpoint: https://edge.stucknot.io/socket-server'
+          ]
+        },
+        'n1l': {
+          level: 'Full-Stack Level 2',
+          title: 'UI Composition & Models',
+          desc: 'Master visual layouts, highly responsive modern components, CSS engines, state modeling, and access standards.',
+          techs: ['React', 'TypeScript', 'Tailwind', 'A11y (WCAG)'],
+          project: 'Design System & Library',
+          projectDesc: 'Build a production-ready, fully accessible design system with atomic layout components. Test against screen readers and color contrast checkers.',
+          simLogs: [
+            'Compiling component library using Vite...',
+            'Resolving dependency graph... 14 components parsed.',
+            'Auditing bundle sizes: core.esm.js -> 12.4kb (gzipped). PASS',
+            'Running accessibility contrast audits (WCAG AA)...',
+            '✔ Button component contrast ratio: 5.6:1 (AA limit: 4.5:1). PASS',
+            '✔ Accordion keyboard trapping tests... PASS',
+            'Deploying component preview site to Vercel CDN...',
+            '✔ Deployment Successful! Live preview: https://ui-ds.stucknot.io/preview'
+          ]
+        },
+        'n2l': {
+          level: 'Full-Stack Level 3',
+          title: 'Client State Architecture',
+          desc: 'Architect client-side state engines, offline sync queues, database query caching, and live WebSocket connections.',
+          techs: ['Redux Toolkit', 'Zustand', 'React Query', 'WebSockets'],
+          project: 'Real-Time Sync Canvas',
+          projectDesc: 'Build a multiplayer interactive drawing canvas where cursor movements and board edits are synchronized instantly across all connected clients.',
+          simLogs: [
+            'Starting Zustand state engine configuration...',
+            'Spinning up local WebSocket mock gateway server...',
+            'Connecting 5 mock user client cursors...',
+            'Broadcasting canvas coordinate payloads: 430 packets/sec.',
+            'Verifying message delivery latency: Average 8ms (target <15ms). PASS',
+            'Checking memory leaks in subscriber cleanups... 0 leaks detected.',
+            'Deploying serverless canvas synchronization runtime...',
+            '✔ Deployment Successful! Live multiplayer app: https://canvas.stucknot.io/draw'
+          ]
+        },
+        'n3l': {
+          level: 'Full-Stack Level 4',
+          title: 'Production Edge APIs',
+          desc: 'Develop serverless edge handlers, transactional database models, security policy headers, and rate limiter middleware.',
+          techs: ['Next.js App', 'PostgreSQL', 'Prisma ORM', 'Clerk Auth'],
+          project: 'Multi-Tenant SaaS Engine',
+          projectDesc: 'Deliver a complete billing, user authentication, and data tenancy system. Enforce row-level tenant security in database queries.',
+          simLogs: [
+            'Bootstrapping Next.js production build compiler...',
+            'Running Prisma database migration sync... 8 tables updated.',
+            'Building statically optimized edge pages (8 generated)...',
+            'Auditing database queries: checking index coverage for tenantId...',
+            '✔ Query index test: SELECT * FROM tenants WHERE id = x -> Index Scan (0.1ms). PASS',
+            'Auditing endpoint security headers (Helmet check)... PASS',
+            'Deploying production stack to AWS Vercel Enterprise Cloud...',
+            '✔ Deployment Successful! Active SaaS Endpoint: https://saas-dashboard.stucknot.dev'
+          ]
+        },
+        'n1c': {
+          level: 'Distributed Level 2',
+          title: 'Concurrent Runtimes',
+          desc: 'Master multi-threaded memory design, lock-free communication channels, scheduler runtimes, and thread safety patterns.',
+          techs: ['Go Channels', 'Rust Async', 'Tokio Engine'],
+          project: 'Parallel Web Crawler',
+          projectDesc: 'Build a high-performance web crawler that scrapes pages concurrently, respects robots.txt directives, and utilizes thread pools for content parsing.',
+          simLogs: [
+            'Compiling Rust target crawler release binary...',
+            'Tokio thread scheduler initialized: 8 workers.',
+            'Spawning 1,000 asynchronous fetch tasks...',
+            'Running memory safety address sanitizer... 0 errors.',
+            'Simulating download rate: 1,200 pages/min. CPU: 24% Memory: 64MB.',
+            'Checking deadlocks in thread channels... None found. PASS',
+            '✔ Compilation and local run complete. Binary size: 4.2MB.'
+          ]
+        },
+        'n2c': {
+          level: 'Distributed Level 3',
+          title: 'Schema gRPC Services',
+          desc: 'Build schema-enforced APIs, bidirectional stream channels, multiplexed network streams, and sub-millisecond serialization structures.',
+          techs: ['Protobuf', 'gRPC', 'HTTP/2 Streaming'],
+          project: 'Real-Time Tick Stream',
+          projectDesc: 'Build a financial data service that accepts continuous price inputs and streams updates to thousands of connected client dashboards.',
+          simLogs: [
+            'Parsing Protobuf schema contracts (market.proto)...',
+            'Generating Go gRPC server and client interfaces... PASS',
+            'Initializing TCP multiplexer listener...',
+            'Simulating continuous bid/ask feed inputs: 50,000 tickers/sec.',
+            'Verifying serialization payload compression vs JSON... 78% reduction.',
+            'Measuring roundtrip connection latencies... Avg: 1.2ms. PASS',
+            'Deploying streaming cluster backend to AWS Fargate...',
+            '✔ Deployment Successful! Active gRPC Gateway: grpc://ticks.stucknot.dev:50051'
+          ]
+        },
+        'n3c': {
+          level: 'Distributed Level 4',
+          title: 'Event Message Brokers',
+          desc: 'Design publish-subscribe topologies, distributed database replicas, transaction journals, and persistent commit logs.',
+          techs: ['Apache Kafka', 'RabbitMQ', 'Event Sourcing'],
+          project: 'Transaction Ledger',
+          projectDesc: 'Create a bank ledger engine utilizing event-sourcing and persistent queues. Ensure exact-once delivery semantics and rollback mechanics.',
+          simLogs: [
+            'Connecting to Apache Kafka development broker cluster...',
+            'Creating ledger-events topic with 3 partitions, replication factor 2...',
+            'Spawning transactional consumers (Exact-Once semantics)...',
+            'Simulating network partition failure (kill Broker Node 2)...',
+            'Verifying partition leader failover: Node 3 elected leader in 180ms.',
+            'Auditing transaction log replay for state recovery... 100% matched.',
+            'Deploying event-sourced cluster to Production K8s...',
+            '✔ Deployment Successful! Active Ledger Brokers: kafka-1.stucknot.dev:9092'
+          ]
+        },
+        'n1r': {
+          level: 'DevOps Level 2',
+          title: 'Declarative IaC Systems',
+          desc: 'Define cloud network topologies, security groups, database instances, and load balancers declaratively as code.',
+          techs: ['Terraform', 'AWS VPC', 'Cloudflare DNS'],
+          project: 'Multi-AZ Web App Infra',
+          projectDesc: 'Write modular Terraform configurations to provision a secure, auto-scaling web application layout spread across three AWS availability zones.',
+          simLogs: [
+            'Parsing Terraform configurations... 4 modules detected.',
+            'Performing terraform validate... Config is valid. PASS',
+            'Executing terraform plan: 14 resources to create, 0 to change, 0 to destroy.',
+            'Mock applying plan: building VPC networks, subnets, and internet gateways...',
+            'Provisioning Application Load Balancer and Auto Scaling Groups...',
+            'Verifying routing policies and SSL certificates... PASS',
+            'Saving terraform.tfstate back to encrypted S3 bucket...',
+            '✔ IaC Execution successful! Resources provisioned on AWS Cloud.'
+          ]
+        },
+        'n2r': {
+          level: 'DevOps Level 3',
+          title: 'Container Orchestration',
+          desc: 'Containerize application stacks, manage networking configurations, write YAML manifests, and orchestrate pod scales.',
+          techs: ['Docker', 'Kubernetes', 'Helm charts'],
+          project: 'Microservices K8s Deploy',
+          projectDesc: 'Build Docker images for a 4-part application stack and deploy them using Kubernetes resource definitions. Configure auto-scaling rules based on CPU load.',
+          simLogs: [
+            'Building Docker images for api-gateway, auth-service, work-worker...',
+            'Pushing images to AWS Elastic Container Registry (ECR)... PASS',
+            'Parsing Kubernetes deployment manifests (deployment.yaml)...',
+            'Deploying Helm chart (stucknot-stack) to Amazon EKS cluster...',
+            'Verifying Horizontal Pod Autoscaler (HPA) policies...',
+            'Simulating load spike: auto-scaled from 2 replicas to 8 replicas in 14s. PASS',
+            '✔ Deployment complete! Active K8s Ingress: https://k8s-ingress.stucknot.dev'
+          ]
+        },
+        'n3r': {
+          level: 'DevOps Level 4',
+          title: 'Observability & Metrics',
+          desc: 'Establish distributed tracing, dashboard metrics aggregation, central logging pipelines, and auto alert paging systems.',
+          techs: ['Prometheus', 'Grafana', 'OpenTelemetry'],
+          project: 'Central Alerting Dashboard',
+          projectDesc: 'Integrate OpenTelemetry tracing in application code. Aggregate server metrics inside Prometheus, build Grafana dashboards, and configure PagerDuty alerts.',
+          simLogs: [
+            'Injecting OpenTelemetry tracer middleware in application nodes...',
+            'Configuring Prometheus telemetry scraper target list...',
+            'Importing Grafana cluster dashboard template... 4 graphs loaded.',
+            'Simulating application error rate spike (database timeout scenario)...',
+            'Prometheus alert rule triggered: HighErrorRate (threshold >5%).',
+            'Routing incident payload to PagerDuty incident pager... Sent. PASS',
+            'Grafana observability stack fully deployed and operational.',
+            '✔ Setup completed! Dashboard: https://grafana.stucknot.dev'
+          ]
+        }
+      };
+
+      let activeTrack = 'full-stack';
+      let activeNodeId = 'n0';
+      let isSimulating = false;
+
+      const tabs = document.querySelectorAll('.roadmap-tab-btn');
+      const nodes = document.querySelectorAll('.skill-node');
+      const paths = document.querySelectorAll('.tree-svg-canvas path');
+      const simulateBtn = document.getElementById('simulate-action-btn');
+      const terminal = document.getElementById('cli-terminal');
+
+      // Update Active Track UI
+      function selectTrack(trackId) {
+        activeTrack = trackId;
+        const config = trackConfigs[trackId];
+
+        // 1. Update tab active classes
+        tabs.forEach(t => t.classList.toggle('active', t.getAttribute('data-track') === trackId));
+
+        // 2. Update Career Card Stats
+        document.getElementById('stat-role-name').textContent = config.title;
+        document.getElementById('stat-role-salary').textContent = config.salary;
+        document.getElementById('stat-role-readiness').textContent = config.readiness;
+        
+        const fill = document.getElementById('stat-progress-fill');
+        fill.style.width = config.readiness;
+        fill.style.background = config.color;
+
+        // 3. Highlight Nodes along the selected track
+        nodes.forEach(n => {
+          const id = n.id;
+          
+          // Clear highlighting classes
+          n.className = 'skill-node';
+          
+          if (config.activeNodes.includes(id)) {
+            n.classList.add(config.highlightClass);
+          }
+        });
+
+        // 4. Highlight Connection Paths (SVG lines)
+        paths.forEach(p => {
+          p.className.baseVal = 'flow-line'; // Reset
+          if (config.activeLines.includes(p.id)) {
+            p.classList.add('active-' + (trackId === 'full-stack' ? 'fs' : trackId === 'distributed' ? 'ds' : 'co'));
+          }
+        });
+
+        // 5. Autoselect the first Node of this track (n0 is always core)
+        selectNode(config.activeNodes[1] || 'n0');
+      }
+
+      // Update Node Details UI
+      function selectNode(nodeId) {
+        activeNodeId = nodeId;
+        const detail = nodeDetails[nodeId];
+        const config = trackConfigs[activeTrack];
+
+        // Highlight selected node physically
+        nodes.forEach(n => {
+          n.classList.toggle('selected', n.id === nodeId);
+          if (n.id === nodeId) {
+            n.classList.add(config.themeClass);
+          } else {
+            n.classList.remove(config.themeClass);
+          }
+        });
+
+        // Update Details Pane
+        document.getElementById('node-level').textContent = detail.level;
+        document.getElementById('node-title').textContent = detail.title;
+        document.getElementById('node-desc').textContent = detail.desc;
+        document.getElementById('node-project-name').textContent = detail.project;
+        document.getElementById('node-project-desc').textContent = detail.projectDesc;
+
+        // Set level header color based on track
+        const levelHeader = document.getElementById('node-level');
+        if (nodeId === 'n0') {
+          levelHeader.style.color = '#c14a5d'; // Core system red
+        } else {
+          levelHeader.style.color = config.color;
+        }
+
+        // Populate Tech Tags
+        const tagsContainer = document.getElementById('node-tags');
+        tagsContainer.innerHTML = detail.techs.map(t => `<span class="details-tag">${t}</span>`).join('');
+
+        // Reset Terminal Preview Line
+        terminal.innerHTML = `
+          <div class="term-line system">[Node selected: ${detail.title}]</div>
+          <div class="term-line system">Click "Simulate Project" to build and deploy the Capstone target: "${detail.project}".</div>
+        `;
+      }
+
+      // Simulate Terminal Actions
+      function runSimulation() {
+        if (isSimulating) return;
+        isSimulating = true;
+        simulateBtn.disabled = true;
+
+        const detail = nodeDetails[activeNodeId];
+        const logs = detail.simLogs;
+        
+        terminal.innerHTML = '';
+        simulateBtn.innerHTML = `
+          <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" style="margin-right: 6px; animation: spin 1s linear infinite;"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          Simulating...
+        `;
+
+        // Inject css spin keyframe dynamically if not existing
+        if (!document.getElementById('sim-spin-style')) {
+          const style = document.createElement('style');
+          style.id = 'sim-spin-style';
+          style.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
+          document.head.appendChild(style);
+        }
+
+        let currentLogIndex = 0;
+
+        function printNextLog() {
+          if (currentLogIndex < logs.length) {
+            const lineText = logs[currentLogIndex];
+            const div = document.createElement('div');
+            
+            // Add custom classes depending on log content
+            if (lineText.startsWith('✔') || lineText.includes('Successful')) {
+              div.className = 'term-line success';
+            } else if (lineText.includes('warning') || lineText.includes('triggered')) {
+              div.className = 'term-line warning';
+            } else if (lineText.startsWith('Compiling') || lineText.startsWith('Building') || lineText.startsWith('Deploying')) {
+              div.className = 'term-line executing';
+            } else {
+              div.className = 'term-line';
+            }
+
+            div.textContent = `> ${lineText}`;
+            terminal.appendChild(div);
+            terminal.scrollTop = terminal.scrollHeight;
+            
+            currentLogIndex++;
+            setTimeout(printNextLog, 350 + Math.random() * 250);
+          } else {
+            // Completed
+            isSimulating = false;
+            simulateBtn.disabled = false;
+            simulateBtn.innerHTML = `
+              <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" style="margin-right: 2px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Simulate Project
+            `;
+          }
+        }
+
+        printNextLog();
+      }
+
+      // Setup Event Listeners
+      tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (isSimulating) return; // Lock track changing during simulation
+          selectTrack(btn.getAttribute('data-track'));
+        });
+      });
+
+      nodes.forEach(node => {
+        node.addEventListener('click', () => {
+          if (isSimulating) return; // Lock node changing during simulation
+          
+          // Verify if node is active in the current track before switching details
+          const config = trackConfigs[activeTrack];
+          if (config.activeNodes.includes(node.id)) {
+            selectNode(node.id);
+          } else {
+            // Auto switch track if user clicks an inactive node
+            let targetTrack = null;
+            if (node.id.endsWith('l')) targetTrack = 'full-stack';
+            else if (node.id.endsWith('c')) targetTrack = 'distributed';
+            else if (node.id.endsWith('r')) targetTrack = 'devops';
+
+            if (targetTrack) {
+              selectTrack(targetTrack);
+              selectNode(node.id);
+            }
+          }
+        });
+      });
+
+      simulateBtn.addEventListener('click', runSimulation);
+
+      // Initialize defaults
+      selectTrack('full-stack');
+      selectNode('n0');
+
+    })();
+  </script>
+
+</body>
+
+</html>

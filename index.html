@@ -13,18 +13,30 @@
   
   <link rel="stylesheet" href="stucknot-design-system.css">
   <style>
-    /* Inline styles to ensure content looks good while loading or for elements not in CSS */
-    .hero-btn-row {
-      display: flex;
-      gap: 16px;
-      margin-top: 32px;
-      flex-wrap: wrap;
+    :root {
+      --status-box-bg: rgba(193, 74, 93, 0.05);
+      --status-box-border: rgba(193, 74, 93, 0.35);
+      --status-box-text: #e6a8a8;
+      --status-box-dot: #c14a5d;
+      
+      --cta-card-bg-hire: rgba(255, 255, 255, 0.02);
+      --cta-card-border-hire: rgba(255, 255, 255, 0.08);
+      --cta-card-bg-join: #28121a;
+      --cta-card-border-join: rgba(255, 255, 255, 0.08);
     }
-    .hero-btn-row .base-button {
-      flex: 1 1 auto;
-      text-align: center;
-      padding: 14px 28px;
+    
+    html.light-theme {
+      --status-box-bg: #f4e8e8;
+      --status-box-border: #c14a5d;
+      --status-box-text: #c14a5d;
+      --status-box-dot: #c14a5d;
+      
+      --cta-card-bg-hire: #ffffff;
+      --cta-card-border-hire: rgba(0, 0, 0, 0.08);
+      --cta-card-bg-join: #e8e8e8;
+      --cta-card-border-join: rgba(0, 0, 0, 0.08);
     }
+
     .visually-hidden {
       position: absolute;
       width: 1px;
@@ -43,7 +55,8 @@
     .json-loaded {
       opacity: 1;
     }
-    /* Force navbar on one line for desktop and override mobile sidebar styles */
+    
+    /* Force navbar layout */
     @media (min-width: 900px) {
       .header-nav-wrapper {
         position: static !important;
@@ -68,6 +81,287 @@
         padding: 8px 12px;
       }
     }
+
+    /* Redesigned Hero Section */
+    .home-hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 60px;
+      padding-top: 100px;
+      padding-bottom: 80px;
+    }
+    .home-hero-content {
+      flex: 1.2;
+    }
+    .home-hero-title {
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--theme-text);
+      margin-bottom: 24px;
+      letter-spacing: -1.2px;
+    }
+    .home-hero-desc {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--theme-text-muted);
+      max-width: 520px;
+    }
+    .home-hero-status-wrapper {
+      flex: 0.8;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+    }
+    .status-box {
+      width: 100%;
+      max-width: 380px;
+      height: 280px;
+      background: var(--status-box-bg);
+      border: 1px solid var(--status-box-border);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--status-box-text);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .status-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(var(--status-box-dot) 1px, transparent 1px);
+      background-size: 16px 16px;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+    .status-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 2;
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--status-box-text);
+      box-shadow: 0 0 10px var(--status-box-text);
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0% { opacity: 0.4; }
+      50% { opacity: 1; }
+      100% { opacity: 0.4; }
+    }
+
+    @media (max-width: 900px) {
+      .home-hero {
+        flex-direction: column;
+        gap: 40px;
+        padding-top: 60px;
+        padding-bottom: 40px;
+        text-align: center;
+      }
+      .home-hero-desc {
+        margin: 0 auto;
+      }
+      .home-hero-status-wrapper {
+        justify-content: center;
+      }
+      .home-hero-title {
+        font-size: 36px;
+      }
+    }
+
+    /* Horizontal Ticker Marquee */
+    .marquee-container {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+      border-top: 1px solid var(--theme-card-border);
+      border-bottom: 1px solid var(--theme-card-border);
+      padding: 18px 0;
+      background: var(--theme-body-bg);
+      position: relative;
+      margin-bottom: 60px;
+    }
+    .marquee-content {
+      display: inline-flex;
+      gap: 60px;
+      animation: marqueeScroll 30s linear infinite;
+    }
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--theme-text);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .marquee-emoji {
+      font-size: 14px;
+    }
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Two-Column CTA Grid */
+    .cta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 100px;
+    }
+    .cta-card {
+      border: 1px solid var(--theme-card-border);
+      border-radius: 12px;
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 380px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+      transition: transform 0.3s var(--ease-out);
+    }
+    .cta-card:hover {
+      transform: translateY(-4px);
+    }
+    html.dark-theme .cta-card:hover {
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    .cta-card-hire {
+      background: var(--cta-card-bg-hire);
+      border-color: var(--cta-card-border-hire);
+    }
+    .cta-card-join {
+      background: var(--cta-card-bg-join);
+      border-color: var(--cta-card-border-join);
+    }
+    .cta-badge {
+      align-self: flex-start;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-bottom: 24px;
+    }
+    .cta-badge-hire {
+      background: var(--theme-card-border);
+      color: var(--theme-text);
+    }
+    html.light-theme .cta-badge-hire {
+      background: #eaeaea;
+    }
+    .cta-badge-join {
+      background: #c14a5d;
+      color: var(--white);
+    }
+    .cta-card-title {
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--theme-text);
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    .cta-card-desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--theme-text-muted);
+      margin-bottom: 40px;
+      flex: 1;
+    }
+    .cta-card-actions {
+      display: flex;
+      align-items: center;
+    }
+    
+    /* Hire Button Styling */
+    .cta-btn-dark {
+      background: #110307;
+      color: var(--white);
+      border: 1px solid #110307;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      padding: 14px 28px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cta-btn-dark:hover {
+      background: #2a0a12;
+      border-color: #2a0a12;
+    }
+    html.dark-theme .cta-btn-dark {
+      background: var(--white);
+      color: var(--black);
+      border-color: var(--white);
+    }
+    html.dark-theme .cta-btn-dark:hover {
+      background: #eaeaea;
+      border-color: #eaeaea;
+    }
+    
+    /* Join Button Styling */
+    .cta-btn-outline {
+      background: transparent;
+      color: var(--theme-text);
+      border: 1px solid var(--theme-text);
+      font-weight: 700;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      padding: 14px 28px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cta-btn-outline:hover {
+      background: var(--theme-text);
+      color: var(--theme-body-bg);
+    }
+    
+    @media (max-width: 900px) {
+      .cta-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .cta-card {
+        padding: 32px;
+        min-height: auto;
+      }
+      .cta-card-title {
+        font-size: 26px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -82,291 +376,102 @@
       <div class="header-nav-wrapper" id="mobile-nav">
         <nav class="nav-links" aria-label="Main navigation" id="nav-main-links">
           <a href="index.html">Home</a>
-          <!-- Populated by JSON -->
+          <a href="community/index.html">Community</a>
+          <a href="work/index.html">Work</a>
+          <a href="programs/index.html">Programs</a>
+          <a href="learn/index.html">Learn</a>
+          <a href="community/index.html">About</a>
         </nav>
       </div>
     </div>
   </header>
-
-  <main id="main-content" class="json-loading">
-    <!-- ===== HERO ===== -->
-    <section class="hero-bg" style="min-height:auto; padding-bottom:120px;" aria-labelledby="hero-heading">
-      <div class="hero-header">
-        <div class="hero-content-wrapper">
-          
-          <div class="hero-text-col">
-            <p class="hero-eyebrow" id="hero-eyebrow"></p>
-            <h1 class="hero-heading-text" id="hero-heading"></h1>
-            <p class="hero-subheading-text" id="hero-subheading"></p>
-            
-            <!-- Entry Paths -->
-            <div class="hero-btn-row reveal reveal-stagger-3" id="hero-buttons">
-              <!-- Populated by JSON -->
-            </div>
-          </div>
-
-          <div class="hero-illustration-col" style="padding-top: 0; align-items: center; justify-content: center;">
-            <!-- Stunning native hero animation -->
-            <div class="hero-anim reveal reveal-stagger-4">
-              <div class="hero-anim-glow"></div>
-              
-              <div class="hero-anim-orbit">
-                <div class="orbit-dot orbit-dot-1"></div>
-                <div class="orbit-dot orbit-dot-2"></div>
-                <div class="orbit-dot orbit-dot-3"></div>
-              </div>
-              
-              <div class="hero-anim-center">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:#fff;"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              </div>
-              
-              <div class="hero-float-card card-1" style="backdrop-filter: blur(20px); width: 220px; padding: 16px;">
-                <div style="font-size: 11px; color: var(--silver); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">
-                   <div style="width:6px; height:6px; background:#27c93f; border-radius:50%; box-shadow: 0 0 8px #27c93f;"></div> Deployed to Prod
-                </div>
-                <div style="font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 2px;">Inventory API v2.0</div>
-                <div style="font-size: 12px; color: var(--rose);">+ 342 lines, - 12 lines</div>
-              </div>
-              
-              <div class="hero-float-card card-2" style="backdrop-filter: blur(20px); width: 200px; padding: 16px;">
-                <div style="font-size: 11px; color: var(--silver); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">
-                   <div style="width:6px; height:6px; background:#ffbd2e; border-radius:50%; box-shadow: 0 0 8px #ffbd2e;"></div> Mentor Feedback
-                </div>
-                <div style="font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.9); font-style: italic;">"Great architecture choice on the database indexing."</div>
-              </div>
-              
-              <div class="hero-badge badge-1" style="padding: 10px 16px;">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Real Projects
-              </div>
-              <div class="hero-badge badge-2" style="padding: 10px 16px;">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> 1:1 Mentorship
-              </div>
-            </div>
-          </div>
-
+  <main id="main-content">
+    <!-- ===== HERO SECTION ===== -->
+    <section class="container" style="padding-top: 20px;">
+      <div class="home-hero">
+        <div class="home-hero-content">
+          <h1 class="home-hero-title">A community of builders — some of them are building your next product.</h1>
+          <p class="home-hero-desc">We are an active ecosystem of engineers, designers, and product leaders. Whether you need an elite team to launch a project or a space to level up your craft, you're in the right place.</p>
         </div>
-      </div>
-    </section>
-
-    <!-- ===== LIVE ACTIVITY STRIP ===== -->
-    <!-- Upgraded to look like a command center / glass terminal overlay -->
-    <section class="section" style="padding-top:40px; padding-bottom: 60px; margin-top: -60px; position: relative; z-index: 10;" aria-labelledby="activity-heading">
-      <div class="container">
-        <h2 id="activity-heading" class="visually-hidden">Recent Community Activity</h2>
-        <div class="bento-card" style="padding: 30px; background: rgba(20, 15, 20, 0.6); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 20px 50px rgba(0,0,0,0.4);">
-           <p class="section-eyebrow" style="margin-bottom: 10px; color: var(--rose);"><span class="cc-cursor" style="margin-right: 8px;"></span> Live Activity Log</p>
-           <div class="oss-blog-inner" id="activity-strip" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 10px;">
-             <!-- Populated by JSON -->
-           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== HOW IT WORKS (FLYWHEEL BENTO) ===== -->
-    <section class="section our-story" style="padding: 80px 0;" aria-labelledby="how-it-works-heading">
-      <div class="container">
-        <h2 id="how-it-works-heading" class="section-heading reveal">A flywheel of continuous growth.</h2>
-        <p class="accent-text reveal reveal-stagger-1" style="margin-bottom: 40px;">We learn by shipping real software. Real stakes, real users.</p>
-        
-        <div class="our-story-bento reveal reveal-stagger-2">
-          
-          <div style="display: flex; flex-direction: column; gap: 24px;">
-            <div class="bento-card" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-              <h3 class="summary-card-heading" style="font-size: 24px; margin-bottom: 16px;">Mentorship meets Production</h3>
-              <p class="summary-card-text" style="font-size: 15px;">Every new builder is paired with a senior engineer. You never code alone. Code reviews are public. We believe in ruthless radical candor with the code, but empathy for the coder.</p>
+        <div class="home-hero-status-wrapper">
+          <div class="status-box">
+            <div class="status-line">
+              <span class="status-dot"></span>
+              <span>&lt;SYSTEM_STATUS: BUILDING /&gt;</span>
             </div>
-
-            <div class="bento-card" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-              <h3 class="summary-card-heading" style="font-size: 24px; margin-bottom: 16px;">Real Client Projects</h3>
-              <p class="summary-card-text" style="font-size: 15px;">Builders are assigned to real client projects based on skill level. No toy apps. When businesses hire us, they get vetted teams building production software.</p>
-            </div>
-          </div>
-
-          <div class="bento-card" style="display: flex; align-items: center; justify-content: center; min-height: 400px; overflow: hidden; position: relative;">
-            <div class="bento-flywheel" style="position: absolute; width: 100%; height: 100%;">
-              <div class="flywheel-wrap">
-                <div class="flywheel">
-                  <svg class="flywheel-ring" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 4"/></svg>
-                  
-                  <div class="flywheel-center">
-                    <span class="flywheel-center-label">The<br>Community</span>
-                  </div>
-                  
-                  <div class="flywheel-node node-top">
-                    <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--rose);"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-                    <div class="node-label">Build</div>
-                  </div>
-                  <div class="flywheel-node node-right">
-                    <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--rose);"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></div>
-                    <div class="node-label">Ship</div>
-                  </div>
-                  <div class="flywheel-node node-bottom">
-                    <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--rose);"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-                    <div class="node-label">Learn</div>
-                  </div>
-                  <div class="flywheel-node node-left">
-                    <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--rose);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-                    <div class="node-label">Grow</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== CAREER PROGRESSION (STEPPER) ===== -->
-    <section class="section" style="padding: 80px 0;" aria-labelledby="journey-heading">
-      <div class="container">
-        <h2 id="journey-heading" class="section-heading reveal">Your trajectory.</h2>
-        <p class="accent-text reveal reveal-stagger-1">From joining the community to leading production teams.</p>
-        
-        <div class="progress-stepper reveal reveal-stagger-2" id="journey-stepper">
-          <div class="stepper-cards">
-            <div class="stepper-card active" onclick="updateJourney(0)" style="cursor: pointer;">
-              <div class="stepper-year">Step 1</div>
-              <h3 class="stepper-title">Join & Learn</h3>
-              <p class="stepper-desc">Enter a cohort, get paired with a senior mentor, and start pushing code to real open-source projects.</p>
-            </div>
-            <div class="stepper-card" onclick="updateJourney(1)" style="cursor: pointer;">
-              <div class="stepper-year">Step 2</div>
-              <h3 class="stepper-title">Build in Public</h3>
-              <p class="stepper-desc">Present at weekly demos. Take ruthless radical candor on your code. Learn to ship under pressure.</p>
-            </div>
-            <div class="stepper-card" onclick="updateJourney(2)" style="cursor: pointer;">
-              <div class="stepper-year">Step 3</div>
-              <h3 class="stepper-title">Client Projects</h3>
-              <p class="stepper-desc">Join a vetted team to build production software for paying clients. Get paid to grow.</p>
-            </div>
-            <div class="stepper-card" onclick="updateJourney(3)" style="cursor: pointer;">
-              <div class="stepper-year">Step 4</div>
-              <h3 class="stepper-title">Lead & Mentor</h3>
-              <p class="stepper-desc">Become a senior member. Mentor the next cohort. Businesses hire you directly from the community.</p>
-            </div>
-          </div>
-          <div class="stepper-track-wrap" style="position: relative;">
-            <div class="stepper-track"></div>
-            <div class="stepper-progress" id="journey-progress" style="width: 25%; transition: width 0.4s ease;"></div>
-            <div class="stepper-markers">
-              <div class="stepper-marker active" onclick="updateJourney(0)" style="flex: 0 0 25%; position: relative; cursor: pointer;">
-                <div class="stepper-marker-dot"></div>
-                <div style="position: absolute; top: 20px; font-size: 12px; color: var(--rose); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap;">Month 1-2</div>
-              </div>
-              <div class="stepper-marker" onclick="updateJourney(1)" style="flex: 0 0 25%; position: relative; cursor: pointer;">
-                <div class="stepper-marker-dot"></div>
-                <div style="position: absolute; top: 20px; font-size: 12px; color: var(--silver); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap;">Month 3-5</div>
-              </div>
-              <div class="stepper-marker" onclick="updateJourney(2)" style="flex: 0 0 25%; position: relative; cursor: pointer;">
-                <div class="stepper-marker-dot"></div>
-                <div style="position: absolute; top: 20px; font-size: 12px; color: var(--silver); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap;">Month 6-12</div>
-              </div>
-              <div class="stepper-marker" onclick="updateJourney(3)" style="flex: 0 0 25%; position: relative; cursor: pointer;">
-                <div class="stepper-marker-dot"></div>
-                <div style="position: absolute; top: 20px; font-size: 12px; color: var(--silver); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap;">Year 1+</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <script>
-          function updateJourney(index) {
-            const stepper = document.getElementById('journey-stepper');
-            const cards = stepper.querySelectorAll('.stepper-card');
-            const markers = stepper.querySelectorAll('.stepper-marker');
-            const progress = document.getElementById('journey-progress');
-            
-            cards.forEach(c => c.classList.remove('active'));
-            markers.forEach(m => m.classList.remove('active'));
-            
-            cards[index].classList.add('active');
-            markers[index].classList.add('active');
-            progress.style.width = ((index + 1) * 25) + '%';
-          }
-        </script>
-      </div>
-    </section>
-
-    <!-- ===== WHAT YOU'LL BUILD (PROGRAMS VISUALS) ===== -->
-    <section class="section" style="padding: 80px 0;" aria-labelledby="build-heading">
-      <div class="container">
-        <h2 id="build-heading" class="section-heading reveal">What you will build.</h2>
-        <p class="accent-text reveal reveal-stagger-1">Stop watching tutorials. Start contributing to production environments.</p>
-        
-        <div class="programs-tabs-container reveal reveal-stagger-2">
-          <!-- Instead of actual tabs, we just show one impressive pane as a highlight -->
-          <div class="programs-tabs-content" style="width: 100%;">
-            <div class="program-tab-pane active" style="position: relative; opacity: 1; pointer-events: auto; transform: none;">
-              <div class="pane-content-left">
-                <div class="pane-meta">Real-world architecture</div>
-                <h3 class="pane-title">Full-Stack Production</h3>
-                <p class="pane-desc">You'll build APIs that handle thousands of requests, React dashboards with complex state, and deploy them on AWS/Vercel. This is what companies actually hire for.</p>
-                <a href="/work/case-studies.html" class="pane-btn base-button btn-white">View Case Studies</a>
-              </div>
-              <div class="pane-content-right">
-                <!-- Mock IDE Visual -->
-                <div class="mock-ide">
-                  <div class="mock-ide-header">
-                    <div class="mac-dot"></div><div class="mac-dot"></div><div class="mac-dot"></div>
-                  </div>
-                  <div class="mock-ide-body">
-                    <div class="code-line"><span class="keyword">export async function</span> <span class="func">deployToProduction</span>(req) {</div>
-                    <div class="code-line indent"><span class="keyword">const</span> data = <span class="keyword">await</span> req.<span class="func">json</span>();</div>
-                    <div class="code-line indent"><span class="keyword">try</span> {</div>
-                    <div class="code-line indent-2"><span class="keyword">await</span> Infrastructure.<span class="func">scale</span>({</div>
-                    <div class="code-line indent-3">tier: <span class="string">'enterprise'</span>,</div>
-                    <div class="code-line indent-3">region: data.region</div>
-                    <div class="code-line indent-2">});</div>
-                    <div class="code-line indent-2"><span class="keyword">return</span> <span class="func">success</span>();</div>
-                    <div class="code-line indent">} <span class="keyword">catch</span> (err) {</div>
-                    <div class="code-line indent-2"><span class="keyword">return</span> <span class="func">fail</span>(err);</div>
-                    <div class="code-line indent">}</div>
-                    <div class="code-line">}</div>
-                  </div>
-                </div>
-              </div>
+            <div class="status-line" style="margin-top: 8px;">
+              <span class="status-dot" style="animation-delay: 0.9s;"></span>
+              <span>&lt;CAPACITY: SCALING /&gt;</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== SOCIAL PROOF BAND ===== -->
-    <section class="section" style="padding-top: 80px; padding-bottom: 120px;" aria-labelledby="proof-heading">
-      <div class="container">
-        <h2 id="proof-heading" class="visually-hidden">Community Impact and Partners</h2>
-        
-        <div class="testimonial-grid">
-          
-          <div class="testimonial-card" style="grid-column: 1 / 3; display: flex; flex-direction: row; flex-wrap: wrap; gap: 40px; align-items: center; padding: 40px;">
-            <div style="flex: 1; min-width: 250px;">
-              <p class="section-eyebrow" style="color: var(--rose);">Impact</p>
-              <h3 class="section-heading" style="font-size: 32px; margin-bottom: 30px;">The proof is in the production.</h3>
-              <div class="trust-line" id="stats-band" style="justify-content:flex-start; flex-wrap:wrap; margin-bottom: 0;">
-                 <!-- Populated by JSON -->
-              </div>
-            </div>
-            <div style="flex: 1.2; min-width: 250px;">
-              <div class="testimonial-quote-mark">"</div>
-              <div class="testimonial-type">Client Feedback</div>
-              <div class="testimonial-quote" id="testimonial-quote" style="font-size:16px;"></div>
-              <div class="testimonial-author" style="margin-top:20px;">
-                <div class="testimonial-avatar" style="font-size:14px; background: var(--maroon);">AR</div>
-                <div>
-                  <div class="testimonial-name" id="testimonial-name"></div>
-                  <div class="testimonial-role" id="testimonial-role"></div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <!-- ===== HORIZONTAL TICKER MARQUEE ===== -->
+    <section class="marquee-container" aria-label="Live updates">
+      <div class="marquee-content" id="ticker-marquee">
+        <div class="marquee-item">
+          <span class="marquee-emoji">🚀</span>
+          <span>PROJECT LAUNCHED: Nexus App V2.0</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-emoji">🏆</span>
+          <span>MILESTONE: Sarah reached Lead Dev tier</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-emoji">📝</span>
+          <span>NEW POST: Architecting for Scale in 2024</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-emoji">👥</span>
+          <span>MEMBER UPDATE: Rohit Verma got hired</span>
+        </div>
+        <!-- Duplicated items for infinite scroll -->
+        <div class="marquee-item">
+          <span class="marquee-emoji">🚀</span>
+          <span>PROJECT LAUNCHED: Nexus App V2.0</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-emoji">🏆</span>
+          <span>MILESTONE: Sarah reached Lead Dev tier</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-emoji">📝</span>
+          <span>NEW POST: Architecting for Scale in 2024</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-emoji">👥</span>
+          <span>MEMBER UPDATE: Rohit Verma got hired</span>
+        </div>
+      </div>
+    </section>
 
-          <div class="bento-card" style="grid-column: 3 / 4; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px;">
-            <p class="section-eyebrow" style="color: var(--rose);">Trusted By</p>
-            <div id="partners-grid" style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 10px;">
-               <!-- Populated by JSON -->
-            </div>
+    <!-- ===== TWO-COLUMN CTA SECTION ===== -->
+    <section class="container">
+      <div class="cta-grid">
+        <!-- Card 1: HIRE -->
+        <div class="cta-card cta-card-hire">
+          <div>
+            <span class="cta-badge cta-badge-hire">HIRE</span>
+            <h2 class="cta-card-title">Looking to build something?</h2>
+            <p class="cta-card-desc">Tap into a vetted network of active builders. We assemble dedicated product teams that ship faster and leaner than traditional agencies. No middlemen, just makers.</p>
           </div>
-          
+          <div class="cta-card-actions">
+            <button class="cta-btn-dark" onclick="location.href='/work/index.html'">VIEW CASE STUDIES →</button>
+          </div>
+        </div>
+
+        <!-- Card 2: JOIN -->
+        <div class="cta-card cta-card-join">
+          <div>
+            <span class="cta-badge cta-badge-join">JOIN</span>
+            <h2 class="cta-card-title">Looking to become someone who builds?</h2>
+            <p class="cta-card-desc">Join an active community of software engineers and designers. Access internal projects, mentorship, and opportunities to work on client products.</p>
+          </div>
+          <div class="cta-card-actions">
+            <button class="cta-btn-outline" onclick="location.href='/community/index.html'">APPLY TO JOIN →</button>
+          </div>
         </div>
       </div>
     </section>
@@ -379,9 +484,25 @@
         <div class="footer-inner" id="footer-inner">
           <div>
             <a href="/" class="logo" aria-label="StuckNot Home"><span class="logo-img" role="img" aria-label="StuckNot logo"></span></a>
-            <p class="footer-brand-desc" id="footer-desc"></p>
+            <p class="footer-brand-desc" id="footer-desc">StuckNot is a community of builders. Businesses hire from it. Developers grow inside it.</p>
           </div>
-          <!-- Populated by JSON -->
+          <div>
+            <h3 class="footer-col-heading">Community Hub</h3>
+            <div class="footer-links">
+              <a href="/work/index.html">Work Opportunities</a>
+            </div>
+          </div>
+          <div>
+            <h3 class="footer-col-heading">Active Programs</h3>
+            <div class="footer-links">
+              <a href="/learn/index.html">Learning Resources</a>
+            </div>
+          </div>
+          <div>
+            <h3 class="footer-col-heading">Company Culture</h3>
+            <div class="footer-links">
+            </div>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
@@ -395,7 +516,6 @@
   </footer>
 
   <script src="main.js"></script>
-  
   <script>
     // Fetch data from local JSON database
     document.addEventListener('DOMContentLoaded', async () => {
@@ -406,103 +526,96 @@
         
         // --- Populate Navigation ---
         const navLinks = document.getElementById('nav-main-links');
-        const topNavKeys = ['Community', 'Work', 'Programs', 'Learn', 'About'];
-        topNavKeys.forEach(key => {
-          if(key === 'About') {
-             navLinks.innerHTML += `<a href="community/index.html">${key}</a>`;
-          } else {
-             navLinks.innerHTML += `<a href="${key.toLowerCase()}/index.html">${key}</a>`;
-          }
-        });
+        if (navLinks) {
+          navLinks.innerHTML = '<a href="index.html">Home</a>';
+          const topNavKeys = ['Community', 'Work', 'Programs', 'Learn', 'About'];
+          topNavKeys.forEach(key => {
+            if(key === 'About') {
+               navLinks.innerHTML += `<a href="community/index.html">${key}</a>`;
+            } else {
+               navLinks.innerHTML += `<a href="${key.toLowerCase()}/index.html">${key}</a>`;
+            }
+          });
+        }
 
-
-        // --- Populate Hero ---
-        document.getElementById('hero-eyebrow').textContent = data.home.hero.eyebrow;
-        document.getElementById('hero-eyebrow').className = 'hero-eyebrow reveal';
-        
-        document.getElementById('hero-heading').innerHTML = `<span class="line-1">${data.home.hero.headline}</span><br><span class="line-2" style="font-size: 0.8em">${data.home.hero.subheadline}</span>`;
-        document.getElementById('hero-heading').className = 'hero-heading-text reveal reveal-stagger-1';
-        
-        document.getElementById('hero-subheading').textContent = data.home.hero.description;
-        document.getElementById('hero-subheading').className = 'hero-subheading-text reveal reveal-stagger-2';
-
-        const btnContainer = document.getElementById('hero-buttons');
-        data.home.paths.forEach((path, index) => {
-          btnContainer.innerHTML += `
-            <button class="base-button ${path.icon === 'code' ? 'secondary-btn' : ''}" onclick="location.href='${path.link}'">${path.cta}</button>
-          `;
-        });
-
-        // --- Populate Activity Strip ---
-        const activityContainer = document.getElementById('activity-strip');
-        data.home.activity.forEach((item, index) => {
-          activityContainer.innerHTML += `
-            <article class="blog-card reveal reveal-stagger-${index + 1}" style="cursor:default;">
-              <div class="blog-card-content">
-                <div class="blog-card-title" style="font-size: 15px;">${item.type}: ${item.title}</div>
-                <div class="blog-card-meta">
-                  <span class="blog-card-date">${item.date}</span>
-                </div>
-                <p style="color:var(--silver); font-size:13px; margin-top:8px;">${item.detail}</p>
-              </div>
-            </article>
-          `;
-        });
-
-        // --- Populate Social Proof ---
-        const statsContainer = document.getElementById('stats-band');
-        statsContainer.className = 'trust-line reveal';
-        data.home.stats.forEach((stat, index) => {
-          if (index > 0) statsContainer.innerHTML += '<div class="divider"></div>';
-          statsContainer.innerHTML += `<span><strong>${stat.value}</strong> ${stat.label}</span>`;
-        });
-
-        const quoteEl = document.getElementById('testimonial-quote').parentElement;
-        quoteEl.className = 'testimonial-card reveal reveal-stagger-1';
-        
-        document.getElementById('testimonial-quote').textContent = `"${data.home.testimonial.quote}"`;
-        document.getElementById('testimonial-name').textContent = data.home.testimonial.name;
-        document.getElementById('testimonial-role').textContent = data.home.testimonial.role;
-
-        const partnersContainer = document.getElementById('partners-grid');
-        partnersContainer.className = 'reveal reveal-stagger-2';
-        data.home.partners.forEach(partner => {
-           partnersContainer.innerHTML += `
-             <div style="background: var(--cream); border-radius: 8px; padding: 12px 20px; display:flex; align-items:center; justify-content:center; height: 60px;">
-               <img src="images/partners/${partner}" alt="${partner.split('.')[0]}" style="max-height: 100%; max-width: 100px; object-fit: contain; opacity: 0.8;">
-             </div>
-           `;
-        });
+        // --- Populate Marquee Ticker ---
+        const marquee = document.getElementById('ticker-marquee');
+        if (marquee && data.home && data.home.activity) {
+          const tickerItems = [
+            { emoji: '🚀', text: 'PROJECT LAUNCHED: Nexus App V2.0' },
+            { emoji: '🏆', text: 'MILESTONE: Sarah reached Lead Dev tier' },
+            { emoji: '📝', text: 'NEW POST: Architecting for Scale in 2024' },
+            { emoji: '👥', text: 'MEMBER UPDATE: Rohit Verma got hired' }
+          ];
+          
+          data.home.activity.forEach(item => {
+            let emoji = '🚀';
+            let prefix = 'PROJECT LAUNCHED:';
+            if (item.type.toLowerCase().includes('milestone')) {
+              emoji = '🏆';
+              prefix = 'MILESTONE:';
+            } else if (item.type.toLowerCase().includes('post') || item.type.toLowerCase().includes('blog')) {
+              emoji = '📝';
+              prefix = 'NEW POST:';
+            }
+            tickerItems.push({
+              emoji: emoji,
+              text: `${prefix} ${item.title}`
+            });
+          });
+          
+          // Duplicate items to ensure a seamless infinite loop
+          const finalItems = [...tickerItems, ...tickerItems, ...tickerItems];
+          marquee.innerHTML = finalItems.map(item => `
+            <div class="marquee-item">
+              <span class="marquee-emoji">${item.emoji}</span>
+              <span>${item.text}</span>
+            </div>
+          `).join('');
+        }
 
         // --- Populate Footer ---
-        document.getElementById('footer-desc').textContent = data.footer.brandDescription;
+        const footerDesc = document.getElementById('footer-desc');
+        if (footerDesc && data.footer) {
+          footerDesc.textContent = data.footer.brandDescription;
+        }
+        
         const footerInner = document.getElementById('footer-inner');
-        Object.keys(data.footer.links).forEach(section => {
-          let linksHtml = data.footer.links[section].map(link => `<a href="${link.url}">${link.name}</a>`).join('');
-          footerInner.innerHTML += `
-            <div>
-              <h3 class="footer-col-heading">${section}</h3>
-              <div class="footer-links">
-                ${linksHtml}
+        if (footerInner && data.footer && data.footer.links) {
+          // Keep only the first column (logo and brand description)
+          const firstCol = footerInner.firstElementChild;
+          footerInner.innerHTML = '';
+          if (firstCol) {
+            footerInner.appendChild(firstCol);
+          }
+          
+          Object.keys(data.footer.links).forEach(section => {
+            let linksHtml = data.footer.links[section].map(link => `<a href="${link.url}">${link.name}</a>`).join('');
+            footerInner.innerHTML += `
+              <div>
+                <h3 class="footer-col-heading">${section}</h3>
+                <div class="footer-links">
+                  ${linksHtml}
+                </div>
               </div>
-            </div>
-          `;
-        });
+            `;
+          });
+        }
 
         // Show content
-        document.getElementById('main-content').classList.replace('json-loading', 'json-loaded');
-        
-        // Trigger existing animations
-        if (typeof initScrollReveal === 'function') {
-          // Give DOM a tick to render before triggering ScrollReveal
-          setTimeout(() => initScrollReveal(), 100);
+        const mainContent = document.getElementById('main-content');
+        if (mainContent) {
+          mainContent.classList.replace('json-loading', 'json-loaded');
         }
       } catch (error) {
-        console.error('Failed to load JSON database:', error);
-        document.getElementById('main-content').innerHTML = '<div class="container" style="padding:100px 0; text-align:center;"><h2>Error loading content. Please try again.</h2></div>';
-        document.getElementById('main-content').classList.replace('json-loading', 'json-loaded');
+        console.warn('Failed to load JSON database (likely CORS restriction on file:// URL). Using static fallbacks.', error);
+        const mainContent = document.getElementById('main-content');
+        if (mainContent) {
+          mainContent.classList.replace('json-loading', 'json-loaded');
+        }
       }
     });
   </script>
+
 </body>
 </html>
