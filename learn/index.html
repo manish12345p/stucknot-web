@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-theme">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StuckNot - Learn</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Synchronous theme load to prevent FOUC -->
+  <script src="../theme-toggle.js"></script>
+  
+  <!-- Shared Design System -->
+  <link rel="stylesheet" href="../stucknot-design-system.css">
+</head>
+<body>
+  
+  <!-- ===== HEADER ===== -->
+  <stucknot-navbar base-path="../" active-page="learn"></stucknot-navbar>
+  
+  <main id="main-content">
+    
+    <!-- ===== HERO SECTION ===== -->
+        <section class="container page-hero">
+      <div class="page-hero-content">
+        <span class="eyebrow-text highlight-maroon">THE CURRICULUM</span>
+        <h1 class="page-hero-title">Level Up Your Craft.</h1>
+        <p class="page-hero-desc">Technical deep-dives, community guides, and open-source resources crafted by builders, for builders. Dive into the mechanics of modern engineering.</p>
+      </div>
+      <div class="page-hero-widget">
+    <div id="lp25-root" style="width: 100%; max-width: 580px; height: 460px; background: var(--widget-bg); border: 1px solid var(--widget-border); border-radius: 12px; font-family: 'JetBrains Mono', monospace; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--widget-shadow); position: relative; color: var(--widget-text);">
+
+      <!-- Cursor glow -->
+      <div id="lp25-glow" style="position: absolute; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(172,13,48,0.12) 0%, rgba(172,13,48,0.03) 40%, transparent 70%); pointer-events: none; z-index: 0; transform: translate(-50%,-50%); opacity: 0; transition: opacity 0.3s;"></div>
+
+      <!-- Top Bar -->
+      <div style="height: 44px; min-height: 44px; border-bottom: 1px solid var(--widget-border); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; background: var(--widget-panel-bg);">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 7px; height: 7px; border-radius: 50%; background: var(--rose-light); box-shadow: 0 0 8px var(--rose-light); animation: lp25pulse 2s infinite;"></div>
+          <span style="font-size: 11px; color: var(--widget-text-muted); font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">LEARNING PATH ENGINE</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span style="font-size: 9px; color: var(--rose);"><span id="lp25-xp">240</span> XP earned</span>
+          <span style="font-size: 9px; color: var(--widget-text-muted);">|</span>
+          <span style="font-size: 9px; color: var(--rose-light);"><span id="lp25-streak">5</span> day streak <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></span>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div style="flex: 1; display: flex; min-height: 0; position: relative;">
+
+        <!-- Left: Skill Tree -->
+        <div style="width: 50%; border-right: 1px solid var(--widget-border); display: flex; flex-direction: column; position: relative;">
+          <div style="padding: 10px 16px; border-bottom: 1px solid var(--widget-border); font-size: 11px; color: var(--widget-text-muted); letter-spacing: 2px; font-weight: 700; text-transform: uppercase; display: flex; justify-content: space-between;">
+            <span>SKILL TREE</span>
+            <span id="lp25-progress" style="color: var(--rose);">2 / 8 unlocked</span>
+          </div>
+
+          <div id="lp25-tree-area" style="flex: 1; position: relative; overflow: hidden;">
+            <!-- Dot grid bg -->
+            <div class="lp25-grid-bg" style="position: absolute; inset: 0; background-size: 20px 20px; pointer-events: none;"></div>
+            <!-- SVG connections -->
+            <svg id="lp25-tree-svg" style="position: absolute; inset: 0; width: 100%; height: 100%;"></svg>
+            <!-- Nodes -->
+            <div id="lp25-tree-nodes" style="position: absolute; inset: 0; width: 100%; height: 100%;"></div>
+          </div>
+        </div>
+
+        <!-- Right: Code Challenge Terminal -->
+        <div style="width: 50%; display: flex; flex-direction: column; position: relative; background: var(--widget-term-bg);">
+          <div style="padding: 10px 16px; border-bottom: 1px solid var(--widget-border); font-size: 11px; color: var(--widget-text-muted); letter-spacing: 2px; font-weight: 700; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center;">
+            <span>CODE CHALLENGE</span>
+            <button id="lp25-run-btn" style="background: rgba(172,13,48,0.15); border: 1px solid rgba(172,13,48,0.4); color: var(--rose); font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: bold; padding: 4px 10px; border-radius: 3px; cursor: pointer; transition: all 0.2s; letter-spacing: 0.5px; display: flex; align-items: center; gap: 4px;" onmouseover="this.style.background='rgba(172,13,48,0.3)'" onmouseout="this.style.background='rgba(172,13,48,0.15)'"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> RUN</button>
+          </div>
+
+          <!-- Challenge Info -->
+          <div id="lp25-challenge-info" style="padding: 12px 16px; border-bottom: 1px solid var(--widget-border);">
+            <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; color: var(--widget-text); margin-bottom: 4px;" id="lp25-challenge-title">Array Manipulation</div>
+            <div style="font-size: 9px; color: var(--widget-text-muted); display: flex; gap: 8px; align-items: center;">
+              <span class="lp25-diff-badge lp25-diff-medium">MEDIUM</span>
+              <span>Module 3</span>
+              <span style="color: var(--rose-light);">+40 XP</span>
+            </div>
+          </div>
+
+          <!-- Code Area -->
+          <div id="lp25-code" style="flex: 1; padding: 12px 16px; font-size: 11px; line-height: 1.7; color: var(--widget-text); overflow-y: auto;">
+            <div><span class="syn-keyword">function</span> <span class="syn-func">filterActive</span><span class="syn-punct">(</span><span class="syn-var">users</span><span class="syn-punct">)</span> {</div>
+            <div>&nbsp;&nbsp;<span class="syn-keyword">return</span> users.<span class="syn-func">filter</span>(u => u.active);</div>
+            <div>}</div>
+            <div style="margin-top: 8px;"><span class="syn-comment">// Test cases</span></div>
+            <div><span class="syn-keyword">const</span> <span class="syn-func">data</span> = [</div>
+            <div>&nbsp;&nbsp;{ name: <span class="syn-string">"sarah"</span>, active: <span class="syn-keyword">true</span> },</div>
+            <div>&nbsp;&nbsp;{ name: <span class="syn-string">"alex"</span>, active: <span class="syn-keyword">false</span> },</div>
+            <div>&nbsp;&nbsp;{ name: <span class="syn-string">"manish"</span>, active: <span class="syn-keyword">true</span> },</div>
+            <div>];</div>
+          </div>
+
+          <!-- Test Output -->
+          <div id="lp25-output" style="height: 80px; min-height: 80px; border-top: 1px solid var(--widget-border); padding: 10px 16px; font-size: 10px; background: var(--widget-output-bg); overflow-y: auto;">
+            <div style="color: var(--widget-text-muted); margin-bottom: 4px;">$ waiting for run...</div>
+          </div>
+        </div>
+
+        <!-- Hover tooltip for skill nodes -->
+        <div id="lp25-tip" style="position: absolute; opacity: 0; pointer-events: none; background: var(--widget-bg); border: 1px solid var(--widget-border); padding: 10px 14px; border-radius: 6px; font-size: 10px; color: var(--widget-text); box-shadow: var(--widget-shadow); transition: opacity 0.15s; max-width: 200px; z-index: 50;">
+          <div id="lp25-tip-name" style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px; margin-bottom: 4px;"></div>
+          <div id="lp25-tip-desc" style="color: var(--widget-text-muted); font-size: 9px; margin-bottom: 6px;"></div>
+          <div style="display: flex; gap: 8px; font-size: 9px;">
+            <span id="lp25-tip-xp" style="color: var(--rose-light);"></span>
+            <span style="color: var(--widget-text-muted);">·</span>
+            <span id="lp25-tip-status"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Stats -->
+      <div style="height: 34px; min-height: 34px; border-top: 1px solid var(--widget-border); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; background: var(--widget-panel-bg); font-size: 9px; color: var(--widget-text-muted);">
+        <div style="display: flex; gap: 14px;">
+          <span><span style="color: var(--rose);">●</span> 2 completed</span>
+          <span><span style="color: var(--rose-light);">●</span> 1 in progress</span>
+          <span><span style="color: var(--widget-text-muted);">●</span> 5 locked</span>
+        </div>
+        <span>path: fundamentals</span>
+      </div>
+    </div>
+
+    <style>
+      #lp25-root {
+        --widget-bg: #07070a;
+        --widget-border: rgba(255,255,255,0.08);
+        --widget-panel-bg: rgba(255,255,255,0.02);
+        --widget-term-bg: #0a0b10;
+        --widget-output-bg: rgba(0,0,0,0.3);
+        --widget-text: #FEFDFB;
+        --widget-text-muted: #777;
+        --widget-grid-dot: rgba(255,255,255,0.04);
+        --widget-node-bg: #111;
+        --widget-node-border: #333;
+        --widget-node-locked-bg: #0d0d0d;
+        --widget-node-locked-border: #222;
+        --widget-shadow: 0 30px 80px rgba(0,0,0,0.8);
+        
+        --rose: #AC0D30;
+        --rose-light: #E6A8A8;
+      }
+
+      html.light-theme #lp25-root {
+        --widget-bg: #ffffff;
+        --widget-border: rgba(0,0,0,0.08);
+        --widget-panel-bg: rgba(0,0,0,0.02);
+        --widget-term-bg: #f8fafc;
+        --widget-output-bg: rgba(0,0,0,0.03);
+        --widget-text: #1a1a1a;
+        --widget-text-muted: #64748b;
+        --widget-grid-dot: rgba(0,0,0,0.05);
+        --widget-node-bg: #ffffff;
+        --widget-node-border: #cbd5e1;
+        --widget-node-locked-bg: #f1f5f9;
+        --widget-node-locked-border: #e2e8f0;
+        --widget-shadow: 0 20px 40px rgba(0,0,0,0.05);
+      }
+
+      /* Syntax Highlighting */
+      .syn-keyword { color: var(--rose-light); }
+      .syn-func { color: var(--widget-text); }
+      .syn-punct { color: #c14a5d; }
+      .syn-var { color: var(--rose-light); }
+      .syn-comment { color: #888; }
+      .syn-string { color: #c14a5d; }
+      
+      html.light-theme .syn-keyword { color: #9a0a29; }
+      html.light-theme .syn-func { color: #1a1a1a; }
+      html.light-theme .syn-punct { color: #7a0822; }
+      html.light-theme .syn-var { color: #9a0a29; }
+      html.light-theme .syn-comment { color: #9ca3af; }
+      html.light-theme .syn-string { color: #AC0D30; }
+
+      .lp25-grid-bg {
+        background-image: radial-gradient(var(--widget-grid-dot) 1px, transparent 1px);
+      }
+
+      @keyframes lp25pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+      .lp25-skill-node {
+        position: absolute; width: 36px; height: 36px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 14px; cursor: pointer; transition: all 0.2s;
+        transform: translate(-50%, -50%); z-index: 10;
+        border: 2px solid var(--widget-node-border); background: var(--widget-node-bg);
+        color: var(--widget-text-muted);
+      }
+      .lp25-skill-node.lp25-unlocked {
+        border-color: var(--rose); background: rgba(172,13,48,0.1);
+        box-shadow: 0 0 10px rgba(172,13,48,0.2);
+        color: var(--rose);
+      }
+      .lp25-skill-node.lp25-active {
+        border-color: var(--rose-light); background: rgba(230,168,168,0.1);
+        box-shadow: 0 0 10px rgba(230,168,168,0.2);
+        animation: lp25nodePulse 2s infinite;
+        color: var(--rose-light);
+      }
+      .lp25-skill-node.lp25-locked {
+        border-color: var(--widget-node-locked-border); background: var(--widget-node-locked-bg); opacity: 0.5; cursor: default;
+      }
+      .lp25-skill-node:hover:not(.lp25-locked) {
+        transform: translate(-50%,-50%) scale(1.2);
+        box-shadow: 0 0 16px rgba(172,13,48,0.3);
+        color: var(--widget-text);
+        border-color: var(--rose);
+      }
+
+      @keyframes lp25nodePulse { 0%,100%{box-shadow: 0 0 10px rgba(230,168,168,0.2)} 50%{box-shadow: 0 0 20px rgba(230,168,168,0.4)} }
+
+      .lp25-diff-badge {
+        padding: 1px 6px; border-radius: 3px; font-size: 8px; font-weight: bold; letter-spacing: 0.5px;
+      }
+      .lp25-diff-easy { background: rgba(172,13,48,0.15); color: var(--rose); }
+      .lp25-diff-medium { background: rgba(230,168,168,0.15); color: var(--rose-light); }
+      html.light-theme .lp25-diff-medium { color: #9a0a29; background: rgba(230,168,168,0.3); }
+      .lp25-diff-hard { background: rgba(137,3,32,0.15); color: #890320; }
+
+      .lp25-test-pass { color: var(--rose); }
+      .lp25-test-fail { color: #890320; }
+
+      @keyframes lp25typeIn { from{width:0} to{width:100%} }
+
+      #lp25-code::-webkit-scrollbar, #lp25-output::-webkit-scrollbar { width: 3px; }
+      #lp25-code::-webkit-scrollbar-track, #lp25-output::-webkit-scrollbar-track { background: transparent; }
+      #lp25-code::-webkit-scrollbar-thumb, #lp25-output::-webkit-scrollbar-thumb { background: var(--widget-border); border-radius: 3px; }
+    </style>
+
+    <script>
+      (function() {
+        const root = document.getElementById('lp25-root');
+        const treeArea = document.getElementById('lp25-tree-area');
+        const treeSvg = document.getElementById('lp25-tree-svg');
+        const treeNodes = document.getElementById('lp25-tree-nodes');
+        const tip = document.getElementById('lp25-tip');
+        const output = document.getElementById('lp25-output');
+        const glow = document.getElementById('lp25-glow');
+
+        const skills = [
+          { id:'s1', name:'Variables & Types', icon:'{}', desc:'Primitives, objects, and type coercion', xp:20, status:'unlocked', x:0.5, y:0.08 },
+          { id:'s2', name:'Control Flow', icon:'⑂', desc:'if/else, loops, switch statements', xp:25, status:'unlocked', x:0.3, y:0.24 },
+          { id:'s3', name:'Functions', icon:'ƒ', desc:'Closures, scope, arrow functions', xp:30, status:'active', x:0.7, y:0.24 },
+          { id:'s4', name:'Arrays', icon:'[]', desc:'Map, filter, reduce, and mutations', xp:40, status:'locked', x:0.25, y:0.44 },
+          { id:'s5', name:'Objects', icon:'◇', desc:'Destructuring, spread, prototypes', xp:40, status:'locked', x:0.75, y:0.44 },
+          { id:'s6', name:'Async/Await', icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>', desc:'Promises, async patterns, error handling', xp:50, status:'locked', x:0.5, y:0.60 },
+          { id:'s7', name:'DOM & Events', icon:'◎', desc:'Selectors, listeners, delegation', xp:50, status:'locked', x:0.3, y:0.78 },
+          { id:'s8', name:'APIs & Fetch', icon:'↗', desc:'REST, JSON, HTTP methods, headers', xp:60, status:'locked', x:0.7, y:0.78 }
+        ];
+
+        // Connections (parent -> child)
+        const edges = [
+          ['s1','s2'], ['s1','s3'],
+          ['s2','s4'], ['s3','s5'],
+          ['s4','s6'], ['s5','s6'],
+          ['s6','s7'], ['s6','s8']
+        ];
+
+        function renderTree() {
+          treeSvg.innerHTML = '';
+          treeNodes.innerHTML = '';
+          const w = treeArea.clientWidth || 280;
+          const h = treeArea.clientHeight || 350;
+          
+          const isLight = document.documentElement.classList.contains('light-theme');
+          const inactiveStroke = isLight ? 'rgba(0,0,0,0.06)' : '#1a1a1a';
+
+          // Draw edges
+          edges.forEach(([fromId, toId]) => {
+            const from = skills.find(s => s.id === fromId);
+            const to = skills.find(s => s.id === toId);
+            const x1 = from.x * w, y1 = from.y * h;
+            const x2 = to.x * w, y2 = to.y * h;
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+            const cy1 = y1 + (y2 - y1) * 0.5;
+            path.setAttribute('d', `M ${x1} ${y1} C ${x1} ${cy1}, ${x2} ${cy1}, ${x2} ${y2}`);
+
+            const isActive = from.status === 'unlocked' || from.status === 'active';
+            path.setAttribute('stroke', isActive ? 'rgba(172,13,48,0.4)' : inactiveStroke);
+            path.setAttribute('stroke-width', '2');
+            path.setAttribute('fill', 'none');
+            if (!isActive) path.setAttribute('stroke-dasharray', '4 4');
+            treeSvg.appendChild(path);
+          });
+
+          // Draw nodes
+          skills.forEach(s => {
+            const node = document.createElement('div');
+            node.className = `lp25-skill-node lp25-${s.status}`;
+            node.dataset.id = s.id;
+            node.style.left = (s.x * w) + 'px';
+            node.style.top = (s.y * h) + 'px';
+            node.innerHTML = s.icon;
+
+            if (s.status !== 'locked') {
+              node.addEventListener('click', () => handleNodeClick(s));
+            }
+            node.addEventListener('mouseenter', (e) => showSkillTip(e, s));
+            node.addEventListener('mouseleave', () => { tip.style.opacity = '0'; });
+
+            treeNodes.appendChild(node);
+          });
+
+          updateProgress();
+        }
+
+        function showSkillTip(e, s) {
+          const r = root.getBoundingClientRect();
+          let x = e.clientX - r.left + 16;
+          let y = e.clientY - r.top - 10;
+          if (x + 180 > r.width) x = e.clientX - r.left - 180;
+
+          document.getElementById('lp25-tip-name').textContent = s.name;
+          document.getElementById('lp25-tip-desc').textContent = s.desc;
+          document.getElementById('lp25-tip-xp').textContent = '+' + s.xp + ' XP';
+          const statusEl = document.getElementById('lp25-tip-status');
+          statusEl.innerHTML = s.status === 'unlocked' ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px"><polyline points="20 6 9 17 4 12"/></svg> Completed' : s.status === 'active' ? '● In Progress' : '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Locked';
+          
+          // Colors adapt via JS for the tip
+          const isLight = document.documentElement.classList.contains('light-theme');
+          statusEl.style.color = s.status === 'unlocked' ? '#AC0D30' : s.status === 'active' ? (isLight ? '#9a0a29' : '#E6A8A8') : (isLight ? '#64748b' : '#555');
+
+          tip.style.left = x + 'px';
+          tip.style.top = y + 'px';
+          tip.style.opacity = '1';
+        }
+
+        function handleNodeClick(s) {
+          if (s.status === 'locked') return;
+          // Load a challenge for this skill
+          document.getElementById('lp25-challenge-title').textContent = s.name + ' Challenge';
+          output.innerHTML = '<div style="color: var(--widget-text-muted);">$ waiting for run...</div>';
+        }
+
+        function updateProgress() {
+          const unlocked = skills.filter(s => s.status === 'unlocked').length;
+          const total = skills.length;
+          document.getElementById('lp25-progress').textContent = `${unlocked} / ${total} unlocked`;
+        }
+
+        // Run button - simulate test execution
+        let running = false;
+        document.getElementById('lp25-run-btn').addEventListener('click', () => {
+          if (running) return;
+          running = true;
+          output.innerHTML = '';
+
+          const tests = [
+            { name: 'filters active users', pass: true, delay: 400 },
+            { name: 'handles empty array', pass: true, delay: 800 },
+            { name: 'preserves order', pass: true, delay: 1200 },
+            { name: 'returns new array', pass: Math.random() > 0.3, delay: 1600 }
+          ];
+
+          // Compiling line
+          const compLine = document.createElement('div');
+          compLine.style.color = 'var(--widget-text-muted)';
+          compLine.textContent = '$ compiling...';
+          output.appendChild(compLine);
+
+          tests.forEach((t, i) => {
+            setTimeout(() => {
+              const line = document.createElement('div');
+              line.className = t.pass ? 'lp25-test-pass' : 'lp25-test-fail';
+              line.textContent = `  ${t.pass ? '✓' : '✗'} ${t.name}`;
+              output.appendChild(line);
+              output.scrollTop = output.scrollHeight;
+
+              // After last test
+              if (i === tests.length - 1) {
+                setTimeout(() => {
+                  const allPass = tests.every(t => t.pass);
+                  const summary = document.createElement('div');
+                  summary.style.marginTop = '6px';
+                  summary.style.fontWeight = 'bold';
+
+                  if (allPass) {
+                    summary.style.color = 'var(--rose)';
+                    summary.textContent = `✓ All ${tests.length} tests passed! +40 XP`;
+
+                    // Unlock next skill
+                    const active = skills.find(s => s.status === 'active');
+                    if (active) {
+                      active.status = 'unlocked';
+                      // Find next locked and make active
+                      const nextLocked = skills.find(s => s.status === 'locked');
+                      if (nextLocked) nextLocked.status = 'active';
+
+                      const xpEl = document.getElementById('lp25-xp');
+                      xpEl.textContent = parseInt(xpEl.textContent) + 40;
+                    }
+                    renderTree();
+                  } else {
+                    summary.style.color = '#890320';
+                    const passed = tests.filter(t => t.pass).length;
+                    summary.textContent = `✗ ${passed}/${tests.length} passed. Try again.`;
+                  }
+
+                  output.appendChild(summary);
+                  output.scrollTop = output.scrollHeight;
+                  running = false;
+                }, 300);
+              }
+            }, t.delay);
+          });
+        });
+
+        // Cursor glow
+        root.addEventListener('mousemove', (e) => {
+          const rect = root.getBoundingClientRect();
+          const mx = e.clientX - rect.left;
+          const my = e.clientY - rect.top;
+          glow.style.left = mx + 'px';
+          glow.style.top = my + 'px';
+          glow.style.opacity = '1';
+
+          const px = (mx / rect.width) * 100;
+          const py = (my / rect.height) * 100;
+          
+          const isLight = document.documentElement.classList.contains('light-theme');
+          const border1 = isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.08)';
+          const border2 = isLight ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.04)';
+          root.style.borderImage = `radial-gradient(circle at ${px}% ${py}%, rgba(172,13,48,0.4) 0%, ${border1} 50%, ${border2} 100%) 1`;
+
+          // Node proximity
+          treeNodes.querySelectorAll('.lp25-skill-node:not(.lp25-locked)').forEach(node => {
+            const nr = node.getBoundingClientRect();
+            const nx = nr.left - rect.left + nr.width / 2;
+            const ny = nr.top - rect.top + nr.height / 2;
+            const dist = Math.sqrt((mx - nx) ** 2 + (my - ny) ** 2);
+            if (dist < 70) {
+              const s = 1 + (1 - dist / 70) * 0.3;
+              node.style.transform = `translate(-50%,-50%) scale(${s})`;
+            } else {
+              node.style.transform = 'translate(-50%,-50%) scale(1)';
+            }
+          });
+        });
+
+        root.addEventListener('mouseleave', () => {
+          glow.style.opacity = '0';
+          root.style.borderImage = 'none';
+          root.style.border = '1px solid var(--widget-border)';
+          treeNodes.querySelectorAll('.lp25-skill-node').forEach(n => {
+            n.style.transform = 'translate(-50%,-50%) scale(1)';
+          });
+        });
+        
+        // Listen to theme toggle changes to re-render the tree edges
+        const observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if (mutation.attributeName === "class") {
+              renderTree();
+            }
+          });
+        });
+        observer.observe(document.documentElement, { attributes: true });
+
+        // Init
+        renderTree();
+        window.addEventListener('resize', renderTree);
+      })();
+    </script>
+  </div>
+
+</div>
+    </section>
+    
+    <!-- ===== RESOURCES SECTION ===== -->
+    <section class="container section">
+      
+      <!-- Filters -->
+      <div class="learn-filters">
+        <button class="learn-filter-pill active">All</button>
+        <button class="learn-filter-pill">Systems Design</button>
+        <button class="learn-filter-pill">Frontend</button>
+        <button class="learn-filter-pill">DevOps</button>
+        <button class="learn-filter-pill">Product</button>
+      </div>
+      
+      <!-- Grid -->
+      <div class="learn-grid">
+        
+        <!-- Card 1 -->
+        <a href="#" class="learn-card">
+          <div class="learn-card-header">
+            <span class="learn-card-category">Systems Design</span>
+            <svg class="learn-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+          </div>
+          <h3 class="learn-card-title">Scaling WebSockets in Go</h3>
+          <p class="learn-card-desc">A practical guide to handling 1M+ concurrent connections using Epoll and optimized memory pooling.</p>
+          <div class="learn-card-divider"></div>
+          <div class="learn-card-footer">
+            <svg class="learn-card-author-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span class="learn-card-meta">ALEX.DEV</span>
+            <span class="learn-card-meta" style="color: var(--theme-text-muted);">12 MIN READ</span>
+            <span class="learn-card-badge">Advanced</span>
+          </div>
+        </a>
+        
+        <!-- Card 2 -->
+        <a href="#" class="learn-card">
+          <div class="learn-card-header">
+            <span class="learn-card-category">Frontend</span>
+            <svg class="learn-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+          </div>
+          <h3 class="learn-card-title">The Brutalist UI Manifesto</h3>
+          <p class="learn-card-desc">Why stark contrasts, bold typography, and unpolished edges are reclaiming web design from corporate blandness.</p>
+          <div class="learn-card-divider"></div>
+          <div class="learn-card-footer">
+            <svg class="learn-card-author-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span class="learn-card-meta">SARAH_UI</span>
+            <span class="learn-card-meta" style="color: var(--theme-text-muted);">8 MIN READ</span>
+            <span class="learn-card-badge">Beginner</span>
+          </div>
+        </a>
+        
+        <!-- Card 3 -->
+        <a href="#" class="learn-card">
+          <div class="learn-card-header">
+            <span class="learn-card-category">DevOps</span>
+            <svg class="learn-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+          </div>
+          <h3 class="learn-card-title">Zero-Downtime Migrations</h3>
+          <p class="learn-card-desc">Strategies for complex PostgreSQL schema changes without locking tables or interrupting user sessions.</p>
+          <div class="learn-card-divider"></div>
+          <div class="learn-card-footer">
+            <svg class="learn-card-author-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span class="learn-card-meta">DBA_DAN</span>
+            <span class="learn-card-meta" style="color: var(--theme-text-muted);">15 MIN READ</span>
+            <span class="learn-card-badge">Intermediate</span>
+          </div>
+        </a>
+        
+      </div>
+    </section>
+  </main>
+  
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-inner" id="footer-inner">
+          <div>
+            <a href="/" class="logo" aria-label="StuckNot Home"><span class="logo-img" role="img" aria-label="StuckNot logo"></span></a>
+            <p class="footer-brand-desc" id="footer-desc">StuckNot is a community of builders. Businesses hire from it. Developers grow inside it.</p>
+          </div>
+          <div>
+            <h3 class="footer-col-heading">Community Hub</h3>
+            <div class="footer-links">
+              <a href="/work/index.html">Work Opportunities</a>
+            </div>
+          </div>
+          <div>
+            <h3 class="footer-col-heading">Active Programs</h3>
+            <div class="footer-links">
+              <a href="/learn/index.html">Learning Resources</a>
+            </div>
+          </div>
+          <div>
+            <h3 class="footer-col-heading">Company Culture</h3>
+            <div class="footer-links">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 StuckNot â€” A community of builders.</span>
+        <div class="footer-bottom-links">
+          <a href="/legal/privacy-policy.html">Privacy Policy</a>
+          <a href="/legal/terms-of-service.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Theme Toggle -->
+  <stucknot-theme-toggle></stucknot-theme-toggle>
+
+  <script src="../navbar.js"></script>
+  <script src="../main.js"></script>
+</body>
+</html>
+
+

@@ -9,9 +9,10 @@
   <!-- Performance: Preconnect to font domains -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="stucknot-design-system.css">
+  <script src="theme-toggle.js"></script>
   <style>
     :root {
       --status-box-bg: rgba(193, 74, 93, 0.05);
@@ -42,7 +43,7 @@
       width: 1px;
       height: 1px;
       padding: 0;
-      margin: -1px;
+      margin: -var(--space-3xs);
       overflow: hidden;
       clip: rect(0, 0, 0, 0);
       white-space: nowrap;
@@ -56,64 +57,8 @@
       opacity: 1;
     }
     
-    /* Force navbar layout */
-    @media (min-width: 900px) {
-      .header-nav-wrapper {
-        position: static !important;
-        flex-direction: row !important;
-        width: 100% !important;
-        height: auto !important;
-        padding: 0 !important;
-        background: transparent !important;
-        box-shadow: none !important;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        flex-wrap: nowrap;
-        gap: 16px;
-      }
-      .nav-links {
-        flex-wrap: nowrap;
-        gap: 16px;
-        align-items: center;
-      }
-      .nav-links a {
-        padding: 8px 12px;
-      }
-    }
 
-    /* Redesigned Hero Section */
-    .home-hero {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 60px;
-      padding-top: 100px;
-      padding-bottom: 80px;
-    }
-    .home-hero-content {
-      flex: 1.2;
-    }
-    .home-hero-title {
-      font-size: 48px;
-      font-weight: 900;
-      line-height: 1.15;
-      color: var(--theme-text);
-      margin-bottom: 24px;
-      letter-spacing: -1.2px;
-    }
-    .home-hero-desc {
-      font-size: 16px;
-      line-height: 1.65;
-      color: var(--theme-text-muted);
-      max-width: 520px;
-    }
-    .home-hero-status-wrapper {
-      flex: 0.8;
-      display: flex;
-      justify-content: flex-end;
-      width: 100%;
-    }
+
     .status-box {
       width: 100%;
       max-width: 380px;
@@ -125,9 +70,9 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 16px;
+      gap: var(--space-sm);
       font-family: 'JetBrains Mono', 'Fira Code', monospace;
-      font-size: 14px;
+      font-size: var(--text-small);
       font-weight: 700;
       color: var(--status-box-text);
       position: relative;
@@ -148,7 +93,7 @@
     .status-line {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: var(--space-xs);
       z-index: 2;
     }
     .status-dot {
@@ -165,24 +110,7 @@
       100% { opacity: 0.4; }
     }
 
-    @media (max-width: 900px) {
-      .home-hero {
-        flex-direction: column;
-        gap: 40px;
-        padding-top: 60px;
-        padding-bottom: 40px;
-        text-align: center;
-      }
-      .home-hero-desc {
-        margin: 0 auto;
-      }
-      .home-hero-status-wrapper {
-        justify-content: center;
-      }
-      .home-hero-title {
-        font-size: 36px;
-      }
-    }
+
 
     /* Horizontal Ticker Marquee */
     .marquee-container {
@@ -191,29 +119,29 @@
       width: 100%;
       border-top: 1px solid var(--theme-card-border);
       border-bottom: 1px solid var(--theme-card-border);
-      padding: 18px 0;
+      padding: var(--space-sm) 0;
       background: var(--theme-body-bg);
       position: relative;
-      margin-bottom: 60px;
+      margin-bottom: var(--section-gap);
     }
     .marquee-content {
       display: inline-flex;
-      gap: 60px;
+      gap: var(--space-xl);
       animation: marqueeScroll 30s linear infinite;
     }
     .marquee-item {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: var(--space-xs);
       font-family: var(--font-mono);
-      font-size: 11.5px;
-      font-weight: 700;
+      font-size: var(--text-xs);
+      font-weight: var(--weight-bold);
       color: var(--theme-text);
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
     .marquee-emoji {
-      font-size: 14px;
+      font-size: var(--text-small);
     }
     @keyframes marqueeScroll {
       0% { transform: translateX(0%); }
@@ -224,13 +152,13 @@
     .cta-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      margin-bottom: 100px;
+      gap: var(--space-md);
+      margin-bottom: var(--section-gap);
     }
     .cta-card {
       border: 1px solid var(--theme-card-border);
       border-radius: 12px;
-      padding: 48px;
+      padding: var(--space-lg);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -255,13 +183,13 @@
     .cta-badge {
       align-self: flex-start;
       font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 700;
+      font-size: var(--text-xs);
+      font-weight: var(--weight-bold);
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      padding: 4px 8px;
+      padding: var(--space-2xs) var(--space-xs);
       border-radius: 4px;
-      margin-bottom: 24px;
+      margin-bottom: var(--space-md);
     }
     .cta-badge-hire {
       background: var(--theme-card-border);
@@ -275,18 +203,18 @@
       color: var(--white);
     }
     .cta-card-title {
-      font-size: 32px;
-      font-weight: 800;
-      line-height: 1.2;
+      font-size: var(--text-h2);
+      font-weight: var(--weight-heavy);
+      line-height: var(--lh-heading);
       color: var(--theme-text);
-      margin-bottom: 16px;
+      margin-bottom: var(--space-sm);
       letter-spacing: -0.5px;
     }
     .cta-card-desc {
-      font-size: 14px;
-      line-height: 1.6;
+      font-size: var(--text-body);
+      line-height: var(--lh-body);
       color: var(--theme-text-muted);
-      margin-bottom: 40px;
+      margin-bottom: var(--space-lg);
       flex: 1;
     }
     .cta-card-actions {
@@ -301,16 +229,16 @@
       border: 1px solid #110307;
       font-weight: 700;
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: var(--text-xs);
       letter-spacing: 1.5px;
-      padding: 14px 28px;
+      padding: var(--space-sm) var(--space-md);
       border-radius: 6px;
       text-transform: uppercase;
       cursor: pointer;
       transition: all 0.3s;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: var(--space-xs);
     }
     .cta-btn-dark:hover {
       background: #2a0a12;
@@ -333,16 +261,16 @@
       border: 1px solid var(--theme-text);
       font-weight: 700;
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: var(--text-xs);
       letter-spacing: 1.5px;
-      padding: 14px 28px;
+      padding: var(--space-sm) var(--space-md);
       border-radius: 6px;
       text-transform: uppercase;
       cursor: pointer;
       transition: all 0.3s;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: var(--space-xs);
     }
     .cta-btn-outline:hover {
       background: var(--theme-text);
@@ -352,14 +280,14 @@
     @media (max-width: 900px) {
       .cta-grid {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: var(--space-md);
       }
       .cta-card {
-        padding: 32px;
+        padding: var(--space-md);
         min-height: auto;
       }
       .cta-card-title {
-        font-size: 26px;
+        font-size: var(--text-h3);
       }
     }
   </style>
@@ -367,88 +295,129 @@
 <body>
 
   <!-- ===== HEADER ===== -->
-  <header class="header" role="banner">
-    <div class="container">
-      <a href="index.html" aria-label="StuckNot Home"><span class="logo-img" role="img" aria-label="StuckNot logo"></span></a>
-      <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
-        <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
-      </button>
-      <div class="header-nav-wrapper" id="mobile-nav">
-        <nav class="nav-links" aria-label="Main navigation" id="nav-main-links">
-          <a href="index.html">Home</a>
-          <a href="community/index.html">Community</a>
-          <a href="work/index.html">Work</a>
-          <a href="programs/index.html">Programs</a>
-          <a href="learn/index.html">Learn</a>
-          <a href="community/index.html">About</a>
-        </nav>
-      </div>
-    </div>
-  </header>
+  <stucknot-navbar base-path="./" active-page="home"></stucknot-navbar>
   <main id="main-content">
     <!-- ===== HERO SECTION ===== -->
-    <section class="container" style="padding-top: 20px;">
-      <div class="home-hero">
-        <div class="home-hero-content">
-          <h1 class="home-hero-title">A community of builders — some of them are building your next product.</h1>
-          <p class="home-hero-desc">We are an active ecosystem of engineers, designers, and product leaders. Whether you need an elite team to launch a project or a space to level up your craft, you're in the right place.</p>
-        </div>
-        <div class="home-hero-status-wrapper">
-          <div class="status-box">
-            <div class="status-line">
-              <span class="status-dot"></span>
-              <span>&lt;SYSTEM_STATUS: BUILDING /&gt;</span>
-            </div>
-            <div class="status-line" style="margin-top: 8px;">
-              <span class="status-dot" style="animation-delay: 0.9s;"></span>
-              <span>&lt;CAPACITY: SCALING /&gt;</span>
-            </div>
+    <section class="page-hero container">
+        <div class="page-hero-content">
+          <h1 class="page-hero-title">A community of builders — some of them are building your next product.</h1>
+          <p class="page-hero-desc">We are an active ecosystem of engineers, designers, and product leaders. Whether you need an elite team to launch a project or a space to level up your craft, you're in the right place.</p>
+          <div class="hero-cta-group" style="display: flex; gap: var(--space-sm); margin-top: var(--space-md); flex-wrap: wrap;">
+            <a href="work/index.html" class="base-button secondary-btn">Hire Talent</a>
+            <a href="community/index.html" class="base-button">Join the Community</a>
           </div>
         </div>
-      </div>
+        <div class="page-hero-widget">
+          <div class="os-workspace-container" id="os-workspace">
+            <!-- Background Grid Pattern -->
+            <div class="os-workspace-grid"></div>
+
+            <!-- Window 1: Server Terminal (Back Left) -->
+            <div class="os-win focused" style="top: 5%; left: 5%; width: 60%; height: 45%;" data-win="1">
+              <div class="os-header">
+                <div class="os-dot os-dot-red"></div>
+                <div class="os-dot os-dot-yellow"></div>
+                <div class="os-dot os-dot-green"></div>
+                <div class="os-title">node server.js</div>
+              </div>
+              <div class="os-term-body">
+                <span style="color: #27c93f;">root@stucknot:~$</span> npm run dev
+                > Starting local server...
+                <br><br>
+                <span class="os-term-log"></span>
+              </div>
+            </div>
+
+            <!-- Window 2: Code Editor (Back Right) -->
+            <div class="os-win" style="top: 15%; left: 15%; width: 65%; height: 55%;" data-win="2">
+              <div class="os-header">
+                <div class="os-dot os-dot-red"></div>
+                <div class="os-dot os-dot-yellow"></div>
+                <div class="os-dot os-dot-green"></div>
+                <div class="os-title">App.jsx - Stucknot</div>
+              </div>
+              <div class="os-code-body">
+                <div><span class="os-code-tag">import</span> <span class="os-code-attr">React</span> <span class="os-code-tag">from</span> <span class="os-code-string">'react'</span>;</div>
+                <div><span class="os-code-tag">import</span> { <span class="os-code-attr">Button</span> } <span class="os-code-tag">from</span> <span class="os-code-string">'@stucknot/ui'</span>;</div>
+                <br>
+                <div><span class="os-code-tag">export default function</span> <span class="os-code-function">App</span>() {</div>
+                <div style="padding-left: 16px;">
+                  <div class="os-code-keyword">return (</div>
+                  <div style="padding-left: 16px; color: #808080;">&lt;<span class="os-code-tag">main</span> <span class="os-code-attr">className</span>=<span class="os-code-string">"brutalist-grid"</span>&gt;</div>
+                  <div style="padding-left: 32px; color: #808080;">&lt;<span class="os-code-tag">Button</span> <span class="os-code-attr">variant</span>=<span class="os-code-string">"heavy"</span>&gt;</div>
+                  <div style="padding-left: 48px; color: var(--theme-text);">INITIALIZE SYSTEM</div>
+                  <div style="padding-left: 32px; color: #808080;">&lt;/<span class="os-code-tag">Button</span>&gt;</div>
+                  <div style="padding-left: 16px; color: #808080;">&lt;/<span class="os-code-tag">main</span>&gt;</div>
+                  <div class="os-code-keyword">);</div>
+                </div>
+                <div>}</div>
+              </div>
+            </div>
+
+            <!-- Window 3: Live App Preview (Front Center) -->
+            <div class="os-win" style="bottom: 5%; right: 5%; width: 60%; height: 40%; border-color: var(--maroon);" data-win="3">
+              <div class="os-header">
+                <div class="os-dot os-dot-red"></div>
+                <div class="os-dot os-dot-yellow"></div>
+                <div class="os-dot os-dot-green"></div>
+                <div class="os-title" style="font-family: var(--font-body);">localhost:3000</div>
+              </div>
+              <div class="os-app-body">
+                <!-- Brutalist App Background -->
+                <div class="os-app-grid"></div>
+
+                <!-- Animated Brutalist Button -->
+                <div class="os-brutalist-btn">
+                  INITIALIZE SYSTEM
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
     </section>
 
     <!-- ===== HORIZONTAL TICKER MARQUEE ===== -->
     <section class="marquee-container" aria-label="Live updates">
       <div class="marquee-content" id="ticker-marquee">
         <div class="marquee-item">
-          <span class="marquee-emoji">🚀</span>
+          <span class="marquee-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg></span>
           <span>PROJECT LAUNCHED: Nexus App V2.0</span>
         </div>
         <div class="marquee-item">
-          <span class="marquee-emoji">🏆</span>
+          <span class="marquee-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg></span>
           <span>MILESTONE: Sarah reached Lead Dev tier</span>
         </div>
         <div class="marquee-item">
-          <span class="marquee-emoji">📝</span>
+          <span class="marquee-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg></span>
           <span>NEW POST: Architecting for Scale in 2024</span>
         </div>
         <div class="marquee-item">
-          <span class="marquee-emoji">👥</span>
+          <span class="marquee-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
           <span>MEMBER UPDATE: Rohit Verma got hired</span>
         </div>
         <!-- Duplicated items for infinite scroll -->
         <div class="marquee-item">
-          <span class="marquee-emoji">🚀</span>
+          <span class="marquee-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg></span>
           <span>PROJECT LAUNCHED: Nexus App V2.0</span>
         </div>
         <div class="marquee-item">
-          <span class="marquee-emoji">🏆</span>
+          <span class="marquee-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg></span>
           <span>MILESTONE: Sarah reached Lead Dev tier</span>
         </div>
         <div class="marquee-item">
-          <span class="marquee-emoji">📝</span>
+          <span class="marquee-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg></span>
           <span>NEW POST: Architecting for Scale in 2024</span>
         </div>
         <div class="marquee-item">
-          <span class="marquee-emoji">👥</span>
+          <span class="marquee-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
           <span>MEMBER UPDATE: Rohit Verma got hired</span>
         </div>
       </div>
     </section>
 
     <!-- ===== TWO-COLUMN CTA SECTION ===== -->
-    <section class="container">
+    <section class="container section">
       <div class="cta-grid">
         <!-- Card 1: HIRE -->
         <div class="cta-card cta-card-hire">
@@ -514,7 +483,9 @@
       </div>
     </div>
   </footer>
+  <stucknot-theme-toggle></stucknot-theme-toggle>
 
+  <script src="./navbar.js"></script>
   <script src="main.js"></script>
   <script>
     // Fetch data from local JSON database
@@ -542,20 +513,20 @@
         const marquee = document.getElementById('ticker-marquee');
         if (marquee && data.home && data.home.activity) {
           const tickerItems = [
-            { emoji: '🚀', text: 'PROJECT LAUNCHED: Nexus App V2.0' },
-            { emoji: '🏆', text: 'MILESTONE: Sarah reached Lead Dev tier' },
-            { emoji: '📝', text: 'NEW POST: Architecting for Scale in 2024' },
-            { emoji: '👥', text: 'MEMBER UPDATE: Rohit Verma got hired' }
+            { emoji: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg>', text: 'PROJECT LAUNCHED: Nexus App V2.0' },
+            { emoji: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>', text: 'MILESTONE: Sarah reached Lead Dev tier' },
+            { emoji: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>', text: 'NEW POST: Architecting for Scale in 2024' },
+            { emoji: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>', text: 'MEMBER UPDATE: Rohit Verma got hired' }
           ];
           
           data.home.activity.forEach(item => {
-            let emoji = '🚀';
+            let emoji = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg>';
             let prefix = 'PROJECT LAUNCHED:';
             if (item.type.toLowerCase().includes('milestone')) {
-              emoji = '🏆';
+              emoji = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>';
               prefix = 'MILESTONE:';
             } else if (item.type.toLowerCase().includes('post') || item.type.toLowerCase().includes('blog')) {
-              emoji = '📝';
+              emoji = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>';
               prefix = 'NEW POST:';
             }
             tickerItems.push({

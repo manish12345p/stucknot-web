@@ -191,7 +191,7 @@ function renderBlogAndRepos(){
 
   if(repoList) {
     repoList.innerHTML = DATA.blog.repos.map(function(repo, i){
-      return '<div class="repo-card reveal reveal-stagger-' + (i + 1) + '"><div class="repo-card-header"><span class="repo-name">' + repo.name + '</span><span class="repo-stars-badge">★ ' + repo.stars + '</span></div><div class="repo-desc">' + repo.description + '</div></div>';
+      return '<div class="repo-card reveal reveal-stagger-' + (i + 1) + '"><div class="repo-card-header"><span class="repo-name">' + repo.name + '</span><span class="repo-stars-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> ' + repo.stars + '</span></div><div class="repo-desc">' + repo.description + '</div></div>';
     }).join('');
   }
 }
@@ -450,43 +450,7 @@ function initProgramTabs(){
   btn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
 })();
 
-(function initMobileMenu(){
-  var menuBtn = document.querySelector('.mobile-menu-btn');
-  var mobileNav = document.getElementById('mobile-nav');
-  var body = document.body;
-  var navLinks = document.querySelectorAll('#mobile-nav .nav-links a, #mobile-nav .header-right button');
 
-  if (!menuBtn || !mobileNav) return;
-
-  function toggleMenu() {
-    var isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
-    menuBtn.setAttribute('aria-expanded', !isExpanded);
-    menuBtn.classList.toggle('active');
-    mobileNav.classList.toggle('open');
-    body.classList.toggle('menu-open');
-  }
-
-  menuBtn.addEventListener('click', toggleMenu);
-  navLinks.forEach(function(link) {
-    link.addEventListener('click', function() {
-      if (mobileNav.classList.contains('open')) toggleMenu();
-    });
-  });
-})();
-
-(function initHeaderScroll(){
-  var header = document.querySelector('.header, .site-header');
-  var ticking = false;
-  window.addEventListener('scroll', function(){
-    if (!ticking) {
-      window.requestAnimationFrame(function(){
-        if(header) header.classList.toggle('scrolled', window.scrollY > 60);
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
-})();
 
 function initScrollReveal(){
   var observer = new IntersectionObserver(function(entries){
@@ -561,3 +525,26 @@ if (document.getElementById('projects-grid')) {
   renderTestimonials();
   initScrollReveal();
 }
+
+/* =========================================
+   7. VIRTUAL OS WORKSPACE INTERACTIVITY
+   ========================================= */
+function initVirtualOS() {
+  const osContainer = document.getElementById('os-workspace');
+  if (!osContainer) return;
+
+  const windows = osContainer.querySelectorAll('.os-win');
+  let maxZ = 10;
+
+  windows.forEach(win => {
+    win.addEventListener('mousedown', () => {
+      windows.forEach(w => w.classList.remove('focused'));
+      win.classList.add('focused');
+      maxZ += 1;
+      win.style.zIndex = maxZ;
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initVirtualOS);
+initVirtualOS();

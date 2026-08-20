@@ -9,33 +9,11 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&family=JetBrains+Mono:wght@500;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="../stucknot-design-system.css">
+  <script src="../theme-toggle.js"></script>
   <style>
-    .programs-hero {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 170px;
-      padding-bottom: 80px;
-      gap: 50px;
-      max-width: 1300px;
-      margin: 0 auto;
-    }
-
-    .programs-hero-content {
-      flex: 1;
-      max-width: 460px;
-    }
-
-    .programs-hero-roadmap-wrapper {
-      flex: 1.5;
-      width: 100%;
-      max-width: 620px;
-    }
 
     :root {
       --rose: #e6a8a8;
@@ -50,19 +28,41 @@
       --roadmap-panel-bg: rgba(255, 255, 255, 0.015);
       --roadmap-right-bg: rgba(8, 8, 12, 0.5);
       --roadmap-terminal-bg: rgba(3, 3, 5, 0.9);
+      --roadmap-terminal-border: rgba(255, 255, 255, 0.05);
+      --roadmap-terminal-scan: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
       --roadmap-border: rgba(255, 255, 255, 0.08);
       --roadmap-text: var(--white);
       --roadmap-text-muted: var(--silver);
+      
+      /* Button variables */
+      --btn-simulate-bg: rgba(172, 13, 48, 0.15);
+      --btn-simulate-border: rgba(172, 13, 48, 0.4);
+      --btn-simulate-text: var(--rose);
+      --btn-simulate-hover: rgba(172, 13, 48, 0.3);
+      --btn-simulate-disabled-bg: rgba(255, 255, 255, 0.02);
+      --btn-simulate-disabled-border: rgba(255, 255, 255, 0.05);
+      --btn-simulate-disabled-text: rgba(255, 255, 255, 0.3);
     }
 
     html.light-theme {
       --roadmap-bg: rgba(255, 255, 255, 0.7);
       --roadmap-panel-bg: rgba(0, 0, 0, 0.01);
       --roadmap-right-bg: rgba(250, 249, 246, 0.6);
-      --roadmap-terminal-bg: #0a0e17; /* Keep terminal dark even in light theme */
+      --roadmap-terminal-bg: #f4f4f4;
+      --roadmap-terminal-border: rgba(0, 0, 0, 0.1);
+      --roadmap-terminal-scan: linear-gradient(rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.05) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
       --roadmap-border: rgba(0, 0, 0, 0.08);
       --roadmap-text: var(--black);
       --roadmap-text-muted: #555555;
+      
+      /* Button variables */
+      --btn-simulate-bg: rgba(193, 74, 93, 0.1);
+      --btn-simulate-border: rgba(193, 74, 93, 0.3);
+      --btn-simulate-text: #a12b3e; /* Darker red for contrast */
+      --btn-simulate-hover: rgba(193, 74, 93, 0.2);
+      --btn-simulate-disabled-bg: rgba(0, 0, 0, 0.02);
+      --btn-simulate-disabled-border: rgba(0, 0, 0, 0.05);
+      --btn-simulate-disabled-text: rgba(0, 0, 0, 0.3);
     }
 
     /* Skills Tree Engine Container */
@@ -87,7 +87,7 @@
       border-right: 1px solid var(--roadmap-border);
       display: flex;
       flex-direction: column;
-      padding: 12px 16px;
+      padding: 14px 16px;
       background: var(--roadmap-panel-bg);
       z-index: 5;
     }
@@ -102,7 +102,7 @@
       color: var(--rose);
       font-weight: 900;
       text-transform: uppercase;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .roadmap-main-title {
@@ -116,14 +116,14 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .roadmap-tab-btn {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.04);
       padding: 10px 14px;
-      border-radius: 10px;
+      border-radius: 8px;
       color: var(--roadmap-text-muted);
       font-family: 'Montserrat', sans-serif;
       font-size: 11px;
@@ -175,7 +175,7 @@
     }
 
     .roadmap-tab-arrow {
-      font-size: 14px;
+      font-size: 12px;
       opacity: 0.6;
       transition: transform 0.3s;
     }
@@ -189,9 +189,9 @@
     .career-stats-card {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.04);
-      border-radius: 10px;
+      border-radius: 8px;
       padding: 12px;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
     html.light-theme .career-stats-card {
@@ -202,8 +202,8 @@
     .career-stat-row {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 6px;
-      font-size: 11px;
+      margin-bottom: 8px;
+      font-size: 10px;
     }
 
     .career-stat-row:last-child {
@@ -247,11 +247,11 @@
       flex: 1;
       min-height: 0;
       background: var(--roadmap-terminal-bg);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-      padding: 8px 10px;
+      border: 1px solid var(--roadmap-terminal-border);
+      border-radius: 8px;
+      padding: 10px 12px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 9.5px;
+      font-size: 9px;
       color: #38bdf8;
       overflow-y: auto;
       position: relative;
@@ -263,7 +263,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+      background: var(--roadmap-terminal-scan);
       background-size: 100% 3px, 3px 100%;
       pointer-events: none;
     }
@@ -330,7 +330,8 @@
     .tree-svg-canvas path {
       fill: none;
       stroke: var(--roadmap-border);
-      stroke-width: 2;
+      stroke-width: 1.5;
+      vector-effect: non-scaling-stroke;
       transition: stroke 0.4s, stroke-width 0.4s;
     }
 
@@ -348,21 +349,21 @@
     /* Active path highlighting */
     .tree-svg-canvas path.flow-line.active-fs {
       stroke: var(--rose);
-      stroke-width: 3;
+      stroke-width: 2;
       animation-duration: 0.8s;
       filter: drop-shadow(0 0 4px var(--rose-glow));
     }
 
     .tree-svg-canvas path.flow-line.active-ds {
       stroke: var(--maroon-light);
-      stroke-width: 3;
+      stroke-width: 2;
       animation-duration: 0.8s;
       filter: drop-shadow(0 0 4px var(--maroon-glow));
     }
 
     .tree-svg-canvas path.flow-line.active-co {
       stroke: var(--devops-cyan);
-      stroke-width: 3;
+      stroke-width: 2;
       animation-duration: 0.8s;
       filter: drop-shadow(0 0 4px var(--devops-cyan-glow));
     }
@@ -423,7 +424,7 @@
 
     .skill-node-label {
       position: absolute;
-      top: 42px;
+      top: 45px;
       left: 50%;
       transform: translateX(-50%);
       width: 130px;
@@ -445,18 +446,18 @@
 
     /* Details Panel */
     .details-panel {
-      height: 180px;
+      height: 160px;
       flex-shrink: 0;
       border-top: 1px solid var(--roadmap-border);
       background: rgba(255, 255, 255, 0.005);
-      padding: 10px 16px;
+      padding: 8px 16px;
       display: flex;
       gap: 16px;
       z-index: 5;
     }
 
     .details-left {
-      width: 45%;
+      width: 50%;
       display: flex;
       flex-direction: column;
     }
@@ -471,39 +472,38 @@
     }
 
     .details-node-title {
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 800;
       color: var(--roadmap-text);
       margin-bottom: 4px;
     }
 
     .details-node-desc {
-      font-size: 10.5px;
+      font-size: 9px;
       color: var(--roadmap-text-muted);
-      line-height: 1.5;
+      line-height: 1.2;
       opacity: 0.8;
-      flex: none;
+      flex: 1;
       overflow-y: auto;
-      max-height: 40px;
+      max-height: 32px;
       padding-right: 6px;
-      padding-bottom: 6px;
+      padding-bottom: 2px;
       scrollbar-width: thin;
       scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
     }
 
     .details-right {
-      width: 55%;
+      width: 50%;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      gap: 6px;
+      justify-content: space-between;
       border-left: 1px solid var(--roadmap-border);
       padding-left: 16px;
     }
 
     .details-project-box {
       flex: none;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .details-project-label {
@@ -512,25 +512,25 @@
       color: #64748b;
       letter-spacing: 0.5px;
       text-transform: uppercase;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .details-project-name {
-      font-size: 11.5px;
+      font-size: 10px;
       font-weight: 700;
       color: var(--roadmap-text);
       margin-bottom: 2px;
     }
 
     .details-project-desc {
-      font-size: 9.5px;
+      font-size: 8px;
       color: var(--roadmap-text-muted);
       opacity: 0.6;
-      line-height: 1.4;
-      max-height: 30px;
+      line-height: 1.2;
+      max-height: 28px;
       overflow-y: auto;
       padding-right: 6px;
-      padding-bottom: 6px;
+      padding-bottom: 2px;
       scrollbar-width: thin;
       scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
     }
@@ -538,7 +538,7 @@
     .details-bottom-row {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 2px;
       width: 100%;
     }
 
@@ -551,9 +551,9 @@
     .details-tag {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 2px 5px;
+      padding: 1px 4px;
       border-radius: 4px;
-      font-size: 7.5px;
+      font-size: 8px;
       color: var(--roadmap-text-muted);
       font-weight: 500;
     }
@@ -564,33 +564,35 @@
     }
 
     .simulate-btn {
-      background: rgba(172, 13, 48, 0.15);
-      border: 1px solid rgba(172, 13, 48, 0.4);
-      color: var(--rose);
+      background: var(--btn-simulate-bg);
+      border: 1px solid var(--btn-simulate-border);
+      color: var(--btn-simulate-text);
       font-family: 'Montserrat', sans-serif;
-      font-size: 8.5px;
+      font-size: 8px;
       font-weight: 700;
-      padding: 5px 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 8px;
       border-radius: 6px;
       cursor: pointer;
-      transition: all 0.3s;
-      white-space: nowrap;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 4px;
       width: 100%;
+      transition: all 0.2s ease;
+      white-space: nowrap;
     }
 
     .simulate-btn:hover {
-      background: rgba(172, 13, 48, 0.3);
-      box-shadow: 0 0 10px rgba(172, 13, 48, 0.2);
+      background: var(--btn-simulate-hover);
+      box-shadow: 0 0 10px var(--btn-simulate-hover);
     }
 
     .simulate-btn:disabled {
-      background: rgba(255, 255, 255, 0.02) !important;
-      border-color: rgba(255, 255, 255, 0.05) !important;
-      color: rgba(255, 255, 255, 0.3) !important;
+      background: var(--btn-simulate-disabled-bg) !important;
+      border-color: var(--btn-simulate-disabled-border) !important;
+      color: var(--btn-simulate-disabled-text) !important;
       cursor: not-allowed !important;
     }
 
@@ -626,15 +628,15 @@
     .track-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 40px;
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
     }
 
     .track-card {
       background: var(--theme-card-bg);
       border: 1px solid var(--theme-card-border);
       border-radius: 12px;
-      padding: 32px;
+      padding: var(--space-lg);
       display: flex;
       flex-direction: column;
       position: relative;
@@ -654,15 +656,15 @@
     .track-badge {
       align-self: flex-start;
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: var(--text-xs);
       font-weight: 700;
       letter-spacing: 1px;
       text-transform: uppercase;
-      padding: 4px 8px;
+      padding: var(--space-2xs) var(--space-xs);
       background: rgba(0, 0, 0, 0.05);
       color: var(--theme-text-muted);
       border-radius: 4px;
-      margin-bottom: 24px;
+      margin-bottom: var(--space-md);
     }
 
     html.dark-theme .track-badge {
@@ -680,40 +682,40 @@
     }
 
     .track-title {
-      font-size: 24px;
+      font-size: var(--text-h3);
       font-weight: 700;
-      margin-bottom: 16px;
+      margin-bottom: var(--space-sm);
     }
 
     .track-desc {
-      font-size: 14.5px;
+      font-size: var(--text-small);
       line-height: 1.6;
       color: var(--theme-text-muted);
-      margin-bottom: 24px;
+      margin-bottom: var(--space-md);
       flex-grow: 1;
     }
 
     .track-features {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: var(--space-xs);
       border-top: 1px solid var(--theme-card-border);
-      padding-top: 20px;
+      padding-top: var(--space-md);
     }
 
     .track-feature-item {
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 13.5px;
+      gap: var(--space-xs);
+      font-size: var(--text-small);
       font-family: var(--font-mono);
       color: var(--theme-text);
     }
 
     /* Timeline Stepper */
-    .programs-timeline {
+    .timeline-widget {
       position: relative;
-      margin-top: 60px;
+      margin-top: var(--space-xl);
     }
 
     .timeline-track-wrap {
@@ -722,7 +724,7 @@
       height: 40px;
       display: flex;
       align-items: center;
-      margin-bottom: 40px;
+      margin-bottom: var(--space-lg);
     }
 
     .timeline-track {
@@ -791,14 +793,14 @@
     .timeline-cards {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
+      gap: var(--space-md);
     }
 
     .timeline-card {
       background: var(--theme-card-bg);
       border: 1px solid var(--theme-card-border);
       border-radius: 12px;
-      padding: 24px;
+      padding: var(--space-md);
       transition: all 0.3s var(--ease-out);
       cursor: pointer;
     }
@@ -814,10 +816,10 @@
 
     .phase-label {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: var(--text-xs);
       font-weight: 700;
       letter-spacing: 1px;
-      margin-bottom: 12px;
+      margin-bottom: var(--space-sm);
       color: var(--theme-text-muted);
       transition: color 0.3s;
     }
@@ -827,38 +829,21 @@
     }
 
     .phase-title {
-      font-size: 20px;
+      font-size: var(--text-h3);
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: var(--space-sm);
     }
 
     .phase-desc {
-      font-size: 13.5px;
+      font-size: var(--text-small);
       line-height: 1.6;
       color: var(--theme-text-muted);
     }
 
-    /* Responsive Queries */
     @media (max-width: 992px) {
-      .programs-hero {
-        flex-direction: column;
-        gap: 40px;
-        padding-top: 120px;
-        padding-bottom: 50px;
-      }
-      .programs-hero-content {
-        max-width: 100%;
-        text-align: center;
-      }
-      .programs-hero-content .base-button {
-        margin: 0 auto;
-      }
-      .programs-hero-image-wrapper {
-        max-width: 100%;
-      }
       .track-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: var(--space-md);
       }
       .timeline-cards {
         grid-template-columns: repeat(2, 1fr);
@@ -879,38 +864,21 @@
 <body>
 
   <!-- HEADER -->
-  <header class="header" role="banner">
-    <div class="container">
-      <a href="../index.html" aria-label="StuckNot Home"><span class="logo-img" role="img" aria-label="StuckNot logo"></span></a>
-      <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
-        <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
-      </button>
-      <div class="header-nav-wrapper" id="mobile-nav">
-        <nav class="nav-links" aria-label="Main navigation" id="nav-main-links">
-          <a href="../index.html">Home</a>
-          <a href="../community/index.html">Community</a>
-          <a href="../work/index.html">Work</a>
-          <a href="../programs/index.html" class="active">Programs</a>
-          <a href="../learn/index.html">Learn</a>
-          <a href="../community/index.html">About</a>
-        </nav>
-      </div>
-    </div>
-  </header>
+  <stucknot-navbar base-path="../" active-page="programs"></stucknot-navbar>
 
   <main>
     <!-- HERO SECTION -->
-    <section class="programs-hero container section">
-      <div class="programs-hero-content">
+    <section class="container page-hero">
+      <div class="page-hero-content">
         <span class="eyebrow-text highlight-maroon">PROGRESSIVE COMMITMENT</span>
-        <h1 class="hero-title">From Apprentice to Builder.</h1>
-        <p class="hero-desc">Our programs are designed as a clear, structured funnel. You start by learning the
+        <h1 class="page-hero-title">From Apprentice to Builder.</h1>
+        <p class="page-hero-desc">Our programs are designed as a clear, structured funnel. You start by learning the
           foundations, and progress by building real tools for the community. We prioritize hands-on engineering over theory.</p>
-        <div style="margin-top: 32px;">
-          <a href="/programs/curriculum" class="base-button">VIEW CURRICULUM <span style="margin-left: 8px;">→</span></a>
+        <div style="margin-top: var(--space-lg);">
+          <a href="/programs/curriculum" class="base-button">VIEW CURRICULUM <span style="margin-left: var(--space-xs);">→</span></a>
         </div>
       </div>
-      <div class="programs-hero-roadmap-wrapper">
+      <div class="page-hero-widget">
         <div class="roadmap-container" id="roadmap-root">
           
           <!-- Left Panel: Navigation & Terminal -->
@@ -973,9 +941,9 @@
               <!-- Dynamic SVG connector paths -->
               <svg class="tree-svg-canvas" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <!-- Background paths -->
-                <path id="l-core-fs" class="flow-line" d="M 50 15 C 50 28, 20 27, 20 40" />
+                <path id="l-core-fs" class="flow-line" d="M 50 15 L 20 40" />
                 <path id="l-core-ds" class="flow-line" d="M 50 15 L 50 40" />
-                <path id="l-core-co" class="flow-line" d="M 50 15 C 50 28, 80 27, 80 40" />
+                <path id="l-core-co" class="flow-line" d="M 50 15 L 80 40" />
                 
                 <path id="l-fs-1-2" class="flow-line" d="M 20 40 L 20 65" />
                 <path id="l-fs-2-3" class="flow-line" d="M 20 65 L 20 85" />
@@ -1062,7 +1030,7 @@
                     <span class="details-tag">Systems Design</span>
                   </div>
                   <button class="simulate-btn" id="simulate-action-btn">
-                    <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" style="margin-right: 2px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                     Simulate Project
                   </button>
                 </div>
@@ -1076,10 +1044,10 @@
     </section>
 
     <!-- CORE TRACKS SECTION -->
-    <section class="container section" style="padding-top: 40px; padding-bottom: 40px;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--theme-card-border); padding-bottom: 16px; margin-bottom: 32px;">
+    <section class="container section">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--theme-card-border); padding-bottom: var(--space-sm); margin-bottom: var(--space-lg);">
         <h2 class="section-title" style="margin-bottom: 0;">Core Tracks</h2>
-        <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--theme-text-muted); text-transform: uppercase;">Choose Your Discipline</span>
+        <span style="font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; letter-spacing: 1.5px; color: var(--theme-text-muted); text-transform: uppercase;">Choose Your Discipline</span>
       </div>
 
       <div class="track-grid">
@@ -1161,11 +1129,11 @@
     </section>
 
     <!-- MEMBER JOURNEY SECTION -->
-    <section class="container section" style="padding-top: 40px; padding-bottom: 80px;">
-      <h2 class="section-title" style="margin-bottom: 8px;">The Member Journey</h2>
-      <p class="section-subtitle" style="margin-bottom: 48px; color: var(--theme-text-muted); max-width: 600px;">A clear path from learning fundamentals to contributing real value to the ecosystem.</p>
+    <section class="container section">
+      <h2 class="section-title" style="margin-bottom: var(--space-xs);">The Member Journey</h2>
+      <p class="section-subtitle" style="margin-bottom: var(--space-lg); color: var(--theme-text-muted); max-width: 600px;">A clear path from learning fundamentals to contributing real value to the ecosystem.</p>
 
-      <div class="programs-timeline" id="journey-stepper">
+      <div class="timeline-widget" id="journey-stepper">
         <!-- Timeline Track -->
         <div class="timeline-track-wrap">
           <div class="timeline-track"></div>
@@ -1239,35 +1207,9 @@
       </div>
     </div>
   </footer>
-
-  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☀️ Light Mode</button>
+  <stucknot-theme-toggle></stucknot-theme-toggle>
 
   <script>
-    const toggleBtn = document.getElementById('theme-toggle');
-    const htmlEl = document.documentElement;
-
-    // Default to dark as requested
-    const savedTheme = localStorage.getItem('stucknot-theme') || 'dark';
-    if (savedTheme === 'light') {
-      htmlEl.classList.remove('dark-theme');
-      htmlEl.classList.add('light-theme');
-      toggleBtn.innerText = '🌙 Dark Mode';
-    }
-
-    toggleBtn.addEventListener('click', () => {
-      if (htmlEl.classList.contains('dark-theme')) {
-        htmlEl.classList.remove('dark-theme');
-        htmlEl.classList.add('light-theme');
-        localStorage.setItem('stucknot-theme', 'light');
-        toggleBtn.innerText = '🌙 Dark Mode';
-      } else {
-        htmlEl.classList.remove('light-theme');
-        htmlEl.classList.add('dark-theme');
-        localStorage.setItem('stucknot-theme', 'dark');
-        toggleBtn.innerText = '☀️ Light Mode';
-      }
-    });
-
     // ---------- IDEA 26: SKILL TREE & ROADMAP ENGINE ----------
     (function() {
       // Configuration objects for paths and details
@@ -1594,7 +1536,7 @@
         
         terminal.innerHTML = '';
         simulateBtn.innerHTML = `
-          <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" style="margin-right: 6px; animation: spin 1s linear infinite;"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" style="margin-right: var(--space-2xs); animation: spin 1s linear infinite;"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
           Simulating...
         `;
 
@@ -1635,7 +1577,7 @@
             isSimulating = false;
             simulateBtn.disabled = false;
             simulateBtn.innerHTML = `
-              <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" style="margin-right: 2px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" style="margin-right: var(--space-2xs);"><polygon points="5 3 19 12 5 21 5 3"/></svg>
               Simulate Project
             `;
           }
@@ -1713,6 +1655,7 @@
       progress.style.width = (12.5 + index * 25) + '%';
     }
   </script>
+  <script src="../navbar.js"></script>
   <script src="../main.js"></script>
 </body>
 
