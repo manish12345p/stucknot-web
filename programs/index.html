@@ -1046,7 +1046,7 @@
     <!-- CORE TRACKS SECTION -->
     <section class="container section">
       <div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--theme-card-border); padding-bottom: var(--space-sm); margin-bottom: var(--space-lg);">
-        <h2 class="section-title" style="margin-bottom: 0;">Core Tracks</h2>
+        <h2 class="section-heading">Core Tracks</h2>
         <span style="font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; letter-spacing: 1.5px; color: var(--theme-text-muted); text-transform: uppercase;">Choose Your Discipline</span>
       </div>
 
@@ -1130,7 +1130,7 @@
 
     <!-- MEMBER JOURNEY SECTION -->
     <section class="container section">
-      <h2 class="section-title" style="margin-bottom: var(--space-xs);">The Member Journey</h2>
+      <h2 class="section-heading">The Member Journey</h2>
       <p class="section-subtitle" style="margin-bottom: var(--space-lg); color: var(--theme-text-muted); max-width: 600px;">A clear path from learning fundamentals to contributing real value to the ecosystem.</p>
 
       <div class="timeline-widget" id="journey-stepper">
@@ -1186,23 +1186,38 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="footer-inner container">
-      <div class="footer-brand">
-        <h2 class="footer-logo">Stucknot</h2>
-        <p class="copyright">© 2024 Stucknot. Built for the community.</p>
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-inner" id="footer-inner">
+          <div>
+            <a href="/" class="logo" aria-label="StuckNot Home"><span class="logo-img" role="img" aria-label="StuckNot logo"></span></a>
+            <p class="footer-brand-desc" id="footer-desc">StuckNot is a community of builders. Businesses hire from it. Developers grow inside it.</p>
+          </div>
+          <div>
+            <h3 class="footer-col-heading">Community Hub</h3>
+            <div class="footer-links">
+              <a href="/work/index.html">Work Opportunities</a>
+            </div>
+          </div>
+          <div>
+            <h3 class="footer-col-heading">Active Programs</h3>
+            <div class="footer-links">
+              <a href="/learn/index.html">Learning Resources</a>
+            </div>
+          </div>
+          <div>
+            <h3 class="footer-col-heading">Company Culture</h3>
+            <div class="footer-links">
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="footer-links">
-        <div class="footer-col">
-          <a href="/community">Community Hub</a>
-          <a href="/work">Work Opportunities</a>
-        </div>
-        <div class="footer-col">
-          <a href="/programs" class="active">Active Programs</a>
-          <a href="/learn">Learning Resources</a>
-        </div>
-        <div class="footer-col">
-          <a href="/about">Company Culture</a>
+      <div class="footer-bottom">
+        <span>&copy; 2026 StuckNot — A community of builders.</span>
+        <div class="footer-bottom-links">
+          <a href="/legal/privacy-policy.html">Privacy Policy</a>
+          <a href="/legal/terms-of-service.html">Terms of Service</a>
         </div>
       </div>
     </div>
